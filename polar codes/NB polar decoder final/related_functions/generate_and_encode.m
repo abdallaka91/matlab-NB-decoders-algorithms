@@ -1,0 +1,9 @@
+function [info_seq, code_seq, valid_symdrom, y_bin] = generate_and_encode(ZERO, h,G, add_mat, mul_mat, p)
+[M,N]=size(h);
+K=N-M;
+q=2^p;
+info_seq = ZERO*randi([0 q-1], 1, K);
+code_seq = gf_mat_mul(info_seq,G, add_mat, mul_mat);
+valid_symdrom = gf_mat_mul(code_seq,h', add_mat, mul_mat);
+y_bin0 = fliplr(dec2bin(code_seq, p) - 48);
+y_bin = (-1).^y_bin0;
