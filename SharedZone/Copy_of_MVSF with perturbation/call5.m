@@ -23,13 +23,13 @@ max_err_cnt2 = 30; %at high Eb_No
 
 Eb_No_thrshld = 3.8;
 max_gen = 1e6;
-max_iter = 25;
-ebn0 = 3 : .2 : 4.2; %dB
+max_iter = 20;
+ebn0 = 2.6 : .2 : 4.2; %dB
 p = 4;
 q = 2^p;
 PERM_rng = 80;
 PERM = 40;
-max_trial = 10;
+max_trial = 1;
 
 pth1 = (fullfile(pwd, 'related_functions'));
 addpath(pth1);
