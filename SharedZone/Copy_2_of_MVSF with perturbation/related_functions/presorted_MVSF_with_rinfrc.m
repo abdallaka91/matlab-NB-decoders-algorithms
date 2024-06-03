@@ -25,10 +25,12 @@ while tt<max_attempt
         for j = 1 : N
             if ~s1(j)
                 b = LLR_2(j,:);
-                [~,i1] = max(b);
-                bb=LLR_2(j,dec_seq(j)+1);
-                LLR_2(j,dec_seq(j)+1) = 0;
-                LLR_2(j,i1) = 2*bb;
+                % [~,i1] = max(b);
+                % bb=LLR_2(j,dec_seq(j)+1);
+                % LLR_2(j,dec_seq(j)+1) = 0;
+                % LLR_2(j,i1) = 2*bb;
+                LLR_2(j,dec_seq(j)+1) = 1;
+                LLR_2(j,:) = LLR_2(j,:) - 1;
             end
         end
     end

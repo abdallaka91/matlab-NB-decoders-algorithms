@@ -12,7 +12,7 @@ di{2} = [0 1];
 di{3} = [0 2 1];
 v_weights = [0.8 0.3]*256; %good forDV=3
 parforN = 200;
-max_attempt = 1;
+max_attempt = 8;
 % di{1} = [0 0];
 % di{2} = [0 1];
 % di{3} = [0 2 1];
@@ -21,8 +21,8 @@ max_err_cnt1 = 60; % at low Eb_No(<Eb_No_thrshld)
 max_err_cnt2 = 30; %at high Eb_No
 Eb_No_thrshld = 3.8;
 max_gen = 1e6;
-max_iter = 20;
-ebn0 = 3.4; %dB
+max_iter = 12;
+ebn0 = 2.6:0.2:4.2; %dB
 p = 4;
 q = 2^p;
 

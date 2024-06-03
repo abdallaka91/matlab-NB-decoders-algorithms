@@ -1,8 +1,8 @@
 clear
 pth6 = (fullfile(pwd, 'results/'));
-a = load(fullfile(pth6, '204.102.3.6.16_2024_05_22_15_59_58.mat'));
-b = load(fullfile(pth6, '204.102.3.6.16_2024_05_29_17_49_10.mat'));
-c = load(fullfile(pth6, '204.102.3.6.16_2024_05_22_17_16_00.mat'));
+a = load(fullfile(pth6, '204.102.3.6.16_2024_04_03_18_42_21.mat'));
+b = load(fullfile(pth6, '204.102.3.6.16_2024_05_22_17_16_00.mat'));
+c = load(fullfile(pth6, '204.102.3.6.16_2024_05_29_17_49_10.mat'));
 
 %%
 conf_detail = a.conf_detail;
@@ -16,7 +16,7 @@ end
 
 
 figure;
-semilogy(a.ebn0, a.FERstat' ,b.ebn0, b.FERstat', c.ebn0, c.FERstat','o-')
+semilogy(a.ebn0, a.FERstat' ,'o-',b.ebn0, b.FERstat','o-', c.ebn0, c.FERstat','o-')
 grid on
 xlim([0 6])
 ylim([1e-7 1e-0])
