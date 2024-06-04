@@ -4,7 +4,7 @@ ZERO=1; % if  0 then simulate all zeros sequence
 plt = 0; % continiously plot FER performance if 1
 nm = 4;% V2C m2ssage size
 dc1 = [0 1 2];
-save_rslt = 1;
+save_rslt = 0;
 Dev_pos_cnt = length(dc1)-1;
 di = cell(length(dc1),1);
 di{1} = [0 0];
@@ -24,12 +24,12 @@ max_err_cnt2 = 30; %at high Eb_No
 Eb_No_thrshld = 3.8;
 max_gen = 1e6;
 max_iter = 25;
-ebn0 = 2.6:0.2:4.8; %dB
+ebn0 = 3:0.2:4.8; %dB
 p = 4;
 q = 2^p;
-PERM_rng = 30;
-PERM = 25;
-max_trial = 1;
+PERM_rng = 80;
+PERM = 40;
+max_trial = 10;
 
 pth1 = (fullfile(pwd, 'related_functions'));
 addpath(pth1);
