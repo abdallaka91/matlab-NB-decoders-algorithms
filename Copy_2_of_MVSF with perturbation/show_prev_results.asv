@@ -1,0 +1,13 @@
+clear
+pth6 = (fullfile(pwd, 'results/'));
+a = load(fullfile(pth6, '204.102.3.6.16_2024_04_03_12_25_07.mat'));
+b = load(fullfile(pth6, '204.102.3.6.16_2024_04_03_13_21_41.mat'));
+
+EBNO = [a.ebn0 b.ebn0];
+FERstat = [a.FERstat' b.FERstat'];
+figure;
+semilogy(EBNO, FERstat', 'o-')
+grid on
+xlim()
+
+

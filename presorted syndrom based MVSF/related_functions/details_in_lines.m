@@ -1,4 +1,4 @@
-function text_lines  = details_in_lines(ebn0, FER,BER, SER, gen_seq_cnt,K,p, aver_iter, conf_detail)
+function text_lines  = details_in_lines(ebn0, FER,BER, SER, gen_seq_cnt,K,p, aver_iter, conf_detail, file_name, save_rslt)
 
 snr_cnt = length(ebn0);
 msg='';
@@ -15,18 +15,18 @@ for i0=1:snr_cnt
 end
 conf_detail.msg = msg;
 
+
 fields = fieldnames(conf_detail);
 text_lines = cell(numel(fieldnames(conf_detail)), 1);
 for i = 1:numel(fields)
     text_lines{i} = conf_detail.(fields{i});
 end
-current_date = datestr(now, 'yyyy_mm_dd');
-current_time = datestr(now, 'HH_MM');
-file_name = strcat(extractAfter(conf_detail.a1fl_nme, "H matrix : "), '_' ,current_date ,'_' ,current_time, '.txt');
-
-fid = fopen(file_name, 'w');
-fprintf(fid, '%s\n', text_lines{:});
-fclose(fid)
+if save_rslt
+    file_name  =file_name+'.txt';
+    fid = fopen(file_name, 'w');
+    fprintf(fid, '%s\n', text_lines{:});
+    fclose(fid);
+end
 
 % clear conf_detail
 % conf_detail.a1fl_nme = sprintf("H matrix : %s",H_matrix_mat_fl_nm);
