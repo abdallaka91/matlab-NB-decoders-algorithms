@@ -1,9 +1,0 @@
-H matrix : 204.102.3.6.16
-N = 204, M = 102, K = 102, GF(16)
-EMS algorithm, nm = 12, nc = 144, C2V compensation factor  = 150.000
-max iter : 50
-max seq generation : 100000
-max error frame detection: 60
-EbNo = 3 dB, FER = 0/250 = 0 || SER = 0/25500 = 0 || BER = 0/102000 = 0, aver_iter = 4.816
-------------------------------------------------------------------------------------------------------------------------------------
-

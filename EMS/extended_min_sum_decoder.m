@@ -1,21 +1,21 @@
 clear;%/home/abdallah/Downloads/NB_LDPC_Decoders/call_MV_SF_parforloop.m
-save_rslt = 0;
+save_rslt = 1;
 comput_SER_BER = false;
-ZERO=1;
+ZERO=0;
 plt = 0;
-nm = 4;
+nm =4;
 nc =nm^2;
 c2v_comp_fact=150;
-comp_ECN = 150;
-max_gen = 5000;
+comp_ECN = 80;
+max_gen = 1e6;
 max_iter = 50;
-ebn0 =3; %dB
-p = 4;
+ebn0 =4.; %dB
+p = 8;
 q = 2^p;
-max_err_cnt1 = 60; % at low Eb_No(<Eb_No_thrshld)
-max_err_cnt2 = 30; %at high Eb_No
-parforN = 50;
-Eb_No_thrshld = 3.8;
+max_err_cnt1 = 100; % at low Eb_No(<Eb_No_thrshld)
+max_err_cnt2 = 40; %at high Eb_No
+parforN = 100;
+Eb_No_thrshld = 3.2;
 
 pth1 = (fullfile(pwd, 'related_functions'));
 addpath(pth1);
@@ -27,13 +27,13 @@ pth6 = (fullfile(pwd, 'results/'));
 
 words = (0:q-1);
 
-H_matrix_mat_fl_nm = '204.102.3.6.16';
+H_matrix_mat_fl_nm = 'EG_255_175';
 load([fullfile(pth4, H_matrix_mat_fl_nm) '.mat']);
-% h=H;
+h=H;
 h = full(h);
 N = size(h,2);
 M = size(h,1);
-K = N-M;
+K = 176;%N-M;
 fl_nm = ['arith_' num2str(q) '.mat'];
 if  exist(fullfile(pth3, fl_nm), 'file') == 2
     load(fullfile(pth3, fl_nm));
@@ -86,7 +86,7 @@ snr = -10*log10(2*sigma.^2);
 %%
 alph_bin =  fliplr(dec2bin(words, p) - 48);
 alph_bin_mod = (-1).^alph_bin;
-[G,~] = Generator_matrix_G_from_full_rank_H(h, add_mat, mul_mat, div_mat);
+% [G,~] = Generator_matrix_G_from_full_rank_H(h, add_mat, mul_mat, div_mat);
 % info_seq = [12,5,15,5,6,14,15,11,1,14,5,12,14,7,15,9,8,9,6,12,1,3,15,9,13,11,8,15,1,8,1,3,2,4,8,13,4,11,10,12,11,11,2,11,3,2,9,2,9,5,6,9,5,8,3,7,13,1,9,13,3,8,6,10,3,12,0,8,1,14,4,15,2,0,12,10,12,9,11,11,15,10,12,10,15,12,14,10,10,0,8,10,4,8,12,14,8,8,11,1,6,12];
 % code_seq = gf_mat_mul(info_seq,G, add_mat, mul_mat);
 % valid_symdrom = gf_mat_mul(code_seq,h', add_mat, mul_mat);
@@ -114,8 +114,8 @@ iter_cnt = zeros(snr_cnt,1);
 aver_iter = zeros(snr_cnt,1);
 
 max_err_cnt = max_err_cnt1;
-load y_bin_nse.mat
-load info_seq.mat
+% load y_bin_nse.mat
+% load info_seq.mat
 for i0 = 1 : snr_cnt
     if ebn0(i0)>=Eb_No_thrshld
         max_err_cnt = max_err_cnt2;
@@ -133,11 +133,18 @@ for i0 = 1 : snr_cnt
     sigm =sigma(i0);
     while FER(i0) < max_err_cnt && gen_seq_cnt(i0)<max_gen
 
-        for j = 1 : parforN
+        parfor j = 1 : parforN
             gen_seq_cnt_ = gen_seq_cnt_+1;
-                        [info_seq, code_seq, valid_symdrom, y_bin] = generate_and_encode(ZERO, h,G, add_mat, mul_mat, p);
-                        nse = sigm*randn(size(y_bin));
-                        y_bin_nse = y_bin + nse;
+            if ZERO
+                [info_seq, code_seq, valid_symdrom, y_bin] = generate_and_encode(ZERO, h,G, add_mat, mul_mat, p);
+            else
+                info_seq = zeros(1,K);
+                code_seq=zeros(1,N);
+                y_bin0 = fliplr(dec2bin(code_seq, p) - 48);
+                y_bin = (-1).^y_bin0;
+            end
+            nse = sigm*randn(size(y_bin));
+            y_bin_nse = y_bin + nse;
 
             LLRfact = 1;
             unreliable_sat=-inf;
