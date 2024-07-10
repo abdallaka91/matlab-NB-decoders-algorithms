@@ -35,8 +35,8 @@ for i = 1 : nm^2
 end
 V_gf1=find(V_gf);
 V_llr1 = V_llr(V_gf1);
-[V_llr1,b] = sort(V_llr1);
-V_gf = V_gf1(b)-1;
+[V_llr1,b1] = sort(V_llr1);
+V_gf = V_gf1(b1)-1;
 V(1,:) = V_gf;
 V(2,:) = V_llr1(1:nm);
 end

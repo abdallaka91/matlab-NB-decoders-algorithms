@@ -5,6 +5,10 @@ for j = 1: N
         i1 = idx1(i);
         idx2 = str_cn_vn{i1};
         i2 = find(idx2==j,1);
-        Mv2c{i1}(i2,:) = APP(j,:)- Mc2v{i1}(i2,:);
+        aa=APP(j,:);
+        bb=Mc2v{i1}(i2,:);
+
+        cc = aa- bb;
+        Mv2c{i1}(i2,:) = cc;
     end
 end

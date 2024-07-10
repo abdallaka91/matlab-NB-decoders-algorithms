@@ -1,22 +1,23 @@
 clear;%/home/abdallah/Downloads/NB_LDPC_Decoders/call_MV_SF_parforloop.m
-save_rslt = 1;
+save_rslt = 0;
 comput_SER_BER = false;
 ZERO=0;
 plt = 0;
-nm =4;
+nm =8;
 nc =nm^2;
-c2v_comp_fact=150;
-comp_ECN = 80;
+c2v_comp_fact=40;
+comp_ECN = nan;
 max_gen = 1e6;
 max_iter = 50;
-ebn0 =4.; %dB
-p = 8;
+ebn0 =2.; %dB
+p = 4;
 q = 2^p;
 max_err_cnt1 = 100; % at low Eb_No(<Eb_No_thrshld)
 max_err_cnt2 = 40; %at high Eb_No
 parforN = 100;
 Eb_No_thrshld = 3.2;
-
+LLRfact = 1024*8;
+unreliable_sat=-inf;
 pth1 = (fullfile(pwd, 'related_functions'));
 addpath(pth1);
 pth2 = (fullfile(pwd, 'related_variables'));
@@ -27,13 +28,14 @@ pth6 = (fullfile(pwd, 'results/'));
 
 words = (0:q-1);
 
-H_matrix_mat_fl_nm = 'EG_255_175';
+H_matrix_mat_fl_nm = '204.102.3.6.16';
 load([fullfile(pth4, H_matrix_mat_fl_nm) '.mat']);
-h=H;
+% h=H;
 h = full(h);
 N = size(h,2);
 M = size(h,1);
-K = 176;%N-M;
+% K = 176;
+K=N-M;
 fl_nm = ['arith_' num2str(q) '.mat'];
 if  exist(fullfile(pth3, fl_nm), 'file') == 2
     load(fullfile(pth3, fl_nm));
@@ -84,7 +86,7 @@ sigma = sqrt(N0/2);
 snr = -10*log10(2*sigma.^2);
 
 %%
-alph_bin =  fliplr(dec2bin(words, p) - 48);
+alph_bin =  logical(fliplr(dec2bin(words, p) - 48));
 alph_bin_mod = (-1).^alph_bin;
 % [G,~] = Generator_matrix_G_from_full_rank_H(h, add_mat, mul_mat, div_mat);
 % info_seq = [12,5,15,5,6,14,15,11,1,14,5,12,14,7,15,9,8,9,6,12,1,3,15,9,13,11,8,15,1,8,1,3,2,4,8,13,4,11,10,12,11,11,2,11,3,2,9,2,9,5,6,9,5,8,3,7,13,1,9,13,3,8,6,10,3,12,0,8,1,14,4,15,2,0,12,10,12,9,11,11,15,10,12,10,15,12,14,10,10,0,8,10,4,8,12,14,8,8,11,1,6,12];
@@ -116,6 +118,7 @@ aver_iter = zeros(snr_cnt,1);
 max_err_cnt = max_err_cnt1;
 % load y_bin_nse.mat
 % load info_seq.mat
+LLR_20 =zeros(N,q);
 for i0 = 1 : snr_cnt
     if ebn0(i0)>=Eb_No_thrshld
         max_err_cnt = max_err_cnt2;
@@ -145,13 +148,11 @@ for i0 = 1 : snr_cnt
             end
             nse = sigm*randn(size(y_bin));
             y_bin_nse = y_bin + nse;
-
-            LLRfact = 1;
-            unreliable_sat=-inf;
-            LLR_2 = -1024*LLR_simple3(y_bin_nse, p,LLRfact , unreliable_sat);
-            LLR_2 = round(LLR_2);
+            LLR_2 = LLR_simple3(y_bin_nse,LLRfact , unreliable_sat, q,N, alph_bin, LLR_20);
+            LLR_2 = -round(LLR_2);
             [~,HD1] = min(LLR_2,[], 2);
             HD1 = HD1'-1;
+            ndf1 = sum(HD1~=code_seq);
             [iters, dec_seq, success_dec,~,LLR_out] = EMS2(...
                 LLR_2, max_iter, mul_mat, add_mat, div_mat, h,str_cn_vn, dc,...
                 str_vn_cn, dv, nm, nc, c2v_comp_fact, comp_ECN);
