@@ -1,23 +1,4 @@
-clear;%/home/abdallah/Downloads/NB_LDPC_Decoders/call_MV_SF_parforloop.m
-save_rslt = 0;
-comput_SER_BER = false;
-ZERO=0;
-plt = 0;
-nm =8;
-nc =nm^2;
-c2v_comp_fact=40;
-comp_ECN = nan;
-max_gen = 1e6;
-max_iter = 50;
-ebn0 =2.; %dB
-p = 4;
-q = 2^p;
-max_err_cnt1 = 100; % at low Eb_No(<Eb_No_thrshld)
-max_err_cnt2 = 40; %at high Eb_No
-parforN = 100;
-Eb_No_thrshld = 3.2;
-LLRfact = 1024*8;
-unreliable_sat=-inf;
+clear;
 pth1 = (fullfile(pwd, 'related_functions'));
 addpath(pth1);
 pth2 = (fullfile(pwd, 'related_variables'));
@@ -26,9 +7,7 @@ pth4 = (fullfile(pwd, 'related_variables/alists'));
 pth5 = (fullfile(pwd, 'related_variables/alists/matrices'));
 pth6 = (fullfile(pwd, 'results/'));
 
-words = (0:q-1);
-
-H_matrix_mat_fl_nm = '204.102.3.6.16';
+H_matrix_mat_fl_nm = 'BeiDou_44_bb_GF64';
 load([fullfile(pth4, H_matrix_mat_fl_nm) '.mat']);
 % h=H;
 h = full(h);
@@ -36,6 +15,29 @@ N = size(h,2);
 M = size(h,1);
 % K = 176;
 K=N-M;
+p = 6;
+q = 2^p;
+words = (0:q-1);
+
+save_rslt = 0;
+comput_SER_BER = false;
+ZERO=0;
+plt = 0;
+nm = 8;
+nc =nm^2;
+c2v_comp_fact=600;
+comp_ECN = c2v_comp_fact;
+max_gen = 1e6;
+max_iter = 50;
+ebn0 =1.8; %dB
+
+max_err_cnt1 = 40; % at low Eb_No(<Eb_No_thrshld)
+max_err_cnt2 = 40; %at high Eb_No
+parforN = 50;
+Eb_No_thrshld = 3.2;
+LLRfact = 1024;
+unreliable_sat=-inf;
+
 fl_nm = ['arith_' num2str(q) '.mat'];
 if  exist(fullfile(pth3, fl_nm), 'file') == 2
     load(fullfile(pth3, fl_nm));
@@ -149,7 +151,7 @@ for i0 = 1 : snr_cnt
             nse = sigm*randn(size(y_bin));
             y_bin_nse = y_bin + nse;
             LLR_2 = LLR_simple3(y_bin_nse,LLRfact , unreliable_sat, q,N, alph_bin, LLR_20);
-            LLR_2 = -round(LLR_2);
+            LLR_2 = -(LLR_2);
             [~,HD1] = min(LLR_2,[], 2);
             HD1 = HD1'-1;
             ndf1 = sum(HD1~=code_seq);

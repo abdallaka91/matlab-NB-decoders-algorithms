@@ -36,7 +36,7 @@ APP = LLR_2;
         end
 
         [c2v_llr, c2v_gfp] = ECN_Fw_Bw(v2c_gfp,v2c_llr, dc(i),q, nm, nc, add_mat,comp_ECN);
-
+%          [c2v_llr11, c2v_gfp11] = ECN_Fw_Bw_1111(v2c_gfp,v2c_llr, dc(i),nm, add_mat);
         for j = 1 : dc(i)
             for k = 1 : nm
                 c2v_gf(j,k) = div_mat(c2v_gfp(j, k)+1, coefs(j)+1);
@@ -52,9 +52,8 @@ APP = LLR_2;
         end
     end
 %     APP = APP_U(N, dv, Mc2v, LLR_2, str_vn_cn, str_cn_vn);
-    [~, dec_seq] = min(APP,[],2);
-%      mm=min(APP,[],2);
-%     APP = bsxfun(@minus, APP, mm);
+    [mm, dec_seq] = min(APP,[],2);
+    APP = bsxfun(@minus, APP, mm);
     dec_seq = dec_seq' - 1;
     sum(dec_seq~=0);
     synd=decod_prod(dec_seq, h, str_cn_vn, mul_mat, add_mat);
