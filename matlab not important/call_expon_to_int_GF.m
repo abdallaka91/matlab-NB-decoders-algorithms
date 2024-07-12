@@ -43,7 +43,7 @@ for i = 1:m
     line = ''; % Initialize line for each iteration of i
     for j = 1:n
         if h(i,j) ~= 0
-            line = [line, sprintf('%d %d ', i, int2ex(h(i,j), 2))];
+            line = [line, sprintf('%d %d ', j, int2ex(h(i,j), 2))];
         end
     end
     fprintf(fileID, '%s\n', line); % Write the line to the file
