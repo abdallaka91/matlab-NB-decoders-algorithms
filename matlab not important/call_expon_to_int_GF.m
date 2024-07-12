@@ -21,7 +21,7 @@ load([fullfile(pth4, H_matrix_mat_fl_nm) '.mat']);
 dv = zeros(1, n);
 dc = zeros(1, m);
 
-fst_line = [m, n, 64];
+fst_line = [n, m, 64];
 for i = 1:m
     for j = 1:n
         if h(i,j) ~= 0
