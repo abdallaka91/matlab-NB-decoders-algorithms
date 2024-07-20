@@ -1,0 +1,29 @@
+function [d, failed, Sgf, Sb, E, seqb, seqgf]  = decodeGDBFvecNB(p,q, str_cn_vn, dc,mul_mat, add_mat,y,hl, h, N, R, M, T, w, theta, nsigma)
+Nb = length(y);
+d = sign(y);
+dgf = HD_bin_gf(d,p);
+Sgf = decod_prod(dgf,h,str_cn_vn, mul_mat, add_mat);
+Sb = double(Sgf==0);
+l=0;
+failed_mx = ;
+while l<T
+    Sb1 = 1-2*Sb;
+    WSH = Sb1*hl;
+    WSHb = zeros(1,Nb);
+    for j = 1 : N
+        WSHb((j-1)*p+1:j*p)=WSH(j);
+    end
+
+E = d.*y + w*WSHb + nsigma*randn(1,Nb);
+  flipdx = find(E<theta);
+  d(flipdx) = -d(flipdx);
+  dgf = HD_bin_gf(d,p);
+  Sgf = decod_prod(dgf,h,str_cn_vn, mul_mat, add_mat);
+  Sb = double(Sgf==0);
+  failed=sum(Sb);
+  if failed<failed_mx
+      failed_mx = failed;
+
+
+  l=l+1;
+end

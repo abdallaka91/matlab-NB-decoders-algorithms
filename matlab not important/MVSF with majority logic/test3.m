@@ -1,4 +1,31 @@
-clear;
+%% 
+clear;%/home/abdallah/Downloads/NB_LDPC_Decoders/call_MV_SF_parforloop.m
+comput_SER_BER = false;
+ZERO=0; % if  0 then simulate all zeros sequence
+plt = 0; % continiously plot FER performance if 1
+nm = 8;% V2C m2ssage size
+p = 4;
+q = 2^p;
+dc1 = [0 1 2];
+save_rslt = 0;
+Dev_pos_cnt = length(dc1)-1;
+di = cell(length(dc1),1);
+di{1} = [0 0];
+di{2} = [0 1];
+di{3} = [0 2 1];
+v_weights = [0.8 0.3]*256;
+LLRfact = 1024;
+unreliable_sat=-inf;
+parforN = 100;
+max_err_cnt1 = 40; % at low Eb_No(<Eb_No_thrshld)
+max_err_cnt2 = 40; %at high Eb_No
+Eb_No_thrshld = 3.8;
+max_gen = 1e4;
+max_iter = 20;
+max_attempt = 1;
+ebn0 = 3.1; %dB
+
+
 pth1 = (fullfile(pwd, 'related_functions'));
 addpath(pth1);
 pth2 = (fullfile(pwd, 'related_variables'));
@@ -6,38 +33,15 @@ pth3 = (fullfile(pwd, 'related_variables/GF_arithm'));
 pth4 = (fullfile(pwd, 'related_variables/alists'));
 pth5 = (fullfile(pwd, 'related_variables/alists/matrices'));
 pth6 = (fullfile(pwd, 'results/'));
-
-H_matrix_mat_fl_nm = 'BeiDou_44_bb_GF64';
+words = (0:q-1);
+H_matrix_mat_fl_nm = '204.102.3.6.16';
 load([fullfile(pth4, H_matrix_mat_fl_nm) '.mat']);
-% h=H;
+% load('C:\Users\User\OneDrive\MatlabGit1\Matlab_NB_LDPC\NB_LDPC_Decoders\related_variables\alists\generated_18x36_GF16_2.mat');
 h = full(h);
 N = size(h,2);
 M = size(h,1);
-% K = 176;
-K=N-M;
-p = 6;
-q = 2^p;
-words = (0:q-1);
-
-save_rslt = 0;
-comput_SER_BER = false;
-ZERO=1;
-plt = 0;
-nm = 16;
-nc =nm^2;
-c2v_comp_fact=150;
-comp_ECN = c2v_comp_fact;
-max_gen = 1e6;
-max_iter = 50;
-ebn0 =1.6; %dB
-
-max_err_cnt1 = 60; % at low Eb_No(<Eb_No_thrshld)
-max_err_cnt2 = 40; %at high Eb_No
-parforN = 50;
-Eb_No_thrshld = 3.2;
-LLRfact = 1024;
-unreliable_sat=-inf;
-
+ K = N-M;
+% K=175;
 fl_nm = ['arith_' num2str(q) '.mat'];
 if  exist(fullfile(pth3, fl_nm), 'file') == 2
     load(fullfile(pth3, fl_nm));
@@ -45,50 +49,38 @@ else
     add_mat = GF_arithm_matrix(q, 'add');
     mul_mat = GF_arithm_matrix(q, 'mul');
     div_mat = GF_arithm_matrix(q, 'div');
-    save(fullfile(pth3, ['arith_' num2str(q) '.mat']), 'add_mat' ,'mul_mat','div_mat')
+    save(fullfile(pth3, ['arith_' num2str(q) '.mat']), 'add_mat' ,'mul_mat','div_mat', '-v7')
 end
-
 dev_lsts = cell(M,1);
 dev_pos = cell(M,1);
 str_cn_vn = cell(M,1);
 dc = zeros(M,1);
-
 for i = 1 : M
     str_cn_vn{i, 1} = find(h(i,:));
     dc(i) = length(str_cn_vn{i});
+    dc11 = dc1;
+    dc11(1) = dc(i)-sum(dc1);
+    [lst_deviation_lst, lst_dev_pos, dev_lsts_i, dev_pos_i]=list_dev_reliabl(dc11, di);
+    dev_lsts{i} = dev_lsts_i;
+    dev_pos{i} = dev_pos_i;
 end
+
 str_vn_cn = cell(N,1);
 dv = zeros(N,1);
 for j = 1 : N
     str_vn_cn{j, 1} = (find(h(:,j)))';
     dv(j) = length(str_vn_cn{j});
 end
-
 %%
-clear conf_detail
-conf_detail.a11fl_nme = sprintf("H matrix : %s",H_matrix_mat_fl_nm);
-conf_detail.a12Code = sprintf("N = %d, M = %d, K = %d, GF(%d)",N,M,K,q);
-conf_detail.a13algorithm = sprintf('EMS algorithm, nm = %d, nc = %d, C2V compensation factor  = %.3f', nm, nc, c2v_comp_fact);
-conf_detail.a14iter = sprintf("max iter : %d",max_iter);
-conf_detail.a16max_seq = sprintf("max seq generation : %d", max_gen);
-conf_detail.a17fl_nme = sprintf("max error frame detection: %d",max_err_cnt1);
-
-current_date = datestr(now, 'yyyy_mm_dd');
-current_time = datestr(now, 'HH_MM_SS');
-report_fle_nme0 = strcat(extractAfter(conf_detail.a11fl_nme, "H matrix : "), '_' ,current_date ,'_' ,current_time);
-report_fle_nme = pth6+report_fle_nme0;
 %%
-
 p1 = 1;
 Rate = p1*K/N; %p1 is nb of bits per channel use with the modulation, for example for bpsk it is 1
-
 ebn0_n = 10.^(ebn0/10);
 N0 = 1./(Rate*ebn0_n);
 sigma = sqrt(N0/2);
 snr = -10*log10(2*sigma.^2);
-
 %%
-alph_bin =  logical(fliplr(dec2bin(words, p) - 48));
+alph_bin =  fliplr(dec2bin(words, p) - 48);
 alph_bin_mod = (-1).^alph_bin;
 [G,~] = Generator_matrix_G_from_full_rank_H(h, add_mat, mul_mat, div_mat);
 % info_seq = [12,5,15,5,6,14,15,11,1,14,5,12,14,7,15,9,8,9,6,12,1,3,15,9,13,11,8,15,1,8,1,3,2,4,8,13,4,11,10,12,11,11,2,11,3,2,9,2,9,5,6,9,5,8,3,7,13,1,9,13,3,8,6,10,3,12,0,8,1,14,4,15,2,0,12,10,12,9,11,11,15,10,12,10,15,12,14,10,10,0,8,10,4,8,12,14,8,8,11,1,6,12];
@@ -96,16 +88,13 @@ alph_bin_mod = (-1).^alph_bin;
 % valid_symdrom = gf_mat_mul(code_seq,h', add_mat, mul_mat);
 % y_bin0 = fliplr(dec2bin(code_seq, p) - 48);
 % y_bin = (-1).^y_bin0;
-
 %%
-
 str_vn_cn = cell(N,1);
 dv = zeros(N,1);
 for j = 1 : N
     str_vn_cn{j, 1} = (find(h(:,j)))';
     dv(j) = length(str_vn_cn{j});
 end
-
 snr_cnt = length(sigma);
 FERstat = zeros(snr_cnt,1);
 SERstat = zeros(snr_cnt,1);
@@ -116,49 +105,54 @@ SER = zeros(snr_cnt,1);
 BER = zeros(snr_cnt,1);
 iter_cnt = zeros(snr_cnt,1);
 aver_iter = zeros(snr_cnt,1);
-
 max_err_cnt = max_err_cnt1;
-% load y_bin_nse.mat
-% load info_seq.mat
-rng(0)
+
+h0 = 0*h;
+needed_iters = nan(max_gen,snr_cnt);
 LLR_20 =zeros(N,q);
+load y_bin_nse.mat y_bin_nse
+load info_seq.mat info_seq
+rng(1);
 for i0 = 1 : snr_cnt
     if ebn0(i0)>=Eb_No_thrshld
         max_err_cnt = max_err_cnt2;
     end
     iter_cnt_ = 0;
     FER_ = 0;
-    FER__ = 0;
     SER_ = 0;
     BER_ = 0;
     gen_seq_cnt_ = 0;
+    needed_iters_ = nan(parforN,1);
     msg = sprintf("EbNo = %.3f dB, FER = %d/%d = %.8f,// BER = %d/%d = %.8f, aver_iter = %.3f\n",...
         ebn0(i0), FER(i0), gen_seq_cnt(i0), FER(i0)/gen_seq_cnt(i0), BER(i0), gen_seq_cnt(i0)*K*p,...
         FER(i0)/(gen_seq_cnt(i0)*K*p), 0);
     fprintf(msg)
     sigm =sigma(i0);
+    KK=0;
     while FER(i0) < max_err_cnt && gen_seq_cnt(i0)<max_gen
-
         parfor j = 1 : parforN
-            gen_seq_cnt_ = gen_seq_cnt_+1;
             if ZERO
-                [info_seq, code_seq, valid_symdrom, y_bin] = generate_and_encode(ZERO, h,G, add_mat, mul_mat, p);
+            [info_seq, code_seq, valid_symdrom, y_bin] = generate_and_encode(ZERO, h,G, add_mat, mul_mat, p);
+            
             else
                 info_seq = zeros(1,K);
-                code_seq=zeros(1,N);
-                y_bin0 = fliplr(dec2bin(code_seq, p) - 48);
-                y_bin = (-1).^y_bin0;
+                code_seq = zeros(1,N);
+                y_bin = ones(N,p);
             end
+
+
+            gen_seq_cnt_ = gen_seq_cnt_+1;
             nse = sigm*randn(size(y_bin));
             y_bin_nse = y_bin + nse;
             LLR_2 = LLR_simple3(y_bin_nse,LLRfact , unreliable_sat, q,N, alph_bin, LLR_20);
-            LLR_2 = -(LLR_2);
-            [~,HD1] = min(LLR_2,[], 2);
+            [~,HD1] = max(LLR_2,[], 2);
             HD1 = HD1'-1;
-            ndf1 = sum(HD1~=code_seq);
-            [iters, dec_seq, success_dec,~,LLR_out] = EMS2(...
-                LLR_2, max_iter, mul_mat, add_mat, div_mat, h,str_cn_vn, dc,...
-                str_vn_cn, dv, nm, nc, c2v_comp_fact, comp_ECN);
+            nes = sum(HD1~=code_seq);
+            [iters, dec_seq, success_dec] = ...
+                presorted_MVSF_with_rinfrc1(LLR_2, max_iter, mul_mat, add_mat, div_mat,...
+                h,str_cn_vn, dc,str_vn_cn, dv, dev_lsts, nm, v_weights, max_attempt, y_bin_nse);
+            needed_iters_(j) = iters;
+
             iter_cnt_ = iter_cnt_ + iters;
             rec_info_seq = dec_seq(1:K);
             nd = sum(rec_info_seq~=info_seq);
@@ -170,6 +164,8 @@ for i0 = 1 : snr_cnt
             end
 
         end
+        needed_iters(KK+1:KK+parforN,i0) = needed_iters_;
+        KK=KK+parforN;
         SER(i0) = SER_;
         BER(i0) = BER_;
         gen_seq_cnt(i0) = gen_seq_cnt_;
@@ -181,18 +177,12 @@ for i0 = 1 : snr_cnt
         SERstat(i0)=SER(i0)/(gen_seq_cnt(i0)*K);
         BERstat(i0)=BER(i0)/(gen_seq_cnt(i0)*K*p);
 
-
         fprintf(repmat('\b',1,length(char(msg))));
         msg = sprintf("EbNo = %.3f dB, FER = %d/%d = %.8f,// BER = %d/%d = %.8f, aver_iter = %.3f\n",...
             ebn0(i0), FER(i0), gen_seq_cnt(i0), FER(i0)/gen_seq_cnt(i0), BER(i0), gen_seq_cnt(i0)*K*p,...
             FER(i0)/(gen_seq_cnt(i0)*K*p), aver_iter(i0) );
         fprintf(msg)
 
-        msgs  = details_in_lines(ebn0, FER,BER, SER, gen_seq_cnt, K,p, aver_iter, conf_detail, report_fle_nme, save_rslt);
-        if save_rslt
-            save(report_fle_nme+'.mat');
-        end
-
     end
+    
 end
-% disp(msgs{end})
