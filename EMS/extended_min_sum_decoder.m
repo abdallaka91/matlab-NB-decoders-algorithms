@@ -7,13 +7,13 @@ pth4 = (fullfile(pwd, 'related_variables/alists'));
 pth5 = (fullfile(pwd, 'related_variables/alists/matrices'));
 pth6 = (fullfile(pwd, 'results/'));
 
-H_matrix_mat_fl_nm = 'BeiDou_44_bb_GF64';
+H_matrix_mat_fl_nm = '384.320.4.20.64';
 load([fullfile(pth4, H_matrix_mat_fl_nm) '.mat']);
 % h=H;
 h = full(h);
 N = size(h,2);
 M = size(h,1);
-% K = 176;
+% K = 726;
 K=N-M;
 p = 6;
 q = 2^p;
@@ -23,18 +23,18 @@ save_rslt = 0;
 comput_SER_BER = false;
 ZERO=1;
 plt = 0;
-nm = 16;
+nm = 8;
 nc =nm^2;
-c2v_comp_fact=150;
+c2v_comp_fact=0.1;
 comp_ECN = c2v_comp_fact;
 max_gen = 1e6;
-max_iter = 50;
-ebn0 =1.6; %dB
+max_iter = 15;
+ebn0 =4; %dB
 
-max_err_cnt1 = 60; % at low Eb_No(<Eb_No_thrshld)
+max_err_cnt1 = 40; % at low Eb_No(<Eb_No_thrshld)
 max_err_cnt2 = 40; %at high Eb_No
 parforN = 50;
-Eb_No_thrshld = 3.2;
+Eb_No_thrshld = 3.20;
 LLRfact = 1024;
 unreliable_sat=-inf;
 
@@ -120,7 +120,6 @@ aver_iter = zeros(snr_cnt,1);
 max_err_cnt = max_err_cnt1;
 % load y_bin_nse.mat
 % load info_seq.mat
-rng(0)
 LLR_20 =zeros(N,q);
 for i0 = 1 : snr_cnt
     if ebn0(i0)>=Eb_No_thrshld
@@ -151,8 +150,8 @@ for i0 = 1 : snr_cnt
             end
             nse = sigm*randn(size(y_bin));
             y_bin_nse = y_bin + nse;
-            LLR_2 = LLR_simple3(y_bin_nse,LLRfact , unreliable_sat, q,N, alph_bin, LLR_20);
-            LLR_2 = -(LLR_2);
+             % LLR_21 = LLR_simple3(y_bin_nse,LLRfact , unreliable_sat, q,N, alph_bin, LLR_20);
+            LLR_2 = -LLR_BPSK_GFq_2D(y_bin_nse, sigm)';
             [~,HD1] = min(LLR_2,[], 2);
             HD1 = HD1'-1;
             ndf1 = sum(HD1~=code_seq);
@@ -185,7 +184,7 @@ for i0 = 1 : snr_cnt
         fprintf(repmat('\b',1,length(char(msg))));
         msg = sprintf("EbNo = %.3f dB, FER = %d/%d = %.8f,// BER = %d/%d = %.8f, aver_iter = %.3f\n",...
             ebn0(i0), FER(i0), gen_seq_cnt(i0), FER(i0)/gen_seq_cnt(i0), BER(i0), gen_seq_cnt(i0)*K*p,...
-            FER(i0)/(gen_seq_cnt(i0)*K*p), aver_iter(i0) );
+            BER(i0)/(gen_seq_cnt(i0)*K*p), aver_iter(i0) );
         fprintf(msg)
 
         msgs  = details_in_lines(ebn0, FER,BER, SER, gen_seq_cnt, K,p, aver_iter, conf_detail, report_fle_nme, save_rslt);
@@ -195,4 +194,3 @@ for i0 = 1 : snr_cnt
 
     end
 end
-% disp(msgs{end})

@@ -1,18 +1,19 @@
 clear;%/home/abdallah/Downloads/NB_LDPC_Decoders/call_MV_SF_parforloop.m
 comput_SER_BER = false;
-ZERO=0; % if  0 then simulate all zeros sequence
+ZERO=1; % if  0 then simulate all zeros sequence
 plt = 0; % continiously plot FER performance if 1
 nm = 8;% V2C m2ssage size
-p = 4;
+p = 6;
 q = 2^p;
 dc1 = [0 2 2];
 save_rslt = 0;
+rng(1); % noise reproducity
 Dev_pos_cnt = length(dc1)-1;
 di = cell(length(dc1),1);
 di{1} = [0 0];
-di{2} = [0 1 1];
-di{3} = [0 2 2];
-v_weights = [1.5 0.5]*256;
+di{2} = [0 0];
+di{3} = [0 2 1];
+v_weights = [0.5 0.25]*256;
 LLRfact = 1024;
 unreliable_sat=-inf;
 parforN = 50;
@@ -20,9 +21,9 @@ max_err_cnt1 = 60; % at low Eb_No(<Eb_No_thrshld)
 max_err_cnt2 = 30; %at high Eb_No
 Eb_No_thrshld = 3.8;
 max_gen = 1e6;
-max_iter = 20;
+max_iter = 16;
 max_attempt = 1;
-ebn0 = 3; %dB
+ebn0 = 4.25; %dB
 
 
 pth1 = (fullfile(pwd, 'related_functions'));
@@ -33,13 +34,13 @@ pth4 = (fullfile(pwd, 'related_variables/alists'));
 pth5 = (fullfile(pwd, 'related_variables/alists/matrices'));
 pth6 = (fullfile(pwd, 'results/'));
 words = (0:q-1);
-H_matrix_mat_fl_nm = '204.102.3.6.16';
+H_matrix_mat_fl_nm = '384.320.4.20.64';
 load([fullfile(pth4, H_matrix_mat_fl_nm) '.mat']);
 h = full(h);
 N = size(h,2);
 M = size(h,1);
  K = N-M;
-% K=175;
+% K=726;
 fl_nm = ['arith_' num2str(q) '.mat'];
 if  exist(fullfile(pth3, fl_nm), 'file') == 2
     load(fullfile(pth3, fl_nm));
@@ -97,10 +98,10 @@ snr = -10*log10(2*sigma.^2);
 %%
 alph_bin =  fliplr(dec2bin(words, p) - 48);
 alph_bin_mod = (-1).^alph_bin;
-% [G,~] = Generator_matrix_G_from_full_rank_H(h, add_mat, mul_mat, div_mat);
-% info_seq = [12,5,15,5,6,14,15,11,1,14,5,12,14,7,15,9,8,9,6,12,1,3,15,9,13,11,8,15,1,8,1,3,2,4,8,13,4,11,10,12,11,11,2,11,3,2,9,2,9,5,6,9,5,8,3,7,13,1,9,13,3,8,6,10,3,12,0,8,1,14,4,15,2,0,12,10,12,9,11,11,15,10,12,10,15,12,14,10,10,0,8,10,4,8,12,14,8,8,11,1,6,12];
-% code_seq = gf_mat_mul(info_seq,G, add_mat, mul_mat);
-% valid_symdrom = gf_mat_mul(code_seq,h', add_mat, mul_mat);
+[G,~] = Generator_matrix_G_from_full_rank_H(h, add_mat, mul_mat, div_mat);
+info_seq = randi([0 q-1],1,K);
+code_seq = gf_mat_mul(info_seq,G, add_mat, mul_mat);
+valid_symdrom = gf_mat_mul(code_seq,h', add_mat, mul_mat);
 % y_bin0 = fliplr(dec2bin(code_seq, p) - 48);
 % y_bin = (-1).^y_bin0;
 %%
@@ -158,7 +159,7 @@ for i0 = 1 : snr_cnt
             nse = sigm*randn(size(y_bin));
             y_bin_nse = y_bin + nse;
             LLR_2 = LLR_simple3(y_bin_nse,LLRfact , unreliable_sat, q,N, alph_bin, LLR_20);
-            [~,HD1] = min(LLR_2,[], 2);
+            [~,HD1] = max(LLR_2,[], 2);
             HD1 = HD1'-1;
             nes = sum(HD1~=code_seq);
             [iters, dec_seq, success_dec] = ...
@@ -193,7 +194,7 @@ for i0 = 1 : snr_cnt
         fprintf(repmat('\b',1,length(char(msg))));
         msg = sprintf("EbNo = %.3f dB, FER = %d/%d = %.8f,// BER = %d/%d = %.8f, aver_iter = %.3f\n",...
             ebn0(i0), FER(i0), gen_seq_cnt(i0), FER(i0)/gen_seq_cnt(i0), BER(i0), gen_seq_cnt(i0)*K*p,...
-            FER(i0)/(gen_seq_cnt(i0)*K*p), aver_iter(i0) );
+            BERstat(i0), aver_iter(i0) );
         fprintf(msg)
 
         msgs  = details_in_lines(ebn0, FER,BER, SER, gen_seq_cnt, K,p, aver_iter, conf_detail, report_fle_nme, save_rslt);
