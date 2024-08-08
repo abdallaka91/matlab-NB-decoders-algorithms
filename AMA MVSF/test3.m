@@ -6,24 +6,24 @@ nm = 8;% V2C m2ssage size
 p = 6;
 q = 2^p;
 dc1 = [0 2 2];
-save_rslt = 0;
+save_rslt = 1;
 rng(1); % noise reproducity
 Dev_pos_cnt = length(dc1)-1;
 di = cell(length(dc1),1);
 di{1} = [0 0];
-di{2} = [0 0];
+di{2} = [0 1];
 di{3} = [0 2 1];
-v_weights = [0.5 0.25]*256;
+v_weights = [0.5 0.18]*256;
 LLRfact = 1024;
 unreliable_sat=-inf;
-parforN = 50;
+parforN = 80;
 max_err_cnt1 = 60; % at low Eb_No(<Eb_No_thrshld)
 max_err_cnt2 = 30; %at high Eb_No
 Eb_No_thrshld = 3.8;
-max_gen = 1e6;
+max_gen = 5e5;
 max_iter = 16;
-max_attempt = 1;
-ebn0 = 4.25; %dB
+max_attempt = 6;
+ebn0 = 3.4:0.2:4.6; %dB
 
 
 pth1 = (fullfile(pwd, 'related_functions'));
@@ -34,7 +34,7 @@ pth4 = (fullfile(pwd, 'related_variables/alists'));
 pth5 = (fullfile(pwd, 'related_variables/alists/matrices'));
 pth6 = (fullfile(pwd, 'results/'));
 words = (0:q-1);
-H_matrix_mat_fl_nm = '384.320.4.20.64';
+H_matrix_mat_fl_nm = '273.191.4.14.64';
 load([fullfile(pth4, H_matrix_mat_fl_nm) '.mat']);
 h = full(h);
 N = size(h,2);

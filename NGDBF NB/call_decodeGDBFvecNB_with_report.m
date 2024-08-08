@@ -1,7 +1,7 @@
 clear
-save_rslt = 1;
+save_rslt = 0;
 ZERO = 1; % all zeros seq
-p = 6;
+p = 4;
 q = 2^p;
 pth1 = (fullfile(pwd, 'related_functions'));
 addpath(pth1);
@@ -11,7 +11,7 @@ pth4 = (fullfile(pwd, 'related_variables/alists'));
 pth5 = (fullfile(pwd, 'related_variables/alists/matrices'));
 pth6 = (fullfile(pwd, 'results/'));
 words = (0:q-1);
-H_matrix_mat_fl_nm = '384.320.4.20.64';
+H_matrix_mat_fl_nm = '204.102.3.6.16';
 load([fullfile(pth4, H_matrix_mat_fl_nm) '.mat']);
 h = full(h);
 hl=double(h>0);
@@ -57,18 +57,18 @@ for i = 1 : M
     end
 end
 parf = 40;
-ebn0              = 4:0.2:5.6;  % SNR values to simulate
+ebn0              = 3;  % SNR values to simulate
 snr_cnt           = length(ebn0);
 max_gen           = 1e6;
-max_err_cnt1      = 50; % at low Eb_No(<Eb_No_thrshld)
-max_err_cnt2      = 50; %at high Eb_No
+max_err_cnt1      = 40; % at low Eb_No(<Eb_No_thrshld)
+max_err_cnt2      = 40; %at high Eb_No
 Eb_No_thrshld     = 4.8;
 mnk               = 15;
 max_iter          = 1000;    % Max iterations for decoding
 max_max_iter      = 2000; % keep try above T with single VN permute until l = max_max_l
 syndrome_weight   = 0.95;   % Syndrome weight parameter
-theta             = -2.7;   % Flipping threshold
-eta               = 1.1;     % Perturbation noise scale parameter
+theta             = -2.6;   % Flipping threshold
+eta               = 1;     % Perturbation noise scale parameter
 nones1            = 4; %max hamming dist
 nones2            = 1; %max hamming dist
 sngl_VN_th        = 4.8; %dB above whichSNR check if a single symbol flipping could reduce nb of faild by its dv
@@ -169,7 +169,7 @@ for i0=1 : snr_cnt
         statstc_iter__ = zeros(1,parf);
         iters_ = 0;
 
-        parfor pp=1 :parf
+        for pp=1 :parf
             if ZERO
                 [info_seq, code_seq, valid_symdrom, y_bin_mod2D] = generate_and_encode(ZERO, h,G, add_mat, mul_mat, p);
             else

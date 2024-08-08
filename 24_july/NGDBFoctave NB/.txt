@@ -1,0 +1,18 @@
+algoritm : Non Binary BPSK GDBF
+H matrix : 837_124_32
+N = 837, M = 124, K = 726, GF(32)
+max iter : 1000
+max extra iter : 2000
+max bits to flip per iter : 30
+Binary syndrom weight : 0.920000
+perturbation noise threshold : 1.000000
+max seq generation : 1000000
+single VN symbol flipping max Hamming distance 1: 4
+single VN symbol flipping applying threshold: 4.500000e+00
+EbNo = 4.2 dB, FER = 0/4 = 0 || SER = 0/2904 = 0 || BER = 0/14520 = 0, aver_iter = 274
+------------------------------------------------------------------------------------------------------------------------------------
+EbNo = 4.21 dB, FER = 0/0 = NaN || SER = 0/0 = NaN || BER = 0/0 = NaN, aver_iter = 0
+------------------------------------------------------------------------------------------------------------------------------------
+EbNo = 4.22 dB, FER = 0/0 = NaN || SER = 0/0 = NaN || BER = 0/0 = NaN, aver_iter = 0
+------------------------------------------------------------------------------------------------------------------------------------
+
