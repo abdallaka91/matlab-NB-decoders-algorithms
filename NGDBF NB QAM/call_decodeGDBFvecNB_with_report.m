@@ -1,5 +1,5 @@
 clear
-save_rslt = 1;
+save_rslt = 0;
 ZERO = 1; % all zeros seq
 p = 4;
 q = 2^p;
@@ -58,7 +58,7 @@ for i = 1 : M
     end
 end
 parf = 40;
-ebn0              = 6:0.2:10;  % SNR values to simulate
+ebn0              = 6;%6:0.2:10;  % SNR values to simulate
 snr_cnt           = length(ebn0);
 max_gen           = 1e6;
 max_err_cnt1      = 40; % at low Eb_No(<Eb_No_thrshld)
@@ -95,6 +95,7 @@ Snr_db = 10*log10(1./noiseVariance);
 
 %%
 rng("shuffle"); % repetitive noise generation
+rng(1);
 alph_bin =  fliplr(dec2bin(words, p) - 48);
 alph_bin_mod = (-1).^alph_bin;
 
@@ -222,7 +223,7 @@ for i0=1 : snr_cnt
             end
         end
         for pp =1 : parf
-            statstc_iter(i0, statstc_iter__(pp)) = statstc_iter(i0, statstc_iter__(pp)) + 1;
+            statstc_iter(i0, 1 + statstc_iter__(pp)) = statstc_iter(i0, 1 + statstc_iter__(pp)) + 1;
         end
 
         SER_cnt(i0) = SER_cnt(i0)+nerrS_decd_;

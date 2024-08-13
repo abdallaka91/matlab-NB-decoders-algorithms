@@ -7,7 +7,7 @@ pth4 = (fullfile(pwd, 'related_variables/alists'));
 pth5 = (fullfile(pwd, 'related_variables/alists/matrices'));
 pth6 = (fullfile(pwd, 'results/'));
 
-H_matrix_mat_fl_nm = '384.320.4.20.64';
+H_matrix_mat_fl_nm = '204.102.3.6.16';
 load([fullfile(pth4, H_matrix_mat_fl_nm) '.mat']);
 % h=H;
 h = full(h);
@@ -15,7 +15,8 @@ N = size(h,2);
 M = size(h,1);
 % K = 726;
 K=N-M;
-p = 6;
+Rate = K/N;
+p = 4;
 q = 2^p;
 words = (0:q-1);
 
@@ -23,13 +24,13 @@ save_rslt = 0;
 comput_SER_BER = false;
 ZERO=1;
 plt = 0;
-nm = 8;
+nm = 4;
 nc =nm^2;
 c2v_comp_fact=0.1;
 comp_ECN = c2v_comp_fact;
 max_gen = 1e6;
 max_iter = 15;
-ebn0 =4; %dB
+ebn0 =5.8; %dB
 
 max_err_cnt1 = 40; % at low Eb_No(<Eb_No_thrshld)
 max_err_cnt2 = 40; %at high Eb_No
@@ -78,14 +79,20 @@ current_time = datestr(now, 'HH_MM_SS');
 report_fle_nme0 = strcat(extractAfter(conf_detail.a11fl_nme, "H matrix : "), '_' ,current_date ,'_' ,current_time);
 report_fle_nme = pth6+report_fle_nme0;
 %%
+[norm_const, gray_labels, I, Q] = qam_constellation(q);
+gray_labels = 0:q-1;
+avg_pw = norm_const'*norm_const/q;
+fct1 = sqrt(avg_pw);
 
-p1 = 1;
-Rate = p1*K/N; %p1 is nb of bits per channel use with the modulation, for example for bpsk it is 1
 
-ebn0_n = 10.^(ebn0/10);
-N0 = 1./(Rate*ebn0_n);
-sigma = sqrt(N0/2);
-snr = -10*log10(2*sigma.^2);
+p1 = p;
+EbNo_linear = 10.^(ebn0/10);
+symbolEnergy = 1;
+noiseVariance = symbolEnergy ./ (p1 * EbNo_linear * Rate);
+Snr_db = 10*log10(1./noiseVariance);
+ sigma0 = sqrt(noiseVariance/2) ;
+
+ sigma = fct1*sigma0;
 
 %%
 alph_bin =  logical(fliplr(dec2bin(words, p) - 48));
@@ -137,23 +144,24 @@ for i0 = 1 : snr_cnt
     fprintf(msg)
     sigm =sigma(i0);
     while FER(i0) < max_err_cnt && gen_seq_cnt(i0)<max_gen
+        info_seq = zeros(1,K);
+        code_seq = zeros(1,N);
+        code_seq_comp(1,1:N) = norm_const(code_seq+1);
 
-        for j = 1 : parforN
+        parfor j = 1 : parforN
             gen_seq_cnt_ = gen_seq_cnt_+1;
             if ZERO
-                [info_seq, code_seq, valid_symdrom, y_bin] = generate_and_encode(ZERO, h,G, add_mat, mul_mat, p);
+                [info_seq, code_seq, code_seq_comp, valid_symdrom] = ...
+                    generate_and_encode_QAM(ZERO, h,G, add_mat, mul_mat,p, norm_const, gray_labels);
             else
                 info_seq = zeros(1,K);
-                code_seq=zeros(1,N);
-                y_bin0 = fliplr(dec2bin(code_seq, p) - 48);
-                y_bin = (-1).^y_bin0;
+                code_seq = zeros(1,N);
+                code_seq_comp = norm_const(code_seq+1);
             end
-            nse = sigm*randn(size(y_bin));
-            y_bin_nse = y_bin + nse;
-             % LLR_21 = LLR_simple3(y_bin_nse,LLRfact , unreliable_sat, q,N, alph_bin, LLR_20);
-            LLR_2 = -LLR_BPSK_GFq_2D(y_bin_nse, sigm)';
-            [~,HD1] = min(LLR_2,[], 2);
-            HD1 = HD1'-1;
+            nse = sigm*randn(size(code_seq_comp))+sigm*randn(size(code_seq_comp))*1i;
+            y_cmp = code_seq_comp+nse;
+
+            [LLR_2, HD1] = LLR_QAM(y_cmp, norm_const,sigm, gray_labels);
             ndf1 = sum(HD1~=code_seq);
             [iters, dec_seq, success_dec,~,LLR_out] = EMS2(...
                 LLR_2, max_iter, mul_mat, add_mat, div_mat, h,str_cn_vn, dc,...
