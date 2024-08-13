@@ -1,5 +1,5 @@
 clear
-save_rslt = 0;
+save_rslt = 1;
 ZERO = 1; % all zeros seq
 p = 4;
 q = 2^p;
@@ -57,22 +57,18 @@ for i = 1 : M
         k=k+1;
     end
 end
-parf = 40;
-<<<<<<< HEAD
-ebn0              = 6;%6:0.2:10;  % SNR values to simulate
-=======
-ebn0              = 6.8;  % SNR values to simulate
->>>>>>> 12aaeda82d00c0cd21dc45cd007d5b225e699186
+parf = 400;
+ebn0              = 5.6:0.2:8.4;  % SNR values to simulate
 snr_cnt           = length(ebn0);
 max_gen           = 1e6;
 max_err_cnt1      = 40; % at low Eb_No(<Eb_No_thrshld)
 max_err_cnt2      = 40; %at high Eb_No
 Eb_No_thrshld     = 4.8;
-mnk               = 10;
-max_iter          = 1000;    % Max iterations for decoding
-max_max_iter      = 2000; % keep try above T with single VN permute until l = max_max_l
-syndrome_weight   = 1.5;   % Syndrome weight parameter
-theta             = -1.7;   % Flipping threshold
+mnk               = 15;
+max_iter          = 4000;    % Max iterations for decoding
+max_max_iter      = 5000; % keep try above T with single VN permute until l = max_max_l
+syndrome_weight   = 1.6;   % Syndrome weight parameter
+theta             = -1.8;   % Flipping threshold
 eta               = 1.1;     % Perturbation noise scale parameter
 nones1            = 4; %max hamming dist
 nones2            = 1; %max hamming dist
@@ -227,7 +223,7 @@ for i0=1 : snr_cnt
             end
         end
         for pp =1 : parf
-            statstc_iter(i0, 1 + statstc_iter__(pp)) = statstc_iter(i0, 1 + statstc_iter__(pp)) + 1;
+            statstc_iter(i0, statstc_iter__(pp)) = statstc_iter(i0, statstc_iter__(pp)) + 1;
         end
 
         SER_cnt(i0) = SER_cnt(i0)+nerrS_decd_;

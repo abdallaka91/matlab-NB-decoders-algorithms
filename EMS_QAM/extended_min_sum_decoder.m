@@ -20,17 +20,17 @@ p = 4;
 q = 2^p;
 words = (0:q-1);
 
-save_rslt = 0;
+save_rslt = 1;
 comput_SER_BER = false;
 ZERO=1;
 plt = 0;
-nm = 4;
+nm = 8;
 nc =nm^2;
-c2v_comp_fact=0.1;
+c2v_comp_fact=0.05;
 comp_ECN = c2v_comp_fact;
 max_gen = 1e6;
 max_iter = 15;
-ebn0 =5.8; %dB
+ebn0 =5:0.2:6.6; %dB
 
 max_err_cnt1 = 40; % at low Eb_No(<Eb_No_thrshld)
 max_err_cnt2 = 40; %at high Eb_No
@@ -69,7 +69,7 @@ end
 clear conf_detail
 conf_detail.a11fl_nme = sprintf("H matrix : %s",H_matrix_mat_fl_nm);
 conf_detail.a12Code = sprintf("N = %d, M = %d, K = %d, GF(%d)",N,M,K,q);
-conf_detail.a13algorithm = sprintf('EMS algorithm, nm = %d, nc = %d, C2V compensation factor  = %.3f', nm, nc, c2v_comp_fact);
+conf_detail.a13algorithm = sprintf('EMS R-QAM algorithm, nm = %d, nc = %d, C2V compensation factor  = %.3f', nm, nc, c2v_comp_fact);
 conf_detail.a14iter = sprintf("max iter : %d",max_iter);
 conf_detail.a16max_seq = sprintf("max seq generation : %d", max_gen);
 conf_detail.a17fl_nme = sprintf("max error frame detection: %d",max_err_cnt1);
