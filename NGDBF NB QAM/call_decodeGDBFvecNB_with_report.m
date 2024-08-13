@@ -58,7 +58,11 @@ for i = 1 : M
     end
 end
 parf = 40;
+<<<<<<< HEAD
 ebn0              = 6;%6:0.2:10;  % SNR values to simulate
+=======
+ebn0              = 6.8;  % SNR values to simulate
+>>>>>>> 12aaeda82d00c0cd21dc45cd007d5b225e699186
 snr_cnt           = length(ebn0);
 max_gen           = 1e6;
 max_err_cnt1      = 40; % at low Eb_No(<Eb_No_thrshld)
@@ -67,8 +71,8 @@ Eb_No_thrshld     = 4.8;
 mnk               = 10;
 max_iter          = 1000;    % Max iterations for decoding
 max_max_iter      = 2000; % keep try above T with single VN permute until l = max_max_l
-syndrome_weight   = 1.3;   % Syndrome weight parameter
-theta             = -1.8;   % Flipping threshold
+syndrome_weight   = 1.5;   % Syndrome weight parameter
+theta             = -1.7;   % Flipping threshold
 eta               = 1.1;     % Perturbation noise scale parameter
 nones1            = 4; %max hamming dist
 nones2            = 1; %max hamming dist
@@ -203,7 +207,7 @@ for i0=1 : snr_cnt
 
             [~, failed__, ~, ~, E__, ~, seqgf__, iters__] = decodeGDBFvecNB(p,pw, h_arr,str_cn_vn,dc,dv,...
                 mul_mat, add_mat, y,hl, h, N, max_iter, syndrome_weight, theta,mnk,nsigma,dev_hamm1...
-                , dev_hamm2, sngl_VN_th, max_max_iter,gray_labels);
+                , dev_hamm2, sngl_VN_th, max_max_iter,gray_labels, code_seq);
 
             statstc_iter__(1,pp) = iters__;
             rec_info_seq = seqgf__(1:K);
