@@ -1,9 +1,9 @@
 clear
 
-a = load('C:\Users\Abdallah Abdallah\Documents\Abdallah france\OneDrive\matlab-NB-decoders-algorithms\EMS\results\204.102.3.6.16_2024_07_24_21_24_18 - Copy.mat');
-b = load('C:\Users\Abdallah Abdallah\Documents\Abdallah france\OneDrive\matlab-NB-decoders-algorithms\AMA MVSF\results\204.102.3.6.16_2024_06_04_10_49_20.mat');
-c = load('C:\Users\Abdallah Abdallah\Documents\Abdallah france\OneDrive\matlab-NB-decoders-algorithms\AMA MVSF\results\204.102.3.6.16_2024_06_03_16_52_09.mat');
-d = load('C:\Users\Abdallah Abdallah\Documents\Abdallah france\OneDrive\matlab-NB-decoders-algorithms\NGDBFoctave NB\results\Non_Binary_BPSK_GDBF_204.102.3.6.16_dated_2024_07_24_22_55_10 - Copy.mat');
+a = load('C:\Users\Abdallah Abdallah\Documents\Personals\OneDrive\matlab-NB-decoders-algorithms\EMS\results\204.102.3.6.16_2024_07_24_21_24_18 - Copy.mat');
+b = load('C:\Users\Abdallah Abdallah\Documents\Personals\OneDrive\matlab-NB-decoders-algorithms\AMA MVSF\results\204.102.3.6.16_2024_06_04_10_49_20.mat');
+c = load('C:\Users\Abdallah Abdallah\Documents\Personals\OneDrive\matlab-NB-decoders-algorithms\AMA MVSF\results\204.102.3.6.16_2024_06_03_16_52_09.mat');
+d = load('C:\Users\Abdallah Abdallah\Documents\Personals\OneDrive\matlab-NB-decoders-algorithms\NGDBF NB\results\Non_Binary_BPSK_GDBF_204.102.3.6.16_dated_2024_07_24_22_55_10 - Copy.mat');
 
 
 figure;

@@ -58,15 +58,15 @@ for i = 1 : M
     end
 end
 parf = 400;
-ebn0              = 5.6:0.2:8.4;  % SNR values to simulate
+ebn0              = 7:0.2:8.4;  % SNR values to simulate
 snr_cnt           = length(ebn0);
 max_gen           = 1e6;
 max_err_cnt1      = 40; % at low Eb_No(<Eb_No_thrshld)
 max_err_cnt2      = 40; %at high Eb_No
 Eb_No_thrshld     = 4.8;
 mnk               = 15;
-max_iter          = 4000;    % Max iterations for decoding
-max_max_iter      = 5000; % keep try above T with single VN permute until l = max_max_l
+max_iter          = 1000;    % Max iterations for decoding
+max_max_iter      = 1200; % keep try above T with single VN permute until l = max_max_l
 syndrome_weight   = 1.6;   % Syndrome weight parameter
 theta             = -1.8;   % Flipping threshold
 eta               = 1.1;     % Perturbation noise scale parameter
@@ -95,7 +95,7 @@ Snr_db = 10*log10(1./noiseVariance);
 
 %%
 rng("shuffle"); % repetitive noise generation
-rng(1);
+rng(0);
 alph_bin =  fliplr(dec2bin(words, p) - 48);
 alph_bin_mod = (-1).^alph_bin;
 
@@ -128,7 +128,7 @@ conf_detail.a22= sprintf("single VN symbol flipping applying threshold: %d", sng
 
 current_date = datestr(now, 'yyyy_mm_dd');
 current_time = datestr(now, 'HH_MM_SS');
-report_fle_nme0 = strcat('Non_Binary_BPSK_GDBF_', H_matrix_mat_fl_nm, '_dated_' ,current_date ,'_' ,current_time);
+report_fle_nme0 = strcat('Non_Binary_R_QAM_GDBF_', H_matrix_mat_fl_nm, '_dated_' ,current_date ,'_' ,current_time);
 report_fle_nme = fullfile(pth6, report_fle_nme0);
 %%
 

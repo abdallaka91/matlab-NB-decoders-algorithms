@@ -1,8 +1,8 @@
 clear
 
-a = load('C:\Users\Abdallah Abdallah\Documents\Abdallah france\OneDrive\matlab-NB-decoders-algorithms\EMS\results\837_124_32_2024_07_24_04_59_08.mat');
-b = load('C:\Users\Abdallah Abdallah\Documents\Abdallah france\OneDrive\matlab-NB-decoders-algorithms\AMA MVSF\results\837_124_32_2024_07_23_23_26_04.mat');
-c = load('C:\Users\Abdallah Abdallah\Documents\Abdallah france\OneDrive\matlab-NB-decoders-algorithms\NGDBFoctave NB\results\Non_Binary_BPSK_GDBF_837_124_32_dated_2024_07_24_18_12_02.mat');
+a = load('C:\Users\Abdallah Abdallah\Documents\Personals\OneDrive\matlab-NB-decoders-algorithms\EMS\results\837_124_32_2024_07_24_04_59_08.mat');
+b = load('C:\Users\Abdallah Abdallah\Documents\Personals\OneDrive\matlab-NB-decoders-algorithms\AMA MVSF\results\837_124_32_2024_07_23_23_26_04.mat');
+c = load('C:\Users\Abdallah Abdallah\Documents\Personals\OneDrive\matlab-NB-decoders-algorithms\NGDBF NB\results\Non_Binary_BPSK_GDBF_837_124_32_dated_2024_07_24_18_12_02.mat');
 
 conf_detail = a.conf_detail;
 

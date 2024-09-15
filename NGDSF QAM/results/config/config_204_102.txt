@@ -1,0 +1,13 @@
+parf = 160;
+Ebnos           = 3.75;  % SNR values to simulate
+snr_cnt         = length(Ebnos);
+max_gen           = 1e6;
+F                 = 500;      % Number of frame errors to observe
+Fchan             = 1;    % Number of channel frames to generate per batch
+mnk               = 10;
+R                 = 0.5;  % code rate
+T                 = 1000;    % Max iterations for decoding
+w                 = 1.3;   % Syndrome weight parameter
+Ymax              = 295;    % Channel sample saturation magnitude
+theta             = -1.7;   % Flipping threshold
+eta               = 1.1;     % Perturbation noise scale parameter

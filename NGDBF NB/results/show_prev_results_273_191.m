@@ -1,11 +1,11 @@
 clear
 
-a = load('C:\Users\Abdallah Abdallah\Documents\Abdallah france\OneDrive\matlab-NB-decoders-algorithms\EMS\results\273.191.4.14.64_2024_07_25_23_51_07.mat');
-b = load('C:\Users\Abdallah Abdallah\Documents\Abdallah france\OneDrive\matlab-NB-decoders-algorithms\EMS\results\273.191.4.14.64_2024_07_26_04_27_48.mat');
-c = load('C:\Users\Abdallah Abdallah\Documents\Abdallah france\OneDrive\matlab-NB-decoders-algorithms\NGDBF NB\results\Non_Binary_BPSK_GDBF_273.191.4.14.64_dated_2024_07_25_15_40_47.mat');
-d = load('C:\Users\Abdallah Abdallah\Documents\Abdallah france\OneDrive\matlab-NB-decoders-algorithms\NGDBF NB\results\Non_Binary_BPSK_GDBF_273.191.4.14.64_dated_2024_07_25_23_57_58.mat');
-e = load('C:\Users\Abdallah Abdallah\Documents\Abdallah france\OneDrive\matlab-NB-decoders-algorithms\NGDBF NB\results\Non_Binary_BPSK_GDBF_273.191.4.14.64_dated_2024_07_26_04_33_28.mat');
-f = load('C:\Users\Abdallah Abdallah\Documents\Abdallah france\OneDrive\matlab-NB-decoders-algorithms\AMA MVSF\results\273.191.4.14.64_2024_07_26_05_37_00.mat');
+a = load('C:\Users\Abdallah Abdallah\Documents\Personals\OneDrive\matlab-NB-decoders-algorithms\EMS\results\273.191.4.14.64_2024_07_25_23_51_07.mat');
+b = load('C:\Users\Abdallah Abdallah\Documents\Personals\OneDrive\matlab-NB-decoders-algorithms\EMS\results\273.191.4.14.64_2024_07_26_04_27_48.mat');
+c = load('C:\Users\Abdallah Abdallah\Documents\Personals\OneDrive\matlab-NB-decoders-algorithms\NGDBF NB\results\Non_Binary_BPSK_GDBF_273.191.4.14.64_dated_2024_07_25_15_40_47.mat');
+d = load('C:\Users\Abdallah Abdallah\Documents\Personals\OneDrive\matlab-NB-decoders-algorithms\NGDBF NB\results\Non_Binary_BPSK_GDBF_273.191.4.14.64_dated_2024_07_25_23_57_58.mat');
+e = load('C:\Users\Abdallah Abdallah\Documents\Personals\OneDrive\matlab-NB-decoders-algorithms\NGDBF NB\results\Non_Binary_BPSK_GDBF_273.191.4.14.64_dated_2024_07_26_04_33_28.mat');
+f = load('C:\Users\Abdallah Abdallah\Documents\Personals\OneDrive\matlab-NB-decoders-algorithms\AMA MVSF\results\273.191.4.14.64_2024_07_26_05_37_00.mat');
 
 
 figure;
