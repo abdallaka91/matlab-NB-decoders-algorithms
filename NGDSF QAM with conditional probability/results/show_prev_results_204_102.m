@@ -1,18 +1,26 @@
 clear
 
-a = load('C:\Users\Abdallah Abdallah\Documents\Personals\OneDrive\matlab-NB-decoders-algorithms\EMS_QAM\results\204.102.3.6.16_2024_08_13_02_39_06.mat');
-b = load('C:\Users\Abdallah Abdallah\Documents\Personals\OneDrive\matlab-NB-decoders-algorithms\EMS_QAM\results\204.102.3.6.16_2024_08_13_06_05_03.mat');
-c = load('C:\Users\Abdallah Abdallah\Documents\Personals\OneDrive\matlab-NB-decoders-algorithms\NGDBF NB QAM\results\Non_Binary_R_QAM_GDBF_204.102.3.6.16_dated_2024_08_13_02_28_30.mat');
-d = load('C:\Users\Abdallah Abdallah\Documents\Personals\OneDrive\matlab-NB-decoders-algorithms\NGDBF NB QAM\results\Non_Binary_R_QAM_GDBF_204.102.3.6.16_dated_2024_08_13_02_45_46.mat');
-e = load('C:\Users\Abdallah Abdallah\Documents\Personals\OneDrive\matlab-NB-decoders-algorithms\NGDBF NB QAM\results\Non_Binary_R_QAM_GDBF_204.102.3.6.16_dated_2024_08_13_03_54_11.mat');
-f = load('C:\Users\Abdallah Abdallah\Documents\Personals\OneDrive\matlab-NB-decoders-algorithms\NGDSF QAM with conditional probability\results\Non_Binary_RQAM_GD_SymboleFlipping_204.102.3.6.16_dated_2024_09_13_01_57_05.mat');
-g = load('C:\Users\Abdallah Abdallah\Documents\Personals\OneDrive\matlab-NB-decoders-algorithms\NGDSF QAM with conditional probability\results\Non_Binary_RQAM_GD_SymboleFlipping_204.102.3.6.16_dated_2024_09_13_15_13_36.mat');
+a = load('/home/matlab-runner/abdallah_files/EMS_QAM/results/204.102.3.6.16_2024_08_13_02_39_06.mat');
+b = load('/home/matlab-runner/abdallah_files/EMS_QAM/results/204.102.3.6.16_2024_08_13_06_05_03.mat');
+c = load('/home/matlab-runner/abdallah_files/NGDBF NB QAM/results/Non_Binary_R_QAM_GDBF_204.102.3.6.16_dated_2024_08_13_02_28_30.mat');
+d = load('/home/matlab-runner/abdallah_files/NGDBF NB QAM/results/Non_Binary_R_QAM_GDBF_204.102.3.6.16_dated_2024_08_13_02_45_46.mat');
+e = load('/home/matlab-runner/abdallah_files/NGDBF NB QAM/results/Non_Binary_R_QAM_GDBF_204.102.3.6.16_dated_2024_08_13_03_54_11.mat');
+f = load('/home/matlab-runner/abdallah_files/NGDSF QAM with conditional probability/results/Non_Binary_RQAM_GD_SymboleFlipping_204.102.3.6.16_dated_2024_09_16_00_51_49.mat');
+g = load('/home/matlab-runner/abdallah_files/NGDSF QAM with conditional probability/results/Non_Binary_RQAM_GD_SymboleFlipping_204.102.3.6.16_dated_2024_09_16_01_09_36.mat');
+
+
+lnw = 2;
 
 figure;
 subplot(1,2,1)
-semilogy(a.Snr_db, a.FERstat' ,'b*-',b.Snr_db, b.FERstat','r*-',...
-    c.Snr_db, c.FERR','mo--',d.Snr_db, d.FERR','go--',e.Snr_db, e.FERR','ko--',...
-    f.Snr_db, f.FERR','y+--',g.Snr_db, g.FERR','+--', 'Linewidth', 1)
+semilogy(a.Snr_db, a.BERstat' ,'b*-', 'Linewidth', lnw);
+hold on
+semilogy(b.Snr_db, b.BERstat','r*-', 'Linewidth', lnw);
+semilogy(c.Snr_db, c.BERR','mo--', 'Linewidth', lnw);
+semilogy(d.Snr_db, d.BERR','go--', 'Linewidth', lnw);
+semilogy(e.Snr_db, e.BERR','co--', 'Linewidth', lnw);
+semilogy(f.Snr_db, f.BERR','k+--', 'Linewidth', lnw);
+semilogy(g.Snr_db, g.BERR','+--', 'Linewidth', lnw);
 
 grid on
 xlim([6 13])
@@ -24,11 +32,15 @@ legend({'FER: EMS nm=4 iter=15';'FER: EMS nm=8 iter=15';...
     'FER: qam NB-GD-SymbFlip 2000 iters +'}, 'Location', 'southwest');
 xlabel('SNR (dB)')
 ylabel('FER')
-
 subplot(1,2,2)
-semilogy(a.Snr_db, a.BERstat' ,'b*-',b.Snr_db, b.BERstat','r*-',...
-    c.Snr_db, c.BERR','mo--',d.Snr_db, d.BERR','go--',e.Snr_db, e.BERR','ko--',...
-    f.Snr_db, f.BERR','y+--',g.Snr_db, g.BERR','+--', 'Linewidth', 1)
+semilogy(a.Snr_db, a.BERstat' ,'b*-', 'Linewidth', lnw);
+hold on
+semilogy(b.Snr_db, b.BERstat','r*-', 'Linewidth', lnw);
+semilogy(c.Snr_db, c.BERR','mo--', 'Linewidth', lnw);
+semilogy(d.Snr_db, d.BERR','go--', 'Linewidth', lnw);
+semilogy(e.Snr_db, e.BERR','co--', 'Linewidth', lnw);
+semilogy(f.Snr_db, f.BERR','k+--', 'Linewidth', lnw);
+semilogy(g.Snr_db, g.BERR','+--', 'Linewidth', lnw);
 
 grid on
 xlim([6 13])

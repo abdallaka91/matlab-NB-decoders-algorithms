@@ -57,26 +57,27 @@ for i = 1 : M
         k=k+1;
     end
 end
-parf = 100;
-ebn0              = 5.6:0.2:10.8;  
+parf = 1200;
+ebn0              = 5.6:0.2:7.6;  
 snr_cnt           = length(ebn0);
 max_gen           = 1e6;
 max_err_cnt1      = 60; % catch max_err_cnt1 error frames at low Eb_No(<Eb_No_thrshld)
 max_err_cnt2      = 60; % catch max_err_cnt1 error frames at high Eb_No
 Eb_No_thrshld     = 4.8; % low-high Eb_No threshold 
 mnk               = 25; % flip the mnk symbols that have the lowest flipping metric 
-max_iter          = 2000;    % Max iterations for decoding
-max_max_iter      = 2200; % keep try above max_iter with single VN permute until l = max_max_l
+max_iter          = 4000;    % Max iterations for decoding
+max_max_iter      = 4200; % keep try above max_iter with single VN permute until l = max_max_l
 theta             = nan;   % Flipping threshold
 eta               = nan;     % Perturbation noise scale parameter
 eta1               = nan; % QAM conditional probability noise factor
 
-SNR_lev = [9.6;9.8;10.2;10.6];
+SNR_lev = [9.6;9.8;10.2;10.4; 10.6];
 
 conf_tbl = [0.05 0.9 1.2;...
-    0.2 0.9 1.2;...
-    0.2 0.94 1.4;...
-    0.5 0.94 1.4;...
+    0.2 0.92 1.22;...
+    0.3 0.95 1.27;...
+    0.37 0.96 1.32;...
+    0.5 0.96 1.4;...
     
     ];
 %%
@@ -94,7 +95,7 @@ sigma0 = sqrt(noiseVariance/2) ;
 
 sigma = fct1*sigma0; % as symbols aren't normalized, noise is multiplied by the inversse of symbol average power
 %%
-rng("shuffle"); % repetitive noise generation
+rng(0); % repetitive noise generation
 rng(1);
 alph_bin =  fliplr(dec2bin(words, p) - 48);
 alph_bin_mod = (-1).^alph_bin;
@@ -195,11 +196,11 @@ for i0=1 : snr_cnt
             seqgf__ = gray_labels(seqgf__+1)';
 
             statstc_iter__(1,pp) = iters__;
-            rec_info_seq = seqgf__;
+            rec_info_seq = seqgf__(1:K);
 
 
             if failed__~=0
-                [nerrS_decd__, nerrB_decd__] = SER_BER(code_seq,rec_info_seq,p, 0, 0);
+                [nerrS_decd__, nerrB_decd__] = SER_BER(info_seq,rec_info_seq,p, 0, 0);
             else
                 nerrS_decd__=0;
                 nerrB_decd__=0;
@@ -219,8 +220,8 @@ for i0=1 : snr_cnt
         BER_cnt(i0) = BER_cnt(i0)+nerrB_decd_;
         FER_cnt(i0) = FER_cnt(i0)+nerrF_decd_;
 
-        S_gen(i0) = S_gen(i0)+N*parf;
-        B_gen(i0) = B_gen(i0)+Nb*parf;
+        S_gen(i0) = S_gen(i0)+K*parf;
+        B_gen(i0) = B_gen(i0)+Kb*parf;
         F_gen(i0) = F_gen(i0)+parf;
 
         SERR(i0) = SER_cnt(i0)/S_gen(i0) ;
