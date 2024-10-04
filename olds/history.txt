@@ -1,0 +1,1000 @@
+   93  sudo mv matlab.desktop /usr/share/applications/
+   94  cd /usr/share/applications/
+   95  sudo update-desktop-database
+   96  ls
+   97  cd Documents
+   98  cd /home/abdallah/Documents/Matlab/bin
+   99  export PATH=/home/abdallah/Documents/Matlab/bin:$PATH
+  100  cd
+  101  ./matlab
+  102  rm -rf matlabroot
+  103  sudo rm /usr/share/applications/matlab.desktop
+  104  cd
+  105  sudo rm /usr/share/applications/matlab.desktop
+  106  cd /home/abdallah/Documents/Matlab
+  107  rm -rf /home/abdallah/Documents/Matlab/
+  108  sudo find / -name '*matlab*' -delete
+  109  ls | grep matlab
+  110  c
+  111  cd
+  112  cd /usr/share/applications/
+  113  ls | grep matlab
+  114  sudo rm matlab.desktop
+  115  cd /usr/share/applications/
+  116  ls
+  117  sudo rm -rf ~/.local/share/Trash/*
+  118  cd
+  119  sudo /home/abdallah/Downloads/matlab_R2023b_glnxa64/install
+  120  mkdirmatlabunzip matlab_R2023b_glnxa64.zip -d matlab
+  121  sudo mkdirmatlabunzip matlab_R2023b_glnxa64.zip -d matlab
+  122  sudo mkdir matlabunzip matlab_R2023b_glnxa64.zip -d matlab
+  123  sudo mkdir matlabunzip matlab_R2023b_glnxa64.zip  matlab
+  124  sudo apt-get install macchanger
+  125  ifconfig eth0
+  126  ip
+  127  ipconfig
+  128  ip
+  129  ip address
+  130  ifconfig eth0
+  131  ip link show eth0
+  132  ip link show
+  133  sudo macchanger -m 74:78:27:c3:09:b9 wlo1
+  134  ip link show wlo1
+  135  sudo ip link set wlo1 up
+  136  ip link show
+  137  sudo macchanger -m 74:78:27:c3:09:b9 wlo1
+  138  ip link show
+  139  ls -l /home/abda/Downloads/matlabunzip
+  140  ls -l /home/abdallah/Downloads/matlabunzip
+  141  ls
+  142  sudo rm -rf /home/abdallah/Downloads/matlabunzip
+  143  sudo apt install unzip
+  144  mkdir matlab2023b
+  145  unzip -qq matlab_R2023b_glnxa64.zip -d matlab
+  146  sudo unzip -qq matlab_R2023b_glnxa64.zip -d matlab
+  147  cd matlab
+  148  ls
+  149  sudo ./install
+  150  cd /usr/local/MATLAB/R2023b/bin
+  151  sudo ./activate_matlab.sh 
+  152  sudo ./matlab
+  153  sudo ./activate_matlab.sh 
+  154  su
+  155  cd /usr/local/MATLAB/R2023b/bin
+  156  ./activate_matlab.sh
+  157  su
+  158  cd /usr/local/MATLAB/R2023b/bin
+  159  ./activate_matlab.sh
+  160  ls
+  161  sudo chmod a+w /usr/local/MATLAB/R2023b/licenses/
+  162  ./activate_matlab.sh
+  163  matlab
+  164  ./matlab
+  165  aassddffgg
+  166  ./matlab
+  167  ip link
+  168  uptime
+  169  lgonctl
+  170  loginctl
+  171  ip link
+  172  sudo apt autoremove gnome-*
+  173  cd
+  174  sudo apt install task-kde-desktop 
+  175  sudo apt install power-profile-daemon
+  176  sudo apt install power-profiles-daemon gnome-keyring seahorse breeze-gtk-theme 
+  177  sudo apt install kdeconnect
+  178  sudo apt install plasma-discover-backend-flatpak plasma-discover-backend-fwupd plasma-discover-backend-snap plasma-disks
+  179  ip link
+  180  rsync
+  181  sudo rsync -arRP /usr/local/./MATLAB/ /opt
+  182  ls /opt
+  183  sudo apt install matlab-support
+  184  sudo apt install matlab-support-dev 
+  185  sudo vim /etc/apt/sources.list
+  186  sudo apt install vim
+  187  sudo vim /etc/apt/sources.list
+  188  sudo apt update
+  189  sudo apt install matlab-support\
+  190  sudo apt install matlab-support
+  191  sudo apt install fish zsh zsh-syntax-highlighting zsh-autosuggestions fzf
+  192  reboot
+  193  ls -lh /opt
+  194  sudo setfacl -d -m abdallah:755 /opt/MATLAB
+  195  sudo setfacl -d -m user:abdallah:755 /opt/MATLAB
+  196  sudo setfacl -d -m 755:abdallah /opt/MATLAB
+  197  sudo setfacl -d -m '755:abdallah' /opt/MATLAB
+  198  man setfacl
+  199  sudo chown -R abdallah:abdallah /opt/MATLAB
+  200  matlab
+  201  sudo rm -rf /usr/local/MATLAB/
+  202  sudo reboot
+  203  sudo mkdir -p /etc/apt/keyrings
+  204  sudo wget -qO /etc/apt/keyrings/teams-for-linux.asc https://repo.teamsforlinux.de/teams-for-linux.asc
+  205  echo "deb [signed-by=/etc/apt/keyrings/teams-for-linux.asc arch=$(dpkg --print-architecture)] https://repo.teamsforlinux.de/debian/ stable main" | sudo tee /etc/apt/sources.list.d/teams-for-linux-packages.list
+  206  sudo apt update
+  207  sudo apt install teams-for-linux
+  208  cat .local/bin/spoof-matlab 
+  209  ip link
+  210  /opt/MATLAB/R2023b/bin/activate_matlab.sh 
+  211  matlab -nojvm
+  212  ip link
+  213  /opt/MATLAB/R2023b/bin/activate_matlab.sh 
+  214  ip link
+  215  matlab -nojvm
+  216  ip link
+  217  matlab -nojvm
+  218  ip link
+  219  matlab -nojvm
+  220  ip link
+  221  sudo ip link set wlo1 addr e0:d4:64:7b:c8:43
+  222  ip link
+  223  matlab -nojvm
+  224  sudo ip link set wlo1 addr e0:d4:64:7b:c8:43
+  225  echo doas ip link set wlo1 addr e0:d4:64:7b:c8:43
+  226  echo 'doas ip link set wlo1 addr e0:d4:64:7b:c8:43'
+  227  mkdir .local/bin
+  228  echo 'doas ip link set wlo1 addr e0:d4:64:7b:c8:43' > .local/bin/spoof-matlab
+  229  vim .local/bin/spoof-matlab
+  230  sudo apt install opendoas
+  231  chmod +x .local/bin/spoof-matlab 
+  232  spoof-matlab
+  233  vim .bashrc
+  234  . .bashrc
+  235  spoof-matlab
+  236  sudo vim /etc/doas.conf
+  237  spoof-matlab
+  238  sudo vim /etc/doas.conf
+  239  spoof-matlab
+  240  sudo vim /etc/doas.conf
+  241  spoof-matlab
+  242  man doas.conf
+  243  sudo vim /etc/doas.conf
+  244  spoof-matlab
+  245  sudo vim /etc/doas.conf
+  246  spoof-matlab
+  247  ip link
+  248  spoof-matlab
+  249  ip link
+  250  matlab -nojvm
+  251  ./matlab
+  252  whereis matlab
+  253  cd /usr/bin/matlab
+  254  cd /usr/bin/
+  255  ls
+  256  whereis matlab
+  257  cd /usr/share/mtlab
+  258  pwd
+  259  mkdir ssh
+  260  pwd
+  261  xinput list
+  262  vncserver -xstartup openbox-session :9
+  263  sudo apt install xtightvncviewer
+  264  vncserver -xstartup openbox-session :9
+  265  sudo apt-get install tightvncserver
+  266  vncserver -xstartup openbox-session :9
+  267  [2/26 6:30 PM] Camille Monière
+  268  vncviewer -via matlab-runner@lo-lester-002.univ-ubs.fr ::5909
+  269  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr ::5909
+  270  vncserver -xstartup openbox-session :9
+  271  vncserver -kill :1
+  272  ps aux | grep Xtightvnc
+  273  ps aux
+  274  matlab -nojvm
+  275  matlab
+  276  curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+  277  $ sudo apt update
+  278  $ sudo apt install curl
+  279  sudo  apt update
+  280  sudo apt install curl
+  281  sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/ms-teams stable main" > 
+  282    /etc/apt/sources.list.d/teams.list'
+  283  sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/ms-teams stable main" > /etc/apt/sources.list.d/teams.list'
+  284  sudo apt update
+  285  sudo apt install teams
+  286  snap install teams-for-linux
+  287  vncviewer -via matlab-runner@lo-lester-002.univ-ubs.fr ::5909
+  288  sudo apt-get install vncviewer
+  289  vncviewer -via matlab-runner@lo-lester-002.univ-ubs.fr ::5909
+  290  sudo apt-get install tigervnc-viewer
+  291  vncviewer -via matlab-runner@lo-lester-002.univ-ubs.fr ::5909
+  292  sudo apt-get update
+  293  sudo apt-get install git
+  294  sudo apt-get install openssh-client
+  295  ssh-keygen -t rsa -b 4096 -C "abdallah.91ka@gmail.com"
+  296  cat ~/.ssh/id_rsa.pub | xclip -selection clipboard
+  297  ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+  298  cat ~/.ssh/id_rsa.pub | xclip -selection clipboard
+  299  cat SSH.ssh.pub | xclip -selection clipboard
+  300  sudo apt-get install xclip
+  301  cat SSH.ssh.pub | xclip -selection clipboard
+  302  ssh -T git@github.com
+  303  git clone git@github.com:abdallaka91/Matlab_NB_LDPC.git
+  304  ssh-add -l
+  305  ssh-add ~/.ssh/SSH.ssh
+  306  ssh-add ~/.ssh/SSH.ssh.pub
+  307  cat ~/.ssh/SSH.ssh.pub | xclip -selection clipboard
+  308  cat SSH.ssh.pub | xclip -selection clipboard
+  309  ssh-keygen -t rsa -b 4096 -C "abdallah.91ka@gmail.com"
+  310  cat ~/.ssh/SSH1.pub | xclip -selection clipboard
+  311  cat ~/.ssh/SSH1.ssh | xclip -selection clipboard
+  312  cat ~/.ssh/SSH1.ssh.pub | xclip -selection clipboard
+  313  ssh-keygen -t rsa -b 4096 -C "abdallah.91ka@gmail.com"
+  314  cat ~/SSH2.pub | xclip -selection clipboard
+  315  ssh-keygen -t rsa -b 4096 -C "abdallah.91ka@gmail.com"
+  316  cd /home/abdallah/.ssh/
+  317  ls
+  318  cat ~/.ssh/id_rsa.pub | xclip -selection clipboard
+  319  ls ~/.ssh/
+  320  cd
+  321  ~/.ssh$ ssh-keygen -t rsa -b 4096 -C "abdallah.91ka@gmail.com"
+  322  ssh-keygen -t rsa -b 4096 -C "abdallah.91ka@gmail.com"
+  323  cat ~/.ssh/SSH2.pub | xclip -selection clipboard
+  324  ls ~/.ssh/
+  325  ssh-keygen -t rsa -b 4096 -C "abdallah.91ka@gmail.com"
+  326  ls ~/.ssh/
+  327  cat ~/.ssh/id_rsa.pub | xclip -selection clipboard
+  328  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr ::5909
+  329  xinput list
+  330  sudo apt-get install xinput
+  331  xinput list
+  332  git clone git@github.com:abdallaka91/Matlab_NB_LDPC.git .
+  333  git status
+  334  git status
+  335  git add .
+  336  git status
+  337  ssh lo-lester-002.univ-ubs.fr -l abdallah
+  338  git status
+  339  ls -lh
+  340  git config --global --add safe.directory /home/abdallah/matlab-home-lester002/NB_LDPC_Decoders
+  341  git status
+  342  cd
+  343  exit
+  344  ls
+  345  xclip -o 
+  346  sudo apt install sshfs
+  347  ls
+  348  mkdir matlab-home-lester002
+  349  sshfs lo-lester-002:/home/abdallah/matlab-home matlab-home-lester002/
+  350  ls matlab-home-lester002/
+  351  ls -l matlab-home-lester002/
+  352  touch matlab-home-lester002/test
+  353  ls -l matlab-home-lester002/
+  354  uid
+  355  uuid
+  356  id
+  357  ls -l matlab-home-lester002/
+  358  pkill dolphin
+  359  pkill -9 dolphin
+  360  pgrep dolphin
+  361  pgrep -a dolphin
+  362  dolphin
+  363  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr ::5909
+  364  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9
+  365  ssh lo-lester-002.univ-ubs.fr -l abdallah
+  366  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9
+  367  ls
+  368  ls -l
+  369  exit
+  370  whereis another
+  371  ss
+  372  ssh lo-lester-002.univ-ubs.fr -l abdallah
+  373  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9
+  374  exir
+  375  exit
+  376  ssh lo-lester-002.univ-ubs.fr -l abdallah
+  377  sshfs lo-lester-002:/home/abdallah/matlab-home matlab-home-lester002/
+  378  exit
+  379  plasma-shutdown 
+  380  sudo bash
+  381  ls
+  382  git status
+  383  git add. presortes syndrom based nbldpc
+  384  git add "presortes syndrom based nbldpc"
+  385  git git commit -m "start working on pre-sorted, pjoject created in folder(presortes syndrom based nbldpc)"
+  386  git commit -m "start working on pre-sorted, pjoject created in folder(presortes syndrom based nbldpc)"
+  387  git config --global user.email "abdallah.91ka@gmail.com"
+  388  git commit -m "start working on pre-sorted, pjoject created in folder(presortes syndrom based nbldpc)"
+  389  git config user.name "abdallahka91"
+  390  git commit -m "start working on pre-sorted, pjoject created in folder(presortes syndrom based nbldpc)"
+  391  git status
+  392  git oush
+  393  git push
+  394  git status
+  395  git restore "presortes syndrom based nbldpc/*"
+  396  git status
+  397  git add .
+  398  git status
+  399  git commit "add parforlopp GBFDA"
+  400  git -commit "add parforlopp GBFDA"
+  401  git commit -m "add parforlopp GBFDA"
+  402  git push
+  403  git add .
+  404  git status
+  405  git commit -m "L could be differen than v^n"
+  406  git push
+  407  git commit -m "L could be different than v^n"
+  408  git status
+  409  git commit -m "L could be different than v^n"
+  410  git commit -m "L could be different than v^n "
+  411  git add .
+  412  git commit -m "L could be different than v^n"
+  413  git status
+  414  git push
+  415  cd
+  416  sshfs abdallah@lo-lester-002.univ-ubs.fr:/home/abdallah/matlab-home     /path/to/local/mountpoint -C -o idmap=user
+  417  sshfs abdallah@lo-lester-002.univ-ubs.fr:/home/abdallah/matlab-home/path/to/local/mountpoint -C -o idmap=user
+  418  sshfs abdallah@lo-lester-002.univ-ubs.fr:/home/abdallah/matlab-home     /path/to/local/mountpoint -C -o idmap=user
+  419  sshfs abdallah@lo-lester-002.univ-ubs.fr:/home/abdallah/matlab-home     /home/abdallah/Documents/bridge_to_machine -C -o idmap=user
+  420  ssh lo-lester-002.univ-ubs.fr -l abdallah
+  421  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9
+  422  ipa
+  423  ip a
+  424  xprop
+  425  sudo sh -c 'apt update ; apt install -y build-essential'
+  426  g++ program.cpp -o program
+  427  g++ main.cpp -o program
+  428  pkill octave
+  429  sudo apt install intel-mkl
+  430  htop
+  431  sudo apt install htop
+  432  htop
+  433  ssh lo-lester-002.univ-ubs.fr -l abdallah
+  434  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9 
+  435  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9
+  436  exit
+  437  ssh lo-lester-002.univ-ubs.fr -l abdallah
+  438  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9
+  439  ssh lo-lester-002.univ-ubs.fr -l abdallah
+  440  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9
+  441  ssh lo-lester-002.univ-ubs.fr -l abdallah
+  442  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9
+  443  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9 
+  444  ssh lo-lester-002.univ-ubs.fr -l abdallah
+  445  git status
+  446  git add .
+  447  fit commit -m "delete un-needed"
+  448  fit -m commit "delete un-needed"
+  449  git commit -m "delete un-needed"
+  450  git status
+  451  git pull
+  452  git config pull.rebase false 
+  453  git pull
+  454  git status
+  455  git putt
+  456  git pull
+  457  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9 
+  458  ssh lo-lester-002.univ-ubs.fr -l abdallah
+  459  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9 
+  460  sshfs lo-lester-002:/home/abdallah/matlab-home matlab-home-lester002
+  461  exit
+  462  ssh lo-lester-002.univ-ubs.fr -l abdallah
+  463  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9 
+  464  exit
+  465  sshfs lo-lester-002:/home/abdallah/matlab-home matlab-home-lester002
+  466  ls
+  467  exit
+  468  ssh lo-lester-002.univ-ubs.fr -l abdallah
+  469  ssh lo-lester-002.univ-ubs.fr -l matlab-runner
+  470  exit
+  471  ssh lo-lester-002.univ-ubs.fr -l abdallah
+  472  exit
+  473  ssh lo-lester-002.univ-ubs.fr -l abdallah
+  474  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9 
+  475  sshfs lo-lester-002:/home/abdallah/matlab-home matlab-home-lester002/
+  476  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9 
+  477  sshfs 
+  478  sshfs lo-lester-002:/home/abdallah/matlab-home matlab-home-lester002/
+  479  ssh lo-lester-002.univ-ubs.fr -l abdallah
+  480  sshfs lo-lester-002:/home/abdallah/matlab-home matlab-home-lester002/
+  481  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9 
+  482  git status
+  483  sshfs lo-lester-002:/home/abdallah/matlab-home matlab-home-lester002/
+  484  ssh lo-lester-002.univ-ubs.fr -l abdallah
+  485  sshfs abdallah@lo-lester-002.univ-ubs.fr:/home/abdallah/matlab-home /home/abdallah/Documents/SharedZone -C -o idmap=
+  486  user
+  487  sshfs abdallah@lo-lester-002.univ-ubs.fr:/home/abdallah/matlab-home /home/abdallah/Documents/SharedZone -C -o idmap=user
+  488  mkdir /home/abdallah/Documents/SharedZone
+  489  fusermount -u /home/abdallah/Documents/SharedZone
+  490  sshfs abdallah@lo-lester-002.univ-ubs.fr:/home/abdallah/matlab-home /home/abdallah/Documents/SharedZone -C -o idmap=user
+  491  ls
+  492  sshfs abdallah@lo-lester-002.univ-ubs.fr:/home/abdallah/matlab-home /home/abdallah/Documents/SharedZone -C -o idmap=user
+  493  fusermount -u /home/abdallah/Documents/SharedZone
+  494  sshfs abdallah@lo-lester-002.univ-ubs.fr:/home/abdallah/matlab-home /home/abdallah/Documents/SharedZone -C -o idmap=user
+  495  cd /home/abdallah/Documents/SharedZone
+  496  ls
+  497  fusermount -u /home/abdallah/Documents/SharedZone
+  498  lsof /home/abdallah/Documents/SharedZone
+  499  fusermount -u -f /home/abdallah/Documents/SharedZone
+  500  umount -l /home/abdallah/Documents/SharedZone
+  501  cd..
+  502  cd
+  503  git status
+  504  rm -r /home/abdallah/Documents/SharedZone
+  505  ls
+  506  mkdir SharedZone
+  507  sshfs abdallah@lo-lester-002.univ-ubs.fr:/home/abdallah/matlab-home /home/abdallah/Documents/SharedZone -C -o idmap=user
+  508  git status
+  509  git add .
+  510  git commit -m "presorted_MVSF_2 is currenty the closest the EMS, similar performane with 576_K288_GF64"
+  511  git config --global user.email "abdallah.91ka@gmail.com"
+  512  git commit -m "presorted_MVSF_2 is currenty the closest the EMS, similar performane with 576_K288_GF64"
+  513  git config --global user.email "abdallah.91ka@gmail.com"
+  514  git commit -m "presorted_MVSF_2 is currenty the closest the EMS, similar performane with 576_K288_GF64"
+  515  git config --global user.name "abdallaka91"
+  516  git commit -m "presorted_MVSF_2 is currenty the closest the EMS, similar performane with 576_K288_GF64"
+  517  git push
+  518  git pull origin master
+  519  git push origin master
+  520  git pull origin master --no-rebase
+  521  git pull origin master --rebase
+  522  git pull origin master --ff-only
+  523  git push origin master
+  524  git status
+  525  git init
+  526  git config --global init.defaultBranch main
+  527  git init
+  528  git commit -m "presorted_MVSF_2 is currenty the closest the EMS, similar performane with 576_K288_GF64"
+  529  git add .
+  530  git commit -m "presorted_MVSF_2 is currenty the closest the EMS, similar performane with 576_K288_GF64"
+  531  git remote add origin git@github.com:abdallaka91/presorted_syndrom_based_MVSF.git
+  532  git pull
+  533  git push -u origin main
+  534  git commit -m "presorted_MVSF_2 is currenty the closest the EMS, similar performane with 576_K288_GF64"
+  535  git branch -m master main
+  536  git push -u origin main
+  537  git fetch origin
+  538  git merge origin/main
+  539  git merge origin/main --allow-unrelated-histories
+  540  rm -rf presorted\ syndrom\ based\ MVSF
+  541  git init .
+  542  git init 
+  543  git init
+  544  git add .
+  545  git commit -m "presorted_MVSF_2 is currenty the closest the EMS, similar performane with 576_K288_GF64"
+  546  git remote add origin git@github.com:abdallaka91/Presorted_syndrom_based_MVSF.git
+  547  git pull
+  548  git push
+  549  git push --set-upstream origin main
+  550  git add .
+  551  git status
+  552  git add
+  553  git add.
+  554  git add .
+  555  ls
+  556  git commit -m "presorted_MVSF_2 is currenty the closest the EMS, similar performane with 576_K288_GF64"
+  557  git push
+  558  git pull
+  559  rm -rf presorted\ syndrom\ based\ MVSF
+  560  gcc -o a.out your_program.c
+  561  gcc -o your_executable your_program.c
+  562  cd /home/abdallah/Documents/VSCode/try1/NB_LDPC
+  563  cd /home/abdallah/Documents/VSCode/try1
+  564  gcc -o a.out NB_LDPC.c
+  565  ./a.out
+  566  cd /home/abdallah/Documents/VSCode/NB_LDPC_MVSF_SyndromeBased_presorting/
+  567  gcc -o a.out NB_LDPC.c
+  568  ./a.out
+  569  gdb --version
+  570  git config pull.rebase false  # Set merge as the default method
+  571  git pull origin main
+  572  git pull origin main --allow-unrelated-histories
+  573  git push origin main
+  574  git add .
+  575  git commit -m "presorted_MVSF_2 is currently the closest the EMS, similar performane with 576_K288_GF64"
+  576  git push origin main
+  577  ssh lo-lester-002.univ-ubs.fr -l abdallah
+  578  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9 
+  579  sshfs abdallah@lo-lester-002.univ-ubs.fr:/home/abdallah/matlab-home /home/abdallah/Documents/SharedZone -C -o idmap=user
+  580  pkill -9 dolphin
+  581  vncserver -kill :1
+  582  pkill -9 dolphin
+  583  kill--help
+  584  kill --help
+  585  kill -l
+  586  mkdir SharedZone
+  587  ls
+  588  ls SharedZone
+  589  ls /SharedZone
+  590  ls /pthon
+  591  ls /python
+  592  ls ..python
+  593  ls .python
+  594  ls ./python
+  595  ls ./SharedZone
+  596  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9 
+  597  ssh lo-lester-002.univ-ubs.fr -l abdallah
+  598  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9 
+  599  ssh lo-lester-002.univ-ubs.fr -l abdallah
+  600  sshfs abdallah@lo-lester-002.univ-ubs.fr:/home/abdallah/matlab-home     /home/abdallah/Documents/SharedZone -C -o idmap=user
+  601  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9 
+  602  git status
+  603  gitls
+  604  ls
+  605  git status
+  606  rm
+  607  rm presorted syndrom based MVSF
+  608  rm -presorted syndrom based MVSF
+  609  git status
+  610  ssh lo-lester-002.univ-ubs.fr -l abdallah
+  611  sshfs abdallah@lo-lester-002.univ-ubs.fr:/home/abdallah/matlab-home     /home/abdallah/Documents/SharedZone -C -o idmap=user
+  612  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9 
+  613  git add .
+  614  git commit -m "presorted_MVSF_2 is currently better than EMS for the 288, 576 code"
+  615  git push origin main
+  616  ssh lo-lester-002.univ-ubs.fr -l abdallah
+  617  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9 
+  618  sshfs abdallah@lo-lester-002.univ-ubs.fr:/home/abdallah/matlab-home /home/abdallah/Documents/SharedZone -C -o idmap=user
+  619  sshfs abdallah@lo-lester-002.univ-ubs.fr:/home/abdallah/matlab-home     /home/abdallah/Documents/SharedZone -C -o idmap=user
+  620  ssh lo-lester-002.univ-ubs.fr -l abdallah
+  621  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9 
+  622  ssh lo-lester-002.univ-ubs.fr -l abdallah
+  623  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9 
+  624  sshfs abdallah@lo-lester-002.univ-ubs.fr:/home/abdallah/matlab-home     /home/abdallah/Documents/SharedZone -C -o idmap=user
+  625  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9 
+  626  ssh lo-lester-002.univ-ubs.fr -l abdallah
+  627  git status
+  628  sh ./start.sh
+  629  git commit -m "fixed 2 fatal wrong (LLR rounding) and  voting, it was note appering due to testing on all Zeros sequences, now with BeiDou code ganarator matrix, we are able to test on random sequences, therefore since now results are caussal!"
+  630  git push
+  631  git push --set-upstream origin main
+  632  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9 
+  633  sshfs abdallah@lo-lester-002.univ-ubs.fr:/home/abdallah/matlab-home     /home/abdallah/Documents/SharedZone -C -o idmap=user
+  634  sshfs abdallah@lo-lester-002.univ-ubs.fr:/home/abdallah/matlab-home /home/abdallah/Documents/SharedZone -C -o idmap=user
+  635  pkill -9 dolphin
+  636  pgrep -a dolphin
+  637  kill 7964
+  638  kill PID
+  639  pgrep -a dolphin
+  640  kill PID
+  641  kill 7946 /usr/bin/dolphin
+  642  kill -9  7946 
+  643  GNOME: gnome-shell --replace
+  644  KDE Plasma: kwin_x11 --replace
+  645  Xfce: xfwm4 --replace
+  646  kwin_x11 --replace
+  647  tmux -S /tmp/tmsj3iZm attach
+  648  sh ./start.sh
+  649  google chrome
+  650  chrome
+  651  ls
+  652  exit
+  653  make clean
+  654  make -j
+  655  mkdir obj
+  656  make -j
+  657  ./essai
+  658  ./essai 2000 10 ./matrices/KN/N576_K480_GF64.txt 3.5 20 20 0.3 25
+  659  sh start.sh 
+  660  pkill xterm
+  661  parallel
+  662  sudo apt install parallel
+  663  sh start.sh 
+  664  nbcpu
+  665  nproc
+  666  sh start.sh 
+  667  sudo apt install tmux
+  668  sh start.sh 
+  669  tmux -S /tmp/tms0CZpy attach
+  670  sh start.sh 
+  671  gdb
+  672  git status
+  673  git init
+  674  git remote add origin git@github.com:abdallaka91/Presorted_syndrom_based_MVSF.git
+  675  git status
+  676  git init
+  677  git remote add origin git@github.com:abdallaka91/Presorted_syndrom_based_MVSF.git
+  678  git status
+  679  git init
+  680  git remote add origin git@github.com:abdallaka91/Presorted_syndrom_based_MVSF.git
+  681  git status
+  682  git push -u origin master
+  683  abdallah@lo-lester-030:~$ git status
+  684  fatal: not a git repository (or any of the parent directories): .git
+  685  abdallah@lo-lester-030:~$ git init
+  686  Initialized empty Git repository in /home/abdallah/.git/
+  687  abdallah@lo-lester-030:~$ git remote add origin git@github.com:abdallaka91/Presorted_syndrom_based_MVSF.git
+  688  abdallah@lo-lester-030:~$ git status
+  689  On branch main
+  690  No commits yet
+  691  Untracked files:
+  692  nothing added to commit but untracked files present (use "git add" to track)
+  693  abdallah@lo-lester-030:~$ git push -u origin master
+  694  error: src refspec master does not match any
+  695  error: failed to push some refs to 'github.com:abdallaka91/Presorted_syndrom_based_MVSF.git'
+  696  abdallah@lo-lester-030:~$ 
+  697  git add .
+  698  git commit -m "Initial commit"
+  699  git add .
+  700  rm -rf .git
+  701  git status
+  702  rm -rf .git
+  703  git status
+  704  git init
+  705  abdallah@lo-lester-030:~$ git remote add origin git@github.com:abdallaka91/Presorted_syndrom_based_MVSF.git
+  706  git remote add origin git@github.com:abdallaka91/Presorted_syndrom_based_MVSF.git
+  707  git status
+  708  git add .
+  709  pwd
+  710  cd "/home/abdallah/Documents/Matlab_NB_LDPC_projects/presorted syndrom based MVSF/"
+  711  pwd
+  712  git add .
+  713  rm -rf .git
+  714  git init
+  715  git remote add origin git@github.com:abdallaka91/Presorted_syndrom_based_MVSF.git
+  716  git add .
+  717  git commit -m "Initial commit"
+  718  git push -u origin main
+  719  git pull origin main
+  720  git pull origin main --allow-unrelated-histories
+  721  git pull origin main --no-rebase
+  722  git pull origin main --allow-unrelated-histories
+  723  git pull origin main --no-rebase
+  724  git pull origin main --allow-unrelated-histories
+  725  git config pull.rebase false
+  726  git pull origin main
+  727  git pull origin main --allow-unrelated-histories
+  728  git push origin main
+  729  git remote set-url origin git@github.com:abdallaka91/presorted_syndrom_based_MVSF.git
+  730  git status
+  731  sudo apt-get install hostapd dnsmasq
+  732  iwconfig
+  733  ip a
+  734  sudo apt-get update
+  735  sudo apt-get install hostapd dnsmasq
+  736  sudo nano /etc/dnsmasq.conf
+  737  ssh lo-lester-002.univ-ubs.fr -l abdallah
+  738  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9 
+  739  sshfs abdallah@lo-lester-002.univ-ubs.fr:/home/abdallah/matlab-home /home/abdallah/Documents/SharedZone -C -o idmap=user
+  740  git status
+  741  git init .
+  742  git clone git@github.com:abdallaka91/Matlab_NB_LDPC_projects.git
+  743  git pull
+  744  git init
+  745  git clone https://github.com/Lab-STICC-UBS/NB_LDPC_FB_public.git
+  746  ssh lo-lester-002.univ-ubs.fr -l abdallah
+  747  sshfs abdallah@lo-lester-002.univ-ubs.fr:/home/abdallah/matlab-home /home/abdallah/Documents/SharedZone -C -o idmap=user
+  748  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9 
+  749  ssh lo-lester-002.univ-ubs.fr -l abdallah
+  750  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9 
+  751  sshfs abdallah@lo-lester-002.univ-ubs.fr:/home/abdallah/matlab-home /home/abdallah/Documents/SharedZone -C -o idmap=user
+  752  x2goclient 
+  753  cat .ssh/id_rsa.pub 
+  754  ssh-keygen -t ed25519
+  755  ssh -L 2222:bof.univ-ubs.fr:22 abdallah@transit.univ-ubs.fr
+  756  sudo bash
+  757  cd
+  758  echo $SHELL
+  759  vi .bashrc 
+  760  vi .bash_aliases
+  761  source . .bash_aliases 
+  762  source  .bash_aliases 
+  763  alias
+  764  x2goclient 
+  765  ssh lo-lester-002
+  766  ssh lo-lester-002.univ-ubs.fr
+  767  ssh lo-lester-002.univ-ubs.fr -l abdallah
+  768  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9 
+  769  dpkg -l|grep vnc
+  770  ssh -CX lo-lester-002.univ-ubs.fr -l abdallah
+  771  boft
+  772  ssh lo-lester-002.univ-ubs.fr -l abdallah
+  773  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9 
+  774  exit
+  775  sshfs abdallah@lo-lester-002.univ-ubs.fr:/home/abdallah/matlab-home /home/abdallah/Documents/SharedZone -C -o idmap=user
+  776  make
+  777  ls
+  778  make
+  779  ls
+  780  cd obj
+  781  rm *
+  782  ls
+  783  cd ..
+  784  mqke
+  785  make
+  786  sh start.sh
+  787  ./essai 2000 10 ./matrices/BeiDou/BeiDou_GF64_88x44.txt 3.5 20 20 0.3 25
+  788  ./essai 2000 10 ./matrices/BeiDou/BeiDou_GF64_88x44.txt 3.5 16 16 0.3 18
+  789  sh start.sh
+  790  ./essai 2000 10 ./matrices/Beidou/BeiDou_GF64_88x44.txt 3.5 16 16 0.3 18
+  791  ./essai 2000 10 ./matrices/KN/N528_K264_BeiDou.txt 3.5 16 16 0.3 18
+  792  ./essai 2000 10 ./matrices/KN/N528_K264_GF64_BeiDou.txt 3.5 16 16 0.3 18
+  793  sh start.sh
+  794  sh ./start.sh
+  795  sudo bash
+  796  git status
+  797  git add .
+  798  git status
+  799  ssh lo-lester-002.univ-ubs.fr -l abdallah
+  800  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9 
+  801  ssh lo-lester-002.univ-ubs.fr -l abdallah
+  802  sudo apt-get install pdftk
+  803  pdftk 01.pdf 02.pdf cat output merged_file.pdf
+  804  tar -xvzf pdftk.tar.gz
+  805  cd ~/Downloads
+  806  tar -xvzf pdftk.tar.gz
+  807  sudo apt-get install pdftk
+  808  pdftk 01.pdf 02.pdf cat output merged_file.pdf
+  809  pdftk 11.pdf 12.pdf cat output merged_file1.pdf
+  810  git status
+  811  git commit -m "non needed files deleted"
+  812  git status
+  813  git add
+  814  git add .
+  815  git commit -m "non needed files deleted"
+  816  git commit -a 
+  817  git commit -a 
+  818  git add .
+  819  git commit -m "non needed files deleted"
+  820  cd Matlab_NB_LDPC_projects
+  821  git status
+  822  git add -u
+  823  git add .
+  824  git commit -m "Deleted unnecessary files and added new files"
+  825  git push origin master
+  826  ssh lo-lester-002.univ-ubs.fr -l abdallah
+  827  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9 
+  828  man sshfs
+  829  ssh lo-lester-002.univ-ubs.fr -l abdallah
+  830  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9 
+  831  vncviewer -via matlab-runner@lo-lester-002.univ-ubs.fr ::5909
+  832  vim /etc/sysconfig/vncservers
+  833  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9 
+  834  exit
+  835  sshfs abdallah@lo-lester-002.univ-ubs.fr:/home/abdallah/matlab-home /home/abdallah/Documents/SharedZone -C -o idmap=user
+  836  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9 
+  837  exit
+  838  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9 
+  839  ps aux | grep vncviewer
+  840  ps aux | grep '[v]ncviewer'
+  841  ssh lo-lester-002.univ-ubs.fr -l abdallah
+  842  ssh lo-lester-002.univ-ubs.fr -l abdallah
+  843  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9 
+  844  vncserver -xstartup openbox-session :9
+  845  ssh lo-lester-002.univ-ubs.fr -l abdallah
+  846  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9 
+  847  gcc -o sum sum.c
+  848  ./ sum 77 66
+  849  ./sum 77 66
+  850  gcc -o sum sum.c
+  851  ./sum 77 66
+  852  gcc -o sum sum.c
+  853  ./sum 77 66
+  854  ./sum 1 10
+  855  git .init
+  856  git init
+  857  git clone git@github.com:JosephJabour/NB-PC-Simulator.git
+  858  git pull
+  859  git branch -a
+  860  git checkout main
+  861  git checkout -b master origin/master
+  862  git branch -r
+  863  sudo apt update
+  864  sudo apt install gnome-tweaks
+  865  ls ..
+  866  ls -la  ..
+  867  rm -rf ../.git/
+  868  git stash pop
+  869  git stash
+  870  git stash pop
+  871  sh start.sh 
+  872  ls -l
+  873  chmod +x start.sh 
+  874  ./start.sh 
+  875  ls -l
+  876  rm essai
+  877  make
+  878  ./start.sh 
+  879  parallel
+  880  ./start.sh 
+  881  seq -1 0.5 0
+  882  ./start.sh 
+  883  pgrep essai
+  884  tmux -S /tmp/tmsfhifE attach
+  885  git add .
+  886  git commit -m "capture1 1000 failed"
+  887  git puah
+  888  git push
+  889  gcc -o sum sum.c
+  890  ./sum
+  891  gcc -o sum sum.c
+  892  ./sum
+  893  gcc -o sum sum.c
+  894  ./sum
+  895  gcc -o sum sum.c
+  896  ./sum
+  897  gcc -o sum sum.c
+  898  ./sum
+  899  gcc -o sum sum.c
+  900  ./sum
+  901  gcc -o sum sum.c
+  902  ./sum
+  903  gcc -o sum sum.c
+  904  ./sum
+  905  gcc -o sum sum.c
+  906  ./sum
+  907  gcc -o sum sum.c
+  908  ./sum
+  909  gcc -o sum sum.c
+  910  ./sum
+  911  gcc -o sum sum.c
+  912  ./sum
+  913  gcc -o sum sum.c
+  914  ./sum
+  915  gcc -o sum sum.c
+  916  ./sum
+  917  gcc -o sum sum.c
+  918  ./sum
+  919  gcc -o sum sum.c
+  920  ./sum
+  921  abdallah@lo-lester-030:~/Documents/Matlab_NB_LDPC_projects$ git remote -v
+  922  abdallah@lo-lester-030:~/Documents/Matlab_NB_LDPC_projects$ 
+  923  git remote add origin git@github.com:abdallaka91/Matlab_NB_Decoders_Algorithms.git
+  924  git clone git@github.com:abdallaka91/Matlab_NB_Decoders_Algorithms.git
+  925  git status
+  926  git add .
+  927  git COMMIT -M "cleaned and remove repeated projectgit add ."
+  928  git commit -M "cleaned and remove repeated projectgit add ."
+  929  git commit -m "cleaned and remove repeated projectgit add ."
+  930  git push
+  931  git clone git@github.com:abdallaka91/Matlab_NB_Decoders_Algorithms.git
+  932  git push
+  933  git remote -v
+  934  origin  git@github.com:abdallaka91/Matlab_NB_Decoders_Algorithms.git (fetch)
+  935  origin  git@github.com:abdallaka91/Matlab_NB_Decoders_Algorithms.git (push)
+  936  git remote -v
+  937  git remote add origin git@github.com:abdallaka91/Matlab_NB_Decoders_Algorithms.git
+  938  git remote -v
+  939  git push origin main
+  940  git pull origin main
+  941  git config --global
+  942  git config pull.rebase true
+  943  git pull origin main
+  944  git push origin main
+  945  ls
+  946  git add bin 'BeiDou matrix'
+  947  git commit -m "Add bin and BeiDou matrix folders"
+  948  git push origin main
+  949  git add BeiDou\ matrix/ bin/
+  950  git push origin main
+  951  git pull origin main
+  952  git add .
+  953  git commit -m "add beidou and bi folders"
+  954  git status
+  955  git status
+  956  git add .
+  957  git commit -m "m1"
+  958  git push
+  959  git pull
+  960  git config pull.ff only
+  961  git pull origin main
+  962  git push origin main
+  963  git pull origin main
+  964  git pull origin main --allow-unrelated-histories
+  965  abdallah@lo-lester-030:~/Documents/Matlab_NB_Decoders_Algorithms$ git pull origin main --allow-unrelated-histories
+  966  Enter passphrase for key '/home/abdallah/.ssh/id_rsa': 
+  967  From github.com:abdallaka91/Matlab_NB_Decoders_Algorithms
+  968  fatal: Not possible to fast-forward, aborting.
+  969  abdallah@lo-lester-030:~/Documents/Matlab_NB_Decoders_Algorithms$ 
+  970  abdallah@lo-lester-030:~/Documents/Matlab_NB_Decoders_Algorithms$ git pull origin main --allow-unrelated-histories
+  971  Enter passphrase for key '/home/abdallah/.ssh/id_rsa': 
+  972  From github.com:abdallaka91/Matlab_NB_Decoders_Algorithms
+  973  fatal: Not possible to fast-forward, aborting.
+  974  abdallah@lo-lester-030:~/Documents/Matlab_NB_Decoders_Algorithms$ 
+  975  git fetch origin main
+  976  git checkout -b new_branch origin/main
+  977  git commit -am "Merge changes from main branch"
+  978  git checkout main
+  979  git push origin main
+  980  git pull origin main
+  981  git fetch origin main
+  982  git reset --hard origin/main
+  983  git pull origin main
+  984  git push origin main
+  985  # Fetch remote changes
+  986  git fetch origin main
+  987  # Reset local branch to match remote
+  988  git reset --hard origin/main
+  989  # Pull changes from remote
+  990  git pull origin main
+  991  # Push changes to remote
+  992  git push origin main
+  993  git all
+  994  git add .
+  995  git commit -m "add Beidou generator matrix"
+  996  git push
+  997  git status
+  998  git commit -m "Add BeiDou matrix and bin folders"
+  999  git status
+ 1000  git status
+ 1001  git add .
+ 1002  git commit -m "add beidou and bin folders"
+ 1003  git push
+ 1004  git add Beidou/ bin/
+ 1005  git add Beidou matrix/ bin/
+ 1006  git add "Beidou matrix"/ bin/
+ 1007  ls
+ 1008  git add "Beidou matrix"/ bin/
+ 1009  git add Beidou\ matrix/ bin/
+ 1010  git add "Beidou matrix/"
+ 1011  git add bin/
+ 1012  ls
+ 1013  git add .
+ 1014  git commit -m "Add Beidou and bin folders"
+ 1015  git push
+ 1016  git add -A
+ 1017  git commit -m "Add Beidou and bin folders"
+ 1018  git add "BeiDou matrix/"
+ 1019  git add bin/
+ 1020  git commit -m "Add BeiDou matrix and bin folders"
+ 1021  echo "# matlab-NB-decoders-algorithms" >> README.md
+ 1022  git init
+ 1023  git add README.md
+ 1024  git commit -m "first commit"
+ 1025  git branch -M main
+ 1026  git remote add origin git@github.com:abdallaka91/matlab-NB-decoders-algorithms.git
+ 1027  git push -u origin main
+ 1028  git status
+ 1029  matfig2pgm with and without perturbation.fig with and without perturbation.pgm
+ 1030  sudo apt-get install matfig2pgm
+ 1031  matfig2pgm with and without perturbation.fig with and without perturbation.pgm
+ 1032  git add .
+ 1033  git commit -m "add all projects"
+ 1034  git push
+ 1035  sudo apt-get install matfig2pgm
+ 1036  git .init
+ 1037  git init
+ 1038  git clone git@github.com:abdallaka91/matlab-NB-decoders-algorithms.git
+ 1039  rm -rf ~/Documents/matlab-NB-decoders-algorithms
+ 1040  git statusgit status
+ 1041  git status
+ 1042  ls -a
+ 1043  rm -rf .git
+ 1044  ls -a
+ 1045  git status
+ 1046  git clean -f -d
+ 1047  git status
+ 1048  ssh lo-lester-002.univ-ubs.fr -l abdallah
+ 1049  vncviewer -via abdallah@lo-lester-002.univ-ubs.fr :9 
+ 1050  du -h --mx-depth=1 ~ | sort -hr
+ 1051  -h --mx-depth=1 ~ | sort -hr
+ 1052  du -h --max-depth=1 ~ | sort -hr
+ 1053  rm -rf ~/Downloads/*
+ 1054  du -h --max-depth=1 ~ | sort -hr
+ 1055  cd \home/abdallah
+ 1056  cd /home/abdallah
+ 1057  ls
+ 1058  cd /home/abdallah/Documents
+ 1059  ls
+ 1060  rm image.dd
+ 1061  ls
+ 1062  du -h --max-depth=1 ~ | sort -hr
+ 1063  cd
+ 1064  du -h --max-depth=1 ~ | sort -hr
+ 1065  df -h ~
+ 1066  PID
+ 1067  top
+ 1068  sudo systemctl restart gdm
+ 1069  sudo systemctl restart lightdm
+ 1070  sudo systemctl restart sddm
+ 1071  git add
+ 1072  git add .
+ 1073  git commit -m "add Beidoux encoding matix generator project"
+ 1074  git push
+ 1075  git stqtus
+ 1076  git status
+ 1077  ls
+ 1078  ls -lA
+ 1079  mount
+ 1080  mkdir Documents/SharedZone
+ 1081  sshfs abdallah@lo-lester-002.univ-ubs.fr:/home/abdallah/matlab-home /home/abdallah/Documents/SharedZone -C -o idmap=user
+ 1082  ls Documents/SharedZone/
+ 1083  cd Documents/SharedZone/
+ 1084  trash-list
+ 1085  sudo apt install trash-cli
+ 1086  trash-list
+ 1087  trash-list -h
+ 1088  man trash-list
+ 1089  trash-list .
+ 1090  trash-list . | grep 2024-05-20
+ 1091  history
+ 1092  history > history.txt

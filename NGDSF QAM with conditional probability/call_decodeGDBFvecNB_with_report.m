@@ -3,13 +3,19 @@ save_rslt = 1;
 ZERO = 1; % all zeros seq
 p = 4;
 q = 2^p;
+
+projectPath = pwd; 
+mainPath = fileparts(projectPath);
+related_variables_pth = fullfile(mainPath, 'related_variables');
 pth1 = (fullfile(pwd, 'related_functions'));
 addpath(pth1);
-pth2 = (fullfile(pwd, 'related_variables'));
-pth3 = (fullfile(pwd, 'related_variables/GF_arithm'));
-pth4 = (fullfile(pwd, 'related_variables/alists'));
-pth5 = (fullfile(pwd, 'related_variables/alists/matrices'));
+pth3 = (fullfile(related_variables_pth, 'GF_arithm'));
+pth4 = (fullfile(related_variables_pth, 'alists'));
+pth5 = (fullfile(related_variables_pth, 'alists/matrices'));
+pth7 = (fullfile(related_variables_pth, 'generator_matrices'));
 pth6 = (fullfile(pwd, 'results/'));
+
+
 words = (0:q-1);
 H_matrix_mat_fl_nm = '204.102.3.6.16';
 load([fullfile(pth4, H_matrix_mat_fl_nm) '.mat']);
@@ -65,8 +71,8 @@ max_err_cnt1      = 60; % catch max_err_cnt1 error frames at low Eb_No(<Eb_No_th
 max_err_cnt2      = 60; % catch max_err_cnt1 error frames at high Eb_No
 Eb_No_thrshld     = 4.8; % low-high Eb_No threshold 
 mnk               = 25; % flip the mnk symbols that have the lowest flipping metric 
-max_iter          = 4000;    % Max iterations for decoding
-max_max_iter      = 4200; % keep try above max_iter with single VN permute until l = max_max_l
+max_iter          = 1000;    % Max iterations for decoding
+max_max_iter      = 1200; % keep try above max_iter with single VN permute until l = max_max_l
 theta             = nan;   % Flipping threshold
 eta               = nan;     % Perturbation noise scale parameter
 eta1               = nan; % QAM conditional probability noise factor

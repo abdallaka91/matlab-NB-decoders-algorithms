@@ -1,25 +1,30 @@
 clear;
+projectPath = pwd; 
+mainPath = fileparts(projectPath);
+related_variables_pth = fullfile(mainPath, 'related_variables');
+
 pth1 = (fullfile(pwd, 'related_functions'));
 addpath(pth1);
-pth2 = (fullfile(pwd, 'related_variables'));
-pth3 = (fullfile(pwd, 'related_variables/GF_arithm'));
-pth4 = (fullfile(pwd, 'related_variables/alists'));
-pth5 = (fullfile(pwd, 'related_variables/alists/matrices'));
+pth3 = (fullfile(related_variables_pth, 'GF_arithm'));
+pth4 = (fullfile(related_variables_pth, 'alists'));
+pth5 = (fullfile(related_variables_pth, 'alists/matrices'));
+pth7 = (fullfile(related_variables_pth, 'generator_matrices'));
 pth6 = (fullfile(pwd, 'results/'));
 
-H_matrix_mat_fl_nm = '384.320.4.20.64';
+H_matrix_mat_fl_nm = '837_124_32';
 load([fullfile(pth4, H_matrix_mat_fl_nm) '.mat']);
+
 % h=H;
 h = full(h);
 N = size(h,2);
 M = size(h,1);
-% K = 726;
-K=N-M;
-p = 6;
+K = 723;
+% K=N-M;
+p = 5;
 q = 2^p;
 words = (0:q-1);
 
-save_rslt = 0;
+save_rslt = 1;
 comput_SER_BER = false;
 ZERO=1;
 plt = 0;
@@ -27,13 +32,13 @@ nm = 8;
 nc =nm^2;
 c2v_comp_fact=0.1;
 comp_ECN = c2v_comp_fact;
-max_gen = 1e6;
+max_gen = 5e5;
 max_iter = 15;
-ebn0 =4; %dB
+ebn0 = 3.5:0.1:4.3; %dB
 
-max_err_cnt1 = 40; % at low Eb_No(<Eb_No_thrshld)
-max_err_cnt2 = 40; %at high Eb_No
-parforN = 50;
+max_err_cnt1 = 30; % at low Eb_No(<Eb_No_thrshld)
+max_err_cnt2 = 30; %at high Eb_No
+parforN =24;
 Eb_No_thrshld = 3.20;
 LLRfact = 1024;
 unreliable_sat=-inf;
@@ -90,7 +95,11 @@ snr = -10*log10(2*sigma.^2);
 %%
 alph_bin =  logical(fliplr(dec2bin(words, p) - 48));
 alph_bin_mod = (-1).^alph_bin;
-[G,~] = Generator_matrix_G_from_full_rank_H(h, add_mat, mul_mat, div_mat);
+load([related_variables_pth '/837_723_parameters_proof.mat']);
+G=double(G);
+G(:,swap)=G;
+% [G,~] = Generator_matrix_G_from_full_rank_H(h, add_mat, mul_mat, div_mat);
+% swap = 1:N;
 % info_seq = [12,5,15,5,6,14,15,11,1,14,5,12,14,7,15,9,8,9,6,12,1,3,15,9,13,11,8,15,1,8,1,3,2,4,8,13,4,11,10,12,11,11,2,11,3,2,9,2,9,5,6,9,5,8,3,7,13,1,9,13,3,8,6,10,3,12,0,8,1,14,4,15,2,0,12,10,12,9,11,11,15,10,12,10,15,12,14,10,10,0,8,10,4,8,12,14,8,8,11,1,6,12];
 % code_seq = gf_mat_mul(info_seq,G, add_mat, mul_mat);
 % valid_symdrom = gf_mat_mul(code_seq,h', add_mat, mul_mat);
@@ -98,7 +107,7 @@ alph_bin_mod = (-1).^alph_bin;
 % y_bin = (-1).^y_bin0;
 
 %%
-
+rng(1)
 str_vn_cn = cell(N,1);
 dv = zeros(N,1);
 for j = 1 : N
@@ -138,7 +147,7 @@ for i0 = 1 : snr_cnt
     sigm =sigma(i0);
     while FER(i0) < max_err_cnt && gen_seq_cnt(i0)<max_gen
 
-        for j = 1 : parforN
+        parfor j = 1 : parforN
             gen_seq_cnt_ = gen_seq_cnt_+1;
             if ZERO
                 [info_seq, code_seq, valid_symdrom, y_bin] = generate_and_encode(ZERO, h,G, add_mat, mul_mat, p);

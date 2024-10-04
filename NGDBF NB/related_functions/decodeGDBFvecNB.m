@@ -18,11 +18,13 @@ Sbo=Sb;
 WSHb=zeros(1,Nb);
 while l<T
     l = l + 1;
-    WSH = bsxfun(@minus,w*Sb*hl,0.5*dv+1);
+    % WSH = bsxfun(@minus,w*Sb*hl,0.5*dv+1);
+    WSH = w*Sb*hl;
     for j = 1 : N
         WSHb((j-1)*p+1:j*p)=WSH(j);%-ofst_b(j);
     end
-
+    % plot(Sb*hl)
+    
     E  = d.*y + WSHb+ nsigma*randn(1,Nb);
 
     [a,i1] = mink(E,mnk);

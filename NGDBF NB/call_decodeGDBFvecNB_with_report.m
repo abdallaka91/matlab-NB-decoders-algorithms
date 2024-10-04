@@ -1,24 +1,31 @@
 clear
 save_rslt = 0;
-ZERO = 1; % all zeros seq
-p = 4;
+ZERO = 0; % all zeros seq
+p = 8;
 q = 2^p;
+
+projectPath = pwd; 
+mainPath = fileparts(projectPath);
+related_variables_pth = fullfile(mainPath, 'related_variables');
+
 pth1 = (fullfile(pwd, 'related_functions'));
 addpath(pth1);
-pth2 = (fullfile(pwd, 'related_variables'));
-pth3 = (fullfile(pwd, 'related_variables/GF_arithm'));
-pth4 = (fullfile(pwd, 'related_variables/alists'));
-pth5 = (fullfile(pwd, 'related_variables/alists/matrices'));
+pth3 = (fullfile(related_variables_pth, 'GF_arithm'));
+pth4 = (fullfile(related_variables_pth, 'alists'));
+pth5 = (fullfile(related_variables_pth, 'alists/matrices'));
+pth7 = (fullfile(related_variables_pth, 'generator_matrices'));
 pth6 = (fullfile(pwd, 'results/'));
+
+
 words = (0:q-1);
-H_matrix_mat_fl_nm = '204.102.3.6.16';
+H_matrix_mat_fl_nm = 'EG_255_175';
 load([fullfile(pth4, H_matrix_mat_fl_nm) '.mat']);
 h = full(h);
 hl=double(h>0);
 N = size(h,2);
 M = size(h,1);
-K = N-M;  %%%%%% important
-
+% K = N-M;  %%%%%% important
+K=175;
 
 Nb = N*p;
 Kb = K*p;
@@ -56,19 +63,19 @@ for i = 1 : M
         k=k+1;
     end
 end
-parf = 40;
-ebn0              = 3;  % SNR values to simulate
+parf = 12;
+ebn0              = 4.2;  % SNR values to simulate
 snr_cnt           = length(ebn0);
-max_gen           = 1e6;
-max_err_cnt1      = 40; % at low Eb_No(<Eb_No_thrshld)
-max_err_cnt2      = 40; %at high Eb_No
+max_gen           = 5e5;
+max_err_cnt1      = 20; % at low Eb_No(<Eb_No_thrshld)
+max_err_cnt2      = 20; %at high Eb_No
 Eb_No_thrshld     = 4.8;
-mnk               = 15;
-max_iter          = 1000;    % Max iterations for decoding
-max_max_iter      = 2000; % keep try above T with single VN permute until l = max_max_l
-syndrome_weight   = 0.95;   % Syndrome weight parameter
-theta             = -2.6;   % Flipping threshold
-eta               = 1;     % Perturbation noise scale parameter
+mnk               = 30;
+max_iter          = 800;    % Max iterations for decoding
+max_max_iter      = 1600; % keep try above T with single VN permute until l = max_max_l
+syndrome_weight   = 0.4;   % Syndrome weight parameter
+theta             = 0.4;   % Flipping threshold
+eta               = 0.4;     % Perturbation noise scale parameter
 nones1            = 4; %max hamming dist
 nones2            = 1; %max hamming dist
 sngl_VN_th        = 4.8; %dB above whichSNR check if a single symbol flipping could reduce nb of faild by its dv
@@ -138,7 +145,7 @@ FERR=zeros(snr_cnt,1);
 
 aver_iter = zeros(snr_cnt,1);
 
-statstc_iter = zeros(snr_cnt,max_max_iter);
+statstc_iter = zeros(snr_cnt,max_max_iter+1);
 
 iter_cnt = zeros(snr_cnt,1);
 pw = (2.^(0:p-1))';
@@ -161,7 +168,7 @@ for i0=1 : snr_cnt
     else
         sngl_VN = 0;
     end
-    while FER_cnt(i0) < max_err_cnt
+    while FER_cnt(i0) < max_err_cnt && F_gen(i0)<=max_gen
 
         nerrS_decd_ = 0;
         nerrB_decd_ = 0;
@@ -169,7 +176,7 @@ for i0=1 : snr_cnt
         statstc_iter__ = zeros(1,parf);
         iters_ = 0;
 
-        for pp=1 :parf
+       parfor pp=1 :parf
             if ZERO
                 [info_seq, code_seq, valid_symdrom, y_bin_mod2D] = generate_and_encode(ZERO, h,G, add_mat, mul_mat, p);
             else

@@ -1,0 +1,15 @@
+parf = 24;
+Ebnos           = 40.24.8;  % SNR values to simulate
+snr_cnt         = length(Ebnos);
+max_gen           = 1e6;
+F                 = 40;      % Number of frame errors to observe
+mnk               = 30;
+R                 = KN;  % code rate
+T                 = 1000;    % Max iterations for decoding
+w                 = .92;   % Syndrome weight parameter
+Ymax              = 295;    % Channel sample saturation magnitude
+theta             = -2.35;   % Flipping threshold
+eta               = 1.0;     % Perturbation noise scale parameter
+nones1             = 4; %max hamming dist 
+nones2             = 1; %max hamming dist 
+sngl_VN_th = 4.5; %dB above whichSNR check if a single symbol flipping could reduce nb of faild by its dv

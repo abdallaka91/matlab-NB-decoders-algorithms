@@ -1,0 +1,14 @@
+algoritm : Non Binary R-QAM GD Symbol Flipping
+H matrix : 204.102.3.6.16
+N = 204, M = 102, K = 102, GF(16)
+max iter : 1000
+max with extra iter : 1200
+max symbols to flip per iter : 25
+Flipping threshold : 0.500
+perturbation noise scaling : 0.940
+Conditional probability sigma scaling factor : 1.400
+max seq generation : 1000000
+
+SNR = 10.610 dB, FER =  20/  327000 = 6.116e-05,// BER =  154/  266832000 = 5.771e-07, aver_iter = 101.660
+------------------------------------------------------------------------------------------------------------------------------------------------
+

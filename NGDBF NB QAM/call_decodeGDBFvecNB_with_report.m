@@ -3,13 +3,19 @@ save_rslt = 1;
 ZERO = 1; % all zeros seq
 p = 4;
 q = 2^p;
+
+projectPath = pwd; 
+mainPath = fileparts(projectPath);
+related_variables_pth = fullfile(mainPath, 'related_variables');
 pth1 = (fullfile(pwd, 'related_functions'));
 addpath(pth1);
-pth2 = (fullfile(pwd, 'related_variables'));
-pth3 = (fullfile(pwd, 'related_variables/GF_arithm'));
-pth4 = (fullfile(pwd, 'related_variables/alists'));
-pth5 = (fullfile(pwd, 'related_variables/alists/matrices'));
+pth3 = (fullfile(related_variables_pth, 'GF_arithm'));
+pth4 = (fullfile(related_variables_pth, 'alists'));
+pth5 = (fullfile(related_variables_pth, 'alists/matrices'));
+pth7 = (fullfile(related_variables_pth, 'generator_matrices'));
 pth6 = (fullfile(pwd, 'results/'));
+
+
 words = (0:q-1);
 H_matrix_mat_fl_nm = '204.102.3.6.16';
 load([fullfile(pth4, H_matrix_mat_fl_nm) '.mat']);

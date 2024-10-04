@@ -1,46 +1,53 @@
 clear;%/home/abdallah/Downloads/NB_LDPC_Decoders/call_MV_SF_parforloop.m
+rng(1)
 comput_SER_BER = false;
 ZERO=1; % if  0 then simulate all zeros sequence
 plt = 0; % continiously plot FER performance if 1
 nm = 8;% V2C m2ssage size
-p = 6;
+p = 5;
 q = 2^p;
-dc1 = [0 2 2];
+dc1 = [0 0 2];
 save_rslt = 1;
 rng(1); % noise reproducity
 Dev_pos_cnt = length(dc1)-1;
 di = cell(length(dc1),1);
 di{1} = [0 0];
-di{2} = [0 1];
-di{3} = [0 2 1];
-v_weights = [0.5 0.18]*256;
+di{2} = [0 0];
+di{3} = [0 1 1];
+v_weights = [.5 .25]*256;
 LLRfact = 1024;
 unreliable_sat=-inf;
-parforN = 80;
+parforN =120;
 max_err_cnt1 = 60; % at low Eb_No(<Eb_No_thrshld)
 max_err_cnt2 = 30; %at high Eb_No
-Eb_No_thrshld = 3.8;
-max_gen = 5e5;
+Eb_No_thrshld = 4.4;
+max_gen = 2e5;
 max_iter = 16;
-max_attempt = 6;
-ebn0 = 3.4:0.2:4.6; %dB
+max_attempt = 5;
+ebn0 = 4:0.1:4.5; %dB
 
 
+
+projectPath = pwd; 
+mainPath = fileparts(projectPath);
+related_variables_pth = fullfile(mainPath, 'related_variables');
 pth1 = (fullfile(pwd, 'related_functions'));
 addpath(pth1);
-pth2 = (fullfile(pwd, 'related_variables'));
-pth3 = (fullfile(pwd, 'related_variables/GF_arithm'));
-pth4 = (fullfile(pwd, 'related_variables/alists'));
-pth5 = (fullfile(pwd, 'related_variables/alists/matrices'));
+pth3 = (fullfile(related_variables_pth, 'GF_arithm'));
+pth4 = (fullfile(related_variables_pth, 'alists'));
+pth5 = (fullfile(related_variables_pth, 'alists/matrices'));
+pth7 = (fullfile(related_variables_pth, 'generator_matrices'));
 pth6 = (fullfile(pwd, 'results/'));
+
+
 words = (0:q-1);
-H_matrix_mat_fl_nm = '273.191.4.14.64';
+H_matrix_mat_fl_nm = '837_124_32';
 load([fullfile(pth4, H_matrix_mat_fl_nm) '.mat']);
 h = full(h);
 N = size(h,2);
 M = size(h,1);
- K = N-M;
-% K=726;
+K = N-M;
+K=723;
 fl_nm = ['arith_' num2str(q) '.mat'];
 if  exist(fullfile(pth3, fl_nm), 'file') == 2
     load(fullfile(pth3, fl_nm));
@@ -98,7 +105,10 @@ snr = -10*log10(2*sigma.^2);
 %%
 alph_bin =  fliplr(dec2bin(words, p) - 48);
 alph_bin_mod = (-1).^alph_bin;
-[G,~] = Generator_matrix_G_from_full_rank_H(h, add_mat, mul_mat, div_mat);
+load([related_variables_pth '/837_723_parameters_proof.mat']);
+G=double(G);
+G(:,swap)=G;
+% [G,~] = Generator_matrix_G_from_full_rank_H(h, add_mat, mul_mat, div_mat);
 info_seq = randi([0 q-1],1,K);
 code_seq = gf_mat_mul(info_seq,G, add_mat, mul_mat);
 valid_symdrom = gf_mat_mul(code_seq,h', add_mat, mul_mat);
