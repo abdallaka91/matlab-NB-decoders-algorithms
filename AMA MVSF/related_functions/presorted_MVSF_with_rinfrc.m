@@ -1,5 +1,5 @@
 function [iters, dec_seq, success_dec] = ...
-    presorted_MVSF_with_rinfrc(LLR_2, max_iter, mul_mat, add_mat, div_mat,...
+    presorted_MVSF_with_rinfrc(LLR_2,hd0, max_iter, mul_mat, add_mat, div_mat,...
     h,str_cn_vn, dc, dev_lsts, nm, v_weights, max_attempt)
 
 [M,N] = size(h);
@@ -24,11 +24,11 @@ while tt<max_attempt
         end
         for j = 1 : N
             if ~s1(j)
-                b = LLR_2(j,:);
-                [~,i1] = max(b);
+%                 b = LLR_2(j,:);
+%                 [~,i1] = max(b);
                 bb=LLR_2(j,dec_seq(j)+1);
-                LLR_2(j,dec_seq(j)+1) = 0;
-                LLR_2(j,i1) = 2*bb;
+                LLR_2(j,dec_seq(j)+1) = 1;
+%                 LLR_2(j,hd0(j)) = 2*bb;
             end
         end
     end

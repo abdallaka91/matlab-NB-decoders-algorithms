@@ -1,30 +1,30 @@
 clear;%/home/abdallah/Downloads/NB_LDPC_Decoders/call_MV_SF_parforloop.m
 rng(1)
 comput_SER_BER = false;
-ZERO=1; % if  0 then simulate all zeros sequence
+ZERO=0; % if  0 then simulate all zeros sequence
 plt = 0; % continiously plot FER performance if 1
-nm = 8;% V2C m2ssage size
-p = 5;
+nm = 4;% V2C m2ssage size
+p = 4;
 q = 2^p;
-dc1 = [0 0 2];
-save_rslt = 1;
+dc1 = [0 2];
+save_rslt = 0;
 rng(1); % noise reproducity
 Dev_pos_cnt = length(dc1)-1;
 di = cell(length(dc1),1);
 di{1} = [0 0];
-di{2} = [0 0];
-di{3} = [0 1 1];
-v_weights = [.5 .25]*256;
+di{2} = [0 3 2];
+% di{3} = [0 4 1];
+v_weights = [11 3]*25.6;
 LLRfact = 1024;
 unreliable_sat=-inf;
-parforN =120;
+parforN =80;
 max_err_cnt1 = 60; % at low Eb_No(<Eb_No_thrshld)
 max_err_cnt2 = 30; %at high Eb_No
-Eb_No_thrshld = 4.4;
+Eb_No_thrshld = 3;
 max_gen = 2e5;
 max_iter = 16;
-max_attempt = 5;
-ebn0 = 4:0.1:4.5; %dB
+max_attempt = 6;
+ebn0 = 2.8; %dB
 
 
 
@@ -41,13 +41,13 @@ pth6 = (fullfile(pwd, 'results/'));
 
 
 words = (0:q-1);
-H_matrix_mat_fl_nm = '837_124_32';
+H_matrix_mat_fl_nm = '204.102.3.6.16';
 load([fullfile(pth4, H_matrix_mat_fl_nm) '.mat']);
 h = full(h);
 N = size(h,2);
 M = size(h,1);
 K = N-M;
-K=723;
+% K=723;
 fl_nm = ['arith_' num2str(q) '.mat'];
 if  exist(fullfile(pth3, fl_nm), 'file') == 2
     load(fullfile(pth3, fl_nm));
@@ -105,10 +105,10 @@ snr = -10*log10(2*sigma.^2);
 %%
 alph_bin =  fliplr(dec2bin(words, p) - 48);
 alph_bin_mod = (-1).^alph_bin;
-load([related_variables_pth '/837_723_parameters_proof.mat']);
-G=double(G);
-G(:,swap)=G;
-% [G,~] = Generator_matrix_G_from_full_rank_H(h, add_mat, mul_mat, div_mat);
+% load([related_variables_pth '/837_723_parameters_proof.mat']);
+% G=double(G);
+% G(:,swap)=G;
+[G,~] = Generator_matrix_G_from_full_rank_H(h, add_mat, mul_mat, div_mat);
 info_seq = randi([0 q-1],1,K);
 code_seq = gf_mat_mul(info_seq,G, add_mat, mul_mat);
 valid_symdrom = gf_mat_mul(code_seq,h', add_mat, mul_mat);
@@ -172,6 +172,7 @@ for i0 = 1 : snr_cnt
             [~,HD1] = max(LLR_2,[], 2);
             HD1 = HD1'-1;
             nes = sum(HD1~=code_seq);
+
             [iters, dec_seq, success_dec] = ...
                 presorted_MVSF_with_rinfrc(LLR_2, max_iter, mul_mat, add_mat, div_mat,...
                 h,str_cn_vn, dc, dev_lsts, nm, v_weights, max_attempt);
