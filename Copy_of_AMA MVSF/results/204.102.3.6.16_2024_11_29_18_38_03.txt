@@ -2,14 +2,14 @@ H matrix : 204.102.3.6.16
 N = 204, M = 102, K = 102, GF(16)
 V0 = 204.800, V1 = 76.800
 LLR factor = 1024.000
-max iter : 16
-max nb of max_attempts : 6
+max iter : 96
+max nb of max_attempts : 1
 max seq generation : 200000
 max error frame detection: 60
 nb of deviation paths : 12
 regions width (high to low reliable) : { 3  1  2 }
 [ 0 ] || [ 1 ] || [ 2 1 ]
 
-EbNo = 3 dB, FER = 9/640 = 0.0140625 || SER = 580/65280 = 0.0088848 || BER = 934/261120 = 0.0035769, aver_iter = 11.9297
+EbNo = 3 dB, FER = 6/240 = 0.025 || SER = 498/24480 = 0.0203431 || BER = 977/97920 = 0.00997753, aver_iter = 11.9917
 ------------------------------------------------------------------------------------------------------------------------------------
 

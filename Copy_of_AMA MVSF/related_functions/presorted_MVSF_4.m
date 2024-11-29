@@ -1,5 +1,5 @@
-function [iters, dec_seq, success_dec, synd,Wn, FER_iter, BER_iter] = presorted_MVSF_4(LLR_2, max_iter, mul_mat, add_mat, div_mat,...
-    h,str_cn_vn, dc, dev_lsts, nm, v_weights,code_seq, FER_iter, BER_iter, iter00)
+function [iters, dec_seq, success_dec, synd,Wn, FER_iter, BER_iter, gen_iter] = presorted_MVSF_4(LLR_2, max_iter, mul_mat, add_mat, div_mat,...
+    h,str_cn_vn, dc, dev_lsts, nm, v_weights,code_seq, FER_iter, BER_iter,gen_iter, iter00)
 M = size(h,1);
 N = size(h,2);
 q = size(LLR_2,2);
@@ -95,6 +95,7 @@ while iter<max_iter
     [~, BER1]=SER_BER(code_seq, dec_seq, p, 0, 0);
     FER_iter(iter00) = FER_iter(iter00) + 1*(BER1>0);
     BER_iter(iter00) = BER_iter(iter00) + BER1;
+    gen_iter(iter00) = gen_iter(iter00) + 1;
     sum(dec_seq~=0);
     synd=decod_prod(dec_seq, h, str_cn_vn, mul_mat, add_mat);
     is_not_code = sum(synd)>0;
