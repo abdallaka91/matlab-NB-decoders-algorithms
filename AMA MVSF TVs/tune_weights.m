@@ -14,12 +14,12 @@ di = cell(length(dc1),1);
 di{1} = [0 0];
 di{2} = [0 1];
 di{3} = [0 2 1];
-v_weights = [400 100];
+v_weights = [205 77];
 LLRfact = 1024;
 unreliable_sat=-inf;
-parforN =80;
-max_err_cnt1 = 60; % at low Eb_No(<Eb_No_thrshld)
-max_err_cnt2 = 60; %at high Eb_No
+parforN =30;
+max_err_cnt1 = 20; % at low Eb_No(<Eb_No_thrshld)
+max_err_cnt2 = 20; %at high Eb_No
 Eb_No_thrshld = 3;
 max_gen = 2e5;
 max_iter = 16;
@@ -28,7 +28,7 @@ ebn0 = 3.2;%1.4:0.2:4.2; %dB
 
 
 
-projectPath = pwd; 
+projectPath = pwd;
 mainPath = fileparts(projectPath);
 related_variables_pth = fullfile(mainPath, 'related_variables');
 pth1 = (fullfile(pwd, 'related_functions'));
@@ -60,6 +60,7 @@ end
 dev_lsts = cell(M,1);
 dev_pos = cell(M,1);
 str_cn_vn = cell(M,1);
+SG = cell(M,1);
 dc = zeros(M,1);
 for i = 1 : M
     str_cn_vn{i, 1} = find(h(i,:));
@@ -69,7 +70,12 @@ for i = 1 : M
     [lst_deviation_lst, lst_dev_pos, dev_lsts_i, dev_pos_i]=list_dev_reliabl(dc11, di);
     dev_lsts{i} = dev_lsts_i;
     dev_pos{i} = dev_pos_i;
+    for n = 1 : dc(i)
+        similarGroups = findSimilarRows([dev_lsts{i}(:,1:n-1) dev_lsts{i}(:,n+1:dc(i))]);
+        SG{i,n} = similarGroups;
+    end
 end
+
 %%
 clear conf_detail
 conf_detail.a11fl_nme = sprintf("H matrix : %s",H_matrix_mat_fl_nm);
@@ -121,7 +127,16 @@ for j = 1 : N
     str_vn_cn{j, 1} = (find(h(:,j)))';
     dv(j) = length(str_vn_cn{j});
 end
-snr_cnt = length(sigma);
+
+v00 = 380:5:420;
+v11 = 140:5:180;
+v_weights1 = CombVec(v00,v11)';
+v000=v_weights1(1:end,1);
+v111=v_weights1(1:end,2);
+ii1=find(v000<v111);
+v_weights1(ii1,:)=[];
+
+snr_cnt = size(v_weights1,1);
 FERstat = zeros(snr_cnt,1);
 SERstat = zeros(snr_cnt,1);
 BERstat = zeros(snr_cnt,1);
@@ -138,7 +153,9 @@ needed_iters = nan(max_gen,snr_cnt);
 LLR_20 =zeros(N,q);
 
 for i0 = 1 : snr_cnt
-    if ebn0(i0)>=Eb_No_thrshld
+    v_weights = v_weights1(i0,:);
+    disp(v_weights);
+    if ebn0>=Eb_No_thrshld
         max_err_cnt = max_err_cnt2;
     end
     iter_cnt_ = 0;
@@ -148,16 +165,16 @@ for i0 = 1 : snr_cnt
     gen_seq_cnt_ = 0;
     needed_iters_ = nan(parforN,1);
     msg = sprintf("EbNo = %.3f dB, FER = %d/%d = %.8f,// BER = %d/%d = %.8f, aver_iter = %.3f\n",...
-        ebn0(i0), FER(i0), gen_seq_cnt(i0), FER(i0)/gen_seq_cnt(i0), BER(i0), gen_seq_cnt(i0)*K*p,...
+        ebn0, FER(i0), gen_seq_cnt(i0), FER(i0)/gen_seq_cnt(i0), BER(i0), gen_seq_cnt(i0)*K*p,...
         FER(i0)/(gen_seq_cnt(i0)*K*p), 0);
     fprintf(msg)
-    sigm =sigma(i0);
+    sigm =sigma;
     KK=0;
     while FER(i0) < max_err_cnt && gen_seq_cnt(i0)<max_gen
         parfor j = 1 : parforN
             if ZERO
-            [info_seq, code_seq, valid_symdrom, y_bin] = generate_and_encode(ZERO, h,G, add_mat, mul_mat, p);
-            
+                [info_seq, code_seq, valid_symdrom, y_bin] = generate_and_encode(ZERO, h,G, add_mat, mul_mat, p);
+
             else
                 info_seq = zeros(1,K);
                 code_seq = zeros(1,N);
@@ -170,12 +187,12 @@ for i0 = 1 : snr_cnt
             y_bin_nse = y_bin + nse;
             LLR_2 = LLR_simple3(y_bin_nse,LLRfact , unreliable_sat, q,N, alph_bin, LLR_20);
             [~,HD1] = max(LLR_2,[], 2);
-%             HD1 = HD1'-1;
-%             nes = sum(HD1~=code_seq);
+            %             HD1 = HD1'-1;
+            %             nes = sum(HD1~=code_seq);
 
             [iters, dec_seq, success_dec] = ...
                 presorted_MVSF_with_rinfrc(LLR_2,HD1, max_iter, mul_mat, add_mat, div_mat,...
-                h,str_cn_vn, dc, dev_lsts, nm, v_weights, max_attempt);
+                h,str_cn_vn, dc, dev_lsts,SG, nm, v_weights, max_attempt);
             needed_iters_(j) = iters;
 
             iter_cnt_ = iter_cnt_ + iters;
@@ -204,7 +221,7 @@ for i0 = 1 : snr_cnt
 
         fprintf(repmat('\b',1,length(char(msg))));
         msg = sprintf("EbNo = %.3f dB, FER = %d/%d = %.8f,// BER = %d/%d = %.8f, aver_iter = %.3f\n",...
-            ebn0(i0), FER(i0), gen_seq_cnt(i0), FER(i0)/gen_seq_cnt(i0), BER(i0), gen_seq_cnt(i0)*K*p,...
+            ebn0, FER(i0), gen_seq_cnt(i0), FER(i0)/gen_seq_cnt(i0), BER(i0), gen_seq_cnt(i0)*K*p,...
             BERstat(i0), aver_iter(i0) );
         fprintf(msg)
 
@@ -213,5 +230,6 @@ for i0 = 1 : snr_cnt
             save(report_fle_nme+'.mat');
         end
     end
-    
+
 end
+

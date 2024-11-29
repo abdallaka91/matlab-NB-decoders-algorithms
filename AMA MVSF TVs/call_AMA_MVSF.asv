@@ -3,7 +3,7 @@ rng(1)
 comput_SER_BER = false;
 ZERO=1; % if  0 then simulate all zeros sequence
 plt = 0; % continiously plot FER performance if 1
-nm = 3;% V2C m2ssage size
+nm = 5;% V2C m2ssage size
 p = 4;
 q = 2^p;
 dc1 = [0 1 2];
@@ -13,17 +13,17 @@ Dev_pos_cnt = length(dc1)-1;
 di = cell(length(dc1),1);
 di{1} = [0 0];
 di{2} = [0 1];
-di{3} = [0 2 1];
-v_weights = [400 100];
+di{3} = [0 4 1];
+v_weights = [25 120];
 LLRfact = 1024;
 unreliable_sat=-inf;
-parforN =80;
+parforN =100;
 max_err_cnt1 = 60; % at low Eb_No(<Eb_No_thrshld)
 max_err_cnt2 = 60; %at high Eb_No
 Eb_No_thrshld = 3;
 max_gen = 2e5;
 max_iter = 16;
-max_attempt = 1;
+max_attempt = 6;
 ebn0 = 3.2;%1.4:0.2:4.2; %dB
 
 
@@ -60,6 +60,7 @@ end
 dev_lsts = cell(M,1);
 dev_pos = cell(M,1);
 str_cn_vn = cell(M,1);
+SG = cell(M,1);
 dc = zeros(M,1);
 for i = 1 : M
     str_cn_vn{i, 1} = find(h(i,:));
@@ -69,7 +70,12 @@ for i = 1 : M
     [lst_deviation_lst, lst_dev_pos, dev_lsts_i, dev_pos_i]=list_dev_reliabl(dc11, di);
     dev_lsts{i} = dev_lsts_i;
     dev_pos{i} = dev_pos_i;
+    for n = 1 : dc(i)
+        similarGroups = findSimilarRows([dev_lsts{i}(:,1:n-1) dev_lsts{i}(:,n+1:dc(i))]);
+        SG{i,n} = similarGroups;
+    end
 end
+
 %%
 clear conf_detail
 conf_detail.a11fl_nme = sprintf("H matrix : %s",H_matrix_mat_fl_nm);
@@ -175,7 +181,7 @@ for i0 = 1 : snr_cnt
 
             [iters, dec_seq, success_dec] = ...
                 presorted_MVSF_with_rinfrc(LLR_2,HD1, max_iter, mul_mat, add_mat, div_mat,...
-                h,str_cn_vn, dc, dev_lsts, nm, v_weights, max_attempt);
+                h,str_cn_vn, dc, dev_lsts,SG, nm, v_weights, max_attempt);
             needed_iters_(j) = iters;
 
             iter_cnt_ = iter_cnt_ + iters;
