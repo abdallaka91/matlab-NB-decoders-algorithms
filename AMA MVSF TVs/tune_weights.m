@@ -23,7 +23,7 @@ max_err_cnt2 = 20; %at high Eb_No
 Eb_No_thrshld = 3;
 max_gen = 2e5;
 max_iter = 16;
-max_attempt = 1;
+max_attempt = 6;
 ebn0 = 3.2;%1.4:0.2:4.2; %dB
 
 

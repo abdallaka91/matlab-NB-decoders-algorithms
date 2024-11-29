@@ -3,28 +3,28 @@ rng(1)
 comput_SER_BER = false;
 ZERO=1; % if  0 then simulate all zeros sequence
 plt = 0; % continiously plot FER performance if 1
-nm = 5;% V2C m2ssage size
+nm = 3;% V2C m2ssage size
 p = 4;
 q = 2^p;
 dc1 = [0 1 2];
-save_rslt = 0;
+save_rslt = 1;
 rng(1); % noise reproducity
 Dev_pos_cnt = length(dc1)-1;
 di = cell(length(dc1),1);
 di{1} = [0 0];
 di{2} = [0 1];
-di{3} = [0 4 1];
-v_weights = [25 120];
+di{3} = [0 2 1];
+v_weights = [204.8 76.8];
 LLRfact = 1024;
 unreliable_sat=-inf;
-parforN =100;
+parforN =80;
 max_err_cnt1 = 60; % at low Eb_No(<Eb_No_thrshld)
 max_err_cnt2 = 60; %at high Eb_No
 Eb_No_thrshld = 3;
 max_gen = 2e5;
 max_iter = 16;
 max_attempt = 6;
-ebn0 = 3.2;%1.4:0.2:4.2; %dB
+ebn0 = 3.0;%1.4:0.2:4.2; %dB
 
 
 
@@ -60,7 +60,6 @@ end
 dev_lsts = cell(M,1);
 dev_pos = cell(M,1);
 str_cn_vn = cell(M,1);
-SG = cell(M,1);
 dc = zeros(M,1);
 for i = 1 : M
     str_cn_vn{i, 1} = find(h(i,:));
@@ -70,12 +69,7 @@ for i = 1 : M
     [lst_deviation_lst, lst_dev_pos, dev_lsts_i, dev_pos_i]=list_dev_reliabl(dc11, di);
     dev_lsts{i} = dev_lsts_i;
     dev_pos{i} = dev_pos_i;
-    for n = 1 : dc(i)
-        similarGroups = findSimilarRows([dev_lsts{i}(:,1:n-1) dev_lsts{i}(:,n+1:dc(i))]);
-        SG{i,n} = similarGroups;
-    end
 end
-
 %%
 clear conf_detail
 conf_detail.a11fl_nme = sprintf("H matrix : %s",H_matrix_mat_fl_nm);
@@ -159,18 +153,19 @@ for i0 = 1 : snr_cnt
     fprintf(msg)
     sigm =sigma(i0);
     KK=0;
+    BER_iter = zeros(1,max_attempt*max_iter);
+    FER_iter = zeros(1, max_attempt*max_iter);
     while FER(i0) < max_err_cnt && gen_seq_cnt(i0)<max_gen
+        BER_iter0 = zeros(parforN, max_attempt*max_iter);
+        FER_iter0 = zeros(parforN, max_attempt*max_iter);
         parfor j = 1 : parforN
             if ZERO
-            [info_seq, code_seq, valid_symdrom, y_bin] = generate_and_encode(ZERO, h,G, add_mat, mul_mat, p);
-            
+                [info_seq, code_seq, valid_symdrom, y_bin] = generate_and_encode(ZERO, h,G, add_mat, mul_mat, p);
             else
                 info_seq = zeros(1,K);
                 code_seq = zeros(1,N);
                 y_bin = ones(N,p);
             end
-
-
             gen_seq_cnt_ = gen_seq_cnt_+1;
             nse = sigm*randn(size(y_bin));
             y_bin_nse = y_bin + nse;
@@ -179,22 +174,26 @@ for i0 = 1 : snr_cnt
 %             HD1 = HD1'-1;
 %             nes = sum(HD1~=code_seq);
 
-            [iters, dec_seq, success_dec] = ...
+            [iters, dec_seq, success_dec, FER_iter0(j,:), BER_iter0(j,:)] = ...
                 presorted_MVSF_with_rinfrc(LLR_2,HD1, max_iter, mul_mat, add_mat, div_mat,...
-                h,str_cn_vn, dc, dev_lsts,SG, nm, v_weights, max_attempt);
+                h,str_cn_vn, dc, dev_lsts, nm, v_weights, max_attempt,code_seq, FER_iter0(j,:), BER_iter0(j,:));
             needed_iters_(j) = iters;
 
             iter_cnt_ = iter_cnt_ + iters;
             rec_info_seq = dec_seq(1:K);
-            nd = sum(rec_info_seq~=info_seq);
+            nd = sum(code_seq~=dec_seq);
             if ~success_dec && nd ~=0
                 FER_ = FER_ +1;
-                [SER0, BER0] = SER_BER(info_seq,rec_info_seq,p, 0, 0);
+                [SER0, BER0] = SER_BER(code_seq,dec_seq,p, 0, 0);
                 SER_ = SER0 + SER_;
                 BER_ = BER0 + BER_;
             end
 
         end
+        s1b = sum(BER_iter0, 1);
+        s1f = sum(FER_iter0, 1);
+        BER_iter = BER_iter + s1b;
+        FER_iter = FER_iter + s1f;
         needed_iters(KK+1:KK+parforN,i0) = needed_iters_;
         KK=KK+parforN;
         SER(i0) = SER_;
@@ -203,14 +202,14 @@ for i0 = 1 : snr_cnt
         iter_cnt(i0) = iter_cnt_;
         aver_iter(i0) = iter_cnt(i0)/gen_seq_cnt(i0);
 
-        FER(i0) = FER_;
+        FER(i0) = FER_iter(max_attempt*max_iter);
         FERstat(i0)=FER(i0)/gen_seq_cnt(i0);
-        SERstat(i0)=SER(i0)/(gen_seq_cnt(i0)*K);
-        BERstat(i0)=BER(i0)/(gen_seq_cnt(i0)*K*p);
+        SERstat(i0)=SER(i0)/(gen_seq_cnt(i0)*N);
+        BERstat(i0)=BER(i0)/(gen_seq_cnt(i0)*N*p);
 
         fprintf(repmat('\b',1,length(char(msg))));
         msg = sprintf("EbNo = %.3f dB, FER = %d/%d = %.8f,// BER = %d/%d = %.8f, aver_iter = %.3f\n",...
-            ebn0(i0), FER(i0), gen_seq_cnt(i0), FER(i0)/gen_seq_cnt(i0), BER(i0), gen_seq_cnt(i0)*K*p,...
+            ebn0(i0), FER(i0), gen_seq_cnt(i0), FER(i0)/gen_seq_cnt(i0), BER(i0), gen_seq_cnt(i0)*N*p,...
             BERstat(i0), aver_iter(i0) );
         fprintf(msg)
 
