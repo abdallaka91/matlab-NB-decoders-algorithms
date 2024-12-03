@@ -18,13 +18,13 @@ v_weights = [204.8 76.8];
 LLRfact = 1024;
 unreliable_sat=-inf;
 parforN =80;
-max_err_cnt1 = 60; % at low Eb_No(<Eb_No_thrshld)
-max_err_cnt2 = 60; %at high Eb_No
+max_err_cnt1 = 20; % at low Eb_No(<Eb_No_thrshld)
+max_err_cnt2 = 20; %at high Eb_No
 Eb_No_thrshld = 3;
-max_gen = 2e5;
-max_iter = 16;
-max_attempt = 2;
-ebn0 = 3.0;%1.4:0.2:4.2; %dB
+max_gen = 2e6;
+max_iter = 24;
+max_attempt = 8;
+ebn0 = 3.6;%1.4:0.2:4.2; %dB
 
 
 
