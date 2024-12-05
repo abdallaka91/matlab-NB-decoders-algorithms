@@ -4,7 +4,7 @@ comput_SER_BER = false;
 ZERO=1; % if  0 then simulate all zeros sequence
 plt = 0; % continiously plot FER performance if 1
 nm = 3;% V2C m2ssage size
-p = 4;
+p = 6;
 q = 2^p;
 dc1 = [0 1 2];
 save_rslt = 0;
@@ -17,9 +17,9 @@ di{3} = [0 2 1];
 v_weights = [205 77];
 LLRfact = 1024;
 unreliable_sat=-inf;
-parforN =30;
-max_err_cnt1 = 20; % at low Eb_No(<Eb_No_thrshld)
-max_err_cnt2 = 20; %at high Eb_No
+parforN =12;
+max_err_cnt1 = 12; % at low Eb_No(<Eb_No_thrshld)
+max_err_cnt2 = 12; %at high Eb_No
 Eb_No_thrshld = 3;
 max_gen = 2e5;
 max_iter = 16;
@@ -41,7 +41,7 @@ pth6 = (fullfile(pwd, 'results/'));
 
 
 words = (0:q-1);
-H_matrix_mat_fl_nm = '204.102.3.6.16';
+H_matrix_mat_fl_nm = 'BeiDou_44_88_GF64';
 load([fullfile(pth4, H_matrix_mat_fl_nm) '.mat']);
 h = full(h);
 N = size(h,2);
@@ -128,13 +128,13 @@ for j = 1 : N
     dv(j) = length(str_vn_cn{j});
 end
 
-v00 = 380:5:420;
-v11 = 140:5:180;
+v00 = 100:10:490;
+v11 = 110:10:490;
 v_weights1 = CombVec(v00,v11)';
 v000=v_weights1(1:end,1);
 v111=v_weights1(1:end,2);
 ii1=find(v000<v111);
-v_weights1(ii1,:)=[];
+% v_weights1(ii1,:)=[];
 
 snr_cnt = size(v_weights1,1);
 FERstat = zeros(snr_cnt,1);
@@ -151,10 +151,9 @@ max_err_cnt = max_err_cnt1;
 h0 = 0*h;
 needed_iters = nan(max_gen,snr_cnt);
 LLR_20 =zeros(N,q);
-
+PP=[0.01 11 4];
 for i0 = 1 : snr_cnt
     v_weights = v_weights1(i0,:);
-    disp(v_weights);
     if ebn0>=Eb_No_thrshld
         max_err_cnt = max_err_cnt2;
     end
@@ -164,13 +163,14 @@ for i0 = 1 : snr_cnt
     BER_ = 0;
     gen_seq_cnt_ = 0;
     needed_iters_ = nan(parforN,1);
-    msg = sprintf("EbNo = %.3f dB, FER = %d/%d = %.8f,// BER = %d/%d = %.8f, aver_iter = %.3f\n",...
-        ebn0, FER(i0), gen_seq_cnt(i0), FER(i0)/gen_seq_cnt(i0), BER(i0), gen_seq_cnt(i0)*K*p,...
+    msg = sprintf("V0_V1=[%.1f, %.1f], EbNo = %.3f dB, FER = %d/%d = %.8f,// BER = %d/%d = %.8f, aver_iter = %.3f\n",...
+        v_weights(1), v_weights(2), ebn0, FER(i0), gen_seq_cnt(i0), FER(i0)/gen_seq_cnt(i0), BER(i0), gen_seq_cnt(i0)*K*p,...
         FER(i0)/(gen_seq_cnt(i0)*K*p), 0);
     fprintf(msg)
     sigm =sigma;
     KK=0;
-    while FER(i0) < max_err_cnt && gen_seq_cnt(i0)<max_gen
+    cc=true;
+    while FER(i0) < max_err_cnt && gen_seq_cnt(i0)<max_gen && cc
         parfor j = 1 : parforN
             if ZERO
                 [info_seq, code_seq, valid_symdrom, y_bin] = generate_and_encode(ZERO, h,G, add_mat, mul_mat, p);
@@ -216,15 +216,28 @@ for i0 = 1 : snr_cnt
 
         FER(i0) = FER_;
         FERstat(i0)=FER(i0)/gen_seq_cnt(i0);
+        if (FERstat(i0)>PP(1) || aver_iter(i0)>PP(2))&& FER(i0)>PP(3) 
+            cc=false;
+        end
         SERstat(i0)=SER(i0)/(gen_seq_cnt(i0)*K);
         BERstat(i0)=BER(i0)/(gen_seq_cnt(i0)*K*p);
 
         fprintf(repmat('\b',1,length(char(msg))));
-        msg = sprintf("EbNo = %.3f dB, FER = %d/%d = %.8f,// BER = %d/%d = %.8f, aver_iter = %.3f\n",...
-            ebn0, FER(i0), gen_seq_cnt(i0), FER(i0)/gen_seq_cnt(i0), BER(i0), gen_seq_cnt(i0)*K*p,...
+        msg = sprintf("V0_V1=[%.1f, %.1f], EbNo = %.3f dB, FER = %d/%d = %.8f,// BER = %d/%d = %.8f, aver_iter = %.3f\n",...
+            v_weights(1), v_weights(2), ebn0, FER(i0), gen_seq_cnt(i0), FER(i0)/gen_seq_cnt(i0), BER(i0), gen_seq_cnt(i0)*K*p,...
             BERstat(i0), aver_iter(i0) );
         fprintf(msg)
-
+        subplot(2,1,1)
+        plot(aver_iter,'-', 'Marker','.')
+        grid on
+        xlim([0 size(v_weights1,1)])
+        ylim([0 15])
+        subplot(2,1,2)
+        plot(FERstat, '-','Marker','.')
+        grid on
+        xlim([0 size(v_weights1,1)])
+        ylim([0 0.02])
+        pause(0.01)
         msgs  = details_in_lines(ebn0, FER,BER, SER, gen_seq_cnt, K,p, aver_iter, conf_detail, report_fle_nme, save_rslt);
         if save_rslt
             save(report_fle_nme+'.mat');
