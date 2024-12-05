@@ -1,4 +1,4 @@
-function [iters, dec_seq, success_dec, synd,Wn] = presorted_MVSF_4(LLR_2, max_iter, mul_mat, add_mat, div_mat,...
+function [iters0, dec_seq, success_dec, synd,Wn] = presorted_MVSF_4(LLR_2, iters, max_iter,max_max_iter, mul_mat, add_mat, div_mat,...
     h,str_cn_vn, dc, dev_lsts, nm, v_weights)
 M = size(h,1);
 N = size(h,2);
@@ -7,7 +7,7 @@ p=log2(q);
 Wmn = cell(M,1);
 
 success_dec = 0;
-iters = 0;
+iters0 = 0;
 Wn = LLR_2;
 
 for i = 1 : M
@@ -22,9 +22,10 @@ for i = 1:M
 end
 
 iter = 0;
-while iter<max_iter
-    iter = iter+1;
+while iter<max_iter && iters<max_max_iter
     iters = iters+1;
+    iter = iter+1;
+    iters0 = iters0+1;
     for i = 1 : M
         idx1 = str_cn_vn{i,1};
         for j = 1:dc(i)

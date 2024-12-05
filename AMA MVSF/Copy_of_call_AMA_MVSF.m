@@ -4,7 +4,7 @@ comput_SER_BER = false;
 ZERO=0; % if  0 then simulate all zeros sequence
 plt = 0; % continiously plot FER performance if 1
 nm = 4;% V2C m2ssage size
-p = 6;
+p = 4;
 q = 2^p;
 dc1 = [0 1 2];
 save_rslt = 1;
@@ -12,9 +12,9 @@ rng(1); % noise reprodudev_lstscity
 Dev_pos_cnt = length(dc1)-1;
 di = cell(length(dc1),1);
 di{1} = [0 0];
-di{2} = [0 0 ];
-di{3} = [0 1 3];
-v_weights = [400 100];
+di{2} = [0 1 ];
+di{3} = [0 2 1];
+v_weights = [204.8 76.8];
 LLRfact = 1024;
 unreliable_sat=-inf;
 parforN =240;
@@ -23,9 +23,9 @@ max_err_cnt2 = 50; %at high Eb_No
 Eb_No_thrshld = 3.2;
 max_gen = 2e5;
 max_iter = 16;
-max_attempt = 2;
+max_attempt = 4;
 max_max_iter=max_iter*max_attempt;
-ebn0 = 1.4:0.2:4.2; %dB
+ebn0 = 1.8:0.2:3.8; %dB
 
 
 
@@ -42,7 +42,7 @@ pth6 = (fullfile(pwd, 'results/'));
 
 
 words = (0:q-1);
-H_matrix_mat_fl_nm = 'BeiDou_44_88_GF64';
+H_matrix_mat_fl_nm = '204.102.3.6.16';
 load([fullfile(pth4, H_matrix_mat_fl_nm) '.mat']);
 h = full(h);
 N = size(h,2);
