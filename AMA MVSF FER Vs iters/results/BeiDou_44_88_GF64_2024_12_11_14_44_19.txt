@@ -1,0 +1,15 @@
+H matrix : BeiDou_44_88_GF64
+N = 88, M = 44, K = 44, GF(64)
+V0 = 400.000, V1 = 100.000
+LLR factor = 1024.000
+max iter : 96
+max nb of max_attempts : 1
+max seq generation : 2000000
+max error frame detection: 50
+nb of deviation paths : 12
+regions width (high to low reliable) : { 1  1  2 }
+[ 0 ] || [ 0 ] || [ 1 3 ]
+
+EbNo = 3.6 dB, FER = 50/5920 = 0.00844595 || SER = 1780/260480 = 0.00683354 || BER = 5153/1562880 = 0.00329712, aver_iter = 4.80034
+------------------------------------------------------------------------------------------------------------------------------------
+
