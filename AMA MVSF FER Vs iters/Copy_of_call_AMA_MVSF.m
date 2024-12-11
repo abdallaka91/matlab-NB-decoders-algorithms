@@ -3,28 +3,28 @@ rng(1)
 comput_SER_BER = false;
 ZERO=1; % if  0 then simulate all zeros sequence
 plt = 0; % continiously plot FER performance if 1
-nm = 3;% V2C m2ssage size
-p = 4;
+nm = 4;% V2C m2ssage size
+p = 6;
 q = 2^p;
 dc1 = [0 1 2];
-save_rslt = 1;
+save_rslt = 0;
 rng(1); % noise reproducity
 Dev_pos_cnt = length(dc1)-1;
 di = cell(length(dc1),1);
 di{1} = [0 0];
-di{2} = [0 1];
-di{3} = [0 2 1];
-v_weights = [204.8 76.8];
+di{2} = [0 0];
+di{3} = [0 2 3];
+v_weights = [400 100];
 LLRfact = 1024;
 unreliable_sat=-inf;
 parforN =80;
-max_err_cnt1 = 60; % at low Eb_No(<Eb_No_thrshld)
-max_err_cnt2 = 60; %at high Eb_No
+max_err_cnt1 = 40; % at low Eb_No(<Eb_No_thrshld)
+max_err_cnt2 = 40; %at high Eb_No
 Eb_No_thrshld = 3;
-max_gen = 2e5;
-max_iter = 96;
-max_attempt = 1;
-ebn0 = 3.0;%1.4:0.2:4.2; %dB
+max_gen = 2e6;
+max_iter = 16;
+max_attempt = 6;
+ebn0 = 3.4;%1.4:0.2:4.2; %dB
 
 
 
@@ -41,7 +41,7 @@ pth6 = (fullfile(pwd, 'results/'));
 
 
 words = (0:q-1);
-H_matrix_mat_fl_nm = '204.102.3.6.16';
+H_matrix_mat_fl_nm = 'BeiDou_44_88_GF64';
 load([fullfile(pth4, H_matrix_mat_fl_nm) '.mat']);
 h = full(h);
 N = size(h,2);
@@ -159,7 +159,6 @@ for i0 = 1 : snr_cnt
     while FER(i0) < max_err_cnt && gen_seq_cnt(i0)<max_gen
         BER_iter0 = zeros(parforN, max_attempt*max_iter);
         FER_iter0 = zeros(parforN, max_attempt*max_iter);
-        gen_iter0 = zeros(parforN, max_attempt*max_iter);
         parfor j = 1 : parforN
             if ZERO
                 [info_seq, code_seq, valid_symdrom, y_bin] = generate_and_encode(ZERO, h,G, add_mat, mul_mat, p);
@@ -176,9 +175,9 @@ for i0 = 1 : snr_cnt
 %             HD1 = HD1'-1;
 %             nes = sum(HD1~=code_seq);
 
-            [iters, dec_seq, success_dec, FER_iter0(j,:), BER_iter0(j,:), gen_iter0(j,:)] = ...
+            [iters, dec_seq, success_dec, FER_iter0(j,:), BER_iter0(j,:)] = ...
                 presorted_MVSF_with_rinfrc(LLR_2,HD1, max_iter, mul_mat, add_mat, div_mat,...
-                h,str_cn_vn, dc, dev_lsts, nm, v_weights, max_attempt,code_seq, FER_iter0(j,:), BER_iter0(j,:), gen_iter0(j,:));
+                h,str_cn_vn, dc, dev_lsts, nm, v_weights, max_attempt,code_seq, FER_iter0(j,:), BER_iter0(j,:) );
             needed_iters_(j) = iters;
 
             iter_cnt_ = iter_cnt_ + iters;
@@ -194,10 +193,11 @@ for i0 = 1 : snr_cnt
         end
         s1b = sum(BER_iter0, 1);
         s1f = sum(FER_iter0, 1);
-        s1g = sum(gen_iter0);
-        
+
         BER_iter = BER_iter + s1b;
         FER_iter = FER_iter + s1f;
+        gen_iter = gen_iter + parforN;
+
         needed_iters(KK+1:KK+parforN,i0) = needed_iters_;
         KK=KK+parforN;
         SER(i0) = SER_;
@@ -218,11 +218,12 @@ for i0 = 1 : snr_cnt
         fprintf(msg)
 
         msgs  = details_in_lines(ebn0, FER,BER, SER, gen_seq_cnt, K,p, aver_iter, conf_detail, report_fle_nme, save_rslt);
+        BER_iter1 = BER_iter./(gen_iter*N*p);
+        FER_iter1 = FER_iter./gen_iter;
         if save_rslt
             save(report_fle_nme+'.mat');
         end
     end
-    s1b1 = s1b/(gen_seq_cnt(i0)*N*p);
-    s1f1 = s1f/(gen_seq_cnt(i0));
+
     
 end
