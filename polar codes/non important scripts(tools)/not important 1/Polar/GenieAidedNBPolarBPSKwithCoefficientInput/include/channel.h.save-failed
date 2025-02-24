@@ -1,0 +1,17 @@
+
+#ifndef CHANNEL_H_INCLUDED
+#define CHANNEL_H_INCLUDED
+
+/*!
+ * \file channel.h
+ * \brief header for channel functions
+ */
+
+#include "./struct.h"
+#include "./init.h"
+
+#define SQR(A) ((A)*(A))   //calcule le carré d'un nombre
+#define BPSK(x) (1-2*(x))  // modulation BPSK
+#define PI 3.1415926536
+
+void ModelChannel_AWGN_BPSK (code_t *code, decoder_t *decoder, table_t *table,  int **NBIN, float EbN, int *init_rand);

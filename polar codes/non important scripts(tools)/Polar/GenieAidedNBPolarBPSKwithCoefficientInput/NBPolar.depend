@@ -1,0 +1,461 @@
+# depslib dependency file v1.0
+1662542221 source:c:\users\lenovo\desktop\phd\nb-polar codes\nb polar codes\codes\nbpolar\channel.c
+	<math.h>
+	"./include/struct.h"
+	"./include/init.h"
+	"./include/tools.h"
+	"./include/channel.h"
+
+1672497634 /channel.h"
+
+1662585062 c:\users\lenovo\desktop\phd\nb-polar codes\nb polar codes\codes\nbpolar\include\struct.h
+
+1662015576 c:\users\lenovo\desktop\phd\nb-polar codes\nb polar codes\codes\nbpolar\include\init.h
+	"./struct.h"
+
+1674405658 h"
+
+1662884386 c:\users\lenovo\desktop\phd\nb-polar codes\nb polar codes\codes\nbpolar\include\tools.h
+	"./struct.h"
+	<stdlib.h>
+	<stdio.h>
+
+1674405810 
+
+1662309222 c:\users\lenovo\desktop\phd\nb-polar codes\nb polar codes\codes\nbpolar\include\channel.h
+	"./struct.h"
+	"./init.h"
+
+1672497604 
+
+1662935343 source:c:\users\lenovo\desktop\phd\nb-polar codes\nb polar codes\codes\nbpolar\init.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<math.h>
+	"./include/struct.h"
+	"./include/init.h"
+	"./include/tools.h"
+
+1674405678 /tools.h"
+
+1662882745 source:c:\users\lenovo\desktop\phd\nb-polar codes\nb polar codes\codes\nbpolar\polarcodec.c
+	<stdlib.h>
+	<stdio.h>
+	<math.h>
+	"./include/polarcodec.h"
+
+1672467657 /polarcodec.h"
+
+1662882326 c:\users\lenovo\desktop\phd\nb-polar codes\nb polar codes\codes\nbpolar\include\polarcodec.h
+	"struct.h"
+	"init.h"
+	"tools.h"
+	"channel.h"
+
+1674405725 "
+
+1662882973 source:c:\users\lenovo\desktop\phd\nb-polar codes\nb polar codes\codes\nbpolar\tools.c
+	<string.h>
+	<math.h>
+	"./include/struct.h"
+	"./include/init.h"
+	"./include/tools.h"
+
+1662935396 source:c:\users\lenovo\desktop\phd\nb-polar codes\nb polar codes\codes\nbpolar\simulator.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<math.h>
+	<time.h>
+	"./include/simulator.h"
+
+1674405687 /simulator.h"
+
+1661773774 c:\users\lenovo\desktop\phd\nb-polar codes\nb polar codes\codes\nbpolar\include\simulator.h
+	"struct.h"
+	"init.h"
+	"tools.h"
+	"channel.h"
+	"polarcodec.h"
+
+1664954720 c.h"
+
+1664893263 source:c:\users\lenovo\desktop\phd\nb-polar codes\nb polar codes\codes\genieaidednbpolar\channel.c
+	<math.h>
+	"./include/struct.h"
+	"./include/init.h"
+	"./include/tools.h"
+	"./include/channel.h"
+
+1664897234 c:\users\lenovo\desktop\phd\nb-polar codes\nb polar codes\codes\genieaidednbpolar\include\struct.h
+
+1662015576 c:\users\lenovo\desktop\phd\nb-polar codes\nb polar codes\codes\genieaidednbpolar\include\init.h
+	"./struct.h"
+
+1664950836 c:\users\lenovo\desktop\phd\nb-polar codes\nb polar codes\codes\genieaidednbpolar\include\tools.h
+	"./struct.h"
+	<stdlib.h>
+	<stdio.h>
+
+1664893252 c:\users\lenovo\desktop\phd\nb-polar codes\nb polar codes\codes\genieaidednbpolar\include\channel.h
+	"./struct.h"
+	"./init.h"
+
+1664897257 source:c:\users\lenovo\desktop\phd\nb-polar codes\nb polar codes\codes\genieaidednbpolar\init.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<math.h>
+	"./include/struct.h"
+	"./include/init.h"
+	"./include/tools.h"
+
+1664951815 source:c:\users\lenovo\desktop\phd\nb-polar codes\nb polar codes\codes\genieaidednbpolar\simulator.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<math.h>
+	<time.h>
+	"./include/simulator.h"
+
+1661773774 c:\users\lenovo\desktop\phd\nb-polar codes\nb polar codes\codes\genieaidednbpolar\include\simulator.h
+	"struct.h"
+	"init.h"
+	"tools.h"
+	"channel.h"
+	"polarcodec.h"
+
+1664891242 c:\users\lenovo\desktop\phd\nb-polar codes\nb polar codes\codes\genieaidednbpolar\include\polarcodec.h
+	"struct.h"
+	"init.h"
+	"tools.h"
+	"channel.h"
+
+1664951576 source:c:\users\lenovo\desktop\phd\nb-polar codes\nb polar codes\codes\genieaidednbpolar\tools.c
+	<string.h>
+	<math.h>
+	"./include/struct.h"
+	"./include/init.h"
+	"./include/tools.h"
+
+1664892842 source:c:\users\lenovo\desktop\phd\nb-polar codes\nb polar codes\codes\genieaidednbpolar\polarcodec.c
+	<stdlib.h>
+	<stdio.h>
+	<math.h>
+	"./include/polarcodec.h"
+
+1664797422 source:/lab/home/labsticcz/jabour/Bureau/GenieNBPC/channel.c
+	<math.h>
+	"./include/struct.h"
+	"./include/init.h"
+	"./include/tools.h"
+	"./include/channel.h"
+
+1664717578 /lab/home/labsticcz/jabour/Bureau/GenieNBPC/include/struct.h
+
+1662015576 /lab/home/labsticcz/jabour/Bureau/GenieNBPC/include/init.h
+	"./struct.h"
+
+1663531535 /lab/home/labsticcz/jabour/Bureau/GenieNBPC/include/tools.h
+	"./struct.h"
+	<stdlib.h>
+	<stdio.h>
+
+1662309222 /lab/home/labsticcz/jabour/Bureau/GenieNBPC/include/channel.h
+	"./struct.h"
+	"./init.h"
+
+1664717677 source:/lab/home/labsticcz/jabour/Bureau/GenieNBPC/init.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<math.h>
+	"./include/struct.h"
+	"./include/init.h"
+	"./include/tools.h"
+
+1664719290 source:/lab/home/labsticcz/jabour/Bureau/GenieNBPC/polarcodec.c
+	<stdlib.h>
+	<stdio.h>
+	<math.h>
+	"./include/polarcodec.h"
+
+1662979128 /lab/home/labsticcz/jabour/Bureau/GenieNBPC/include/polarcodec.h
+	"struct.h"
+	"init.h"
+	"tools.h"
+	"channel.h"
+
+1664799745 source:/lab/home/labsticcz/jabour/Bureau/GenieNBPC/simulator.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<math.h>
+	<time.h>
+	"./include/simulator.h"
+
+1661773774 /lab/home/labsticcz/jabour/Bureau/GenieNBPC/include/simulator.h
+	"struct.h"
+	"init.h"
+	"tools.h"
+	"channel.h"
+	"polarcodec.h"
+
+1664206097 source:/lab/home/labsticcz/jabour/Bureau/GenieNBPC/tools.c
+	<string.h>
+	<math.h>
+	"./include/struct.h"
+	"./include/init.h"
+	"./include/tools.h"
+
+1667113343 source:/lab/home/labsticcz/jabour/Bureau/Polar/GenieAidedNBPolar/channel.c
+	<math.h>
+	"./include/struct.h"
+	"./include/init.h"
+	"./include/tools.h"
+	"./include/channel.h"
+
+1664897234 /lab/home/labsticcz/jabour/Bureau/Polar/GenieAidedNBPolar/include/struct.h
+
+1662015576 /lab/home/labsticcz/jabour/Bureau/Polar/GenieAidedNBPolar/include/init.h
+	"./struct.h"
+
+1668693217 /lab/home/labsticcz/jabour/Bureau/Polar/GenieAidedNBPolar/include/tools.h
+	"./struct.h"
+	<stdlib.h>
+	<stdio.h>
+
+1664893252 /lab/home/labsticcz/jabour/Bureau/Polar/GenieAidedNBPolar/include/channel.h
+	"./struct.h"
+	"./init.h"
+
+1664897257 source:/lab/home/labsticcz/jabour/Bureau/Polar/GenieAidedNBPolar/init.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<math.h>
+	"./include/struct.h"
+	"./include/init.h"
+	"./include/tools.h"
+
+1665573689 source:/lab/home/labsticcz/jabour/Bureau/Polar/GenieAidedNBPolar/polarcodec.c
+	<stdlib.h>
+	<stdio.h>
+	<math.h>
+	"./include/polarcodec.h"
+
+1665409852 /lab/home/labsticcz/jabour/Bureau/Polar/GenieAidedNBPolar/include/polarcodec.h
+	"struct.h"
+	"init.h"
+	"tools.h"
+	"channel.h"
+
+1668693296 source:/lab/home/labsticcz/jabour/Bureau/Polar/GenieAidedNBPolar/tools.c
+	<string.h>
+	<math.h>
+	"./include/struct.h"
+	"./include/init.h"
+	"./include/tools.h"
+
+1667112098 source:/lab/home/labsticcz/jabour/Bureau/Polar/GenieAidedNBPolar/simulator.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<math.h>
+	<time.h>
+	"./include/simulator.h"
+
+1664954720 /lab/home/labsticcz/jabour/Bureau/Polar/GenieAidedNBPolar/include/simulator.h
+	"struct.h"
+	"init.h"
+	"tools.h"
+	"channel.h"
+	"polarcodec.h"
+
+1667113343 source:c:\users\lenovo\desktop\shared davinci\nbpc - c codes\genieaidednbpolar1\channel.c
+	<math.h>
+	"./include/struct.h"
+	"./include/init.h"
+	"./include/tools.h"
+	"./include/channel.h"
+
+1664897234 c:\users\lenovo\desktop\shared davinci\nbpc - c codes\genieaidednbpolar1\include\struct.h
+
+1662015576 c:\users\lenovo\desktop\shared davinci\nbpc - c codes\genieaidednbpolar1\include\init.h
+	"./struct.h"
+
+1672467397 c:\users\lenovo\desktop\shared davinci\nbpc - c codes\genieaidednbpolar1\include\tools.h
+	"./struct.h"
+	<stdlib.h>
+	<stdio.h>
+
+1664893252 c:\users\lenovo\desktop\shared davinci\nbpc - c codes\genieaidednbpolar1\include\channel.h
+	"./struct.h"
+	"./init.h"
+
+1672467809 source:c:\users\lenovo\desktop\shared davinci\nbpc - c codes\genieaidednbpolar1\simulator.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<math.h>
+	<time.h>
+	"./include/simulator.h"
+
+1664954720 c:\users\lenovo\desktop\shared davinci\nbpc - c codes\genieaidednbpolar1\include\simulator.h
+	"struct.h"
+	"init.h"
+	"tools.h"
+	"channel.h"
+	"polarcodec.h"
+
+1672467125 c:\users\lenovo\desktop\shared davinci\nbpc - c codes\genieaidednbpolar1\include\polarcodec.h
+	"struct.h"
+	"init.h"
+	"tools.h"
+	"channel.h"
+
+1672467843 source:c:\users\lenovo\desktop\shared davinci\nbpc - c codes\genieaidednbpolar1\tools.c
+	<string.h>
+	<math.h>
+	"./include/struct.h"
+	"./include/init.h"
+	"./include/tools.h"
+
+1672466917 source:c:\users\lenovo\desktop\shared davinci\nbpc - c codes\genieaidednbpolar1\init.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<math.h>
+	"./include/struct.h"
+	"./include/init.h"
+	"./include/tools.h"
+
+1672467657 source:c:\users\lenovo\desktop\shared davinci\nbpc - c codes\genieaidednbpolar1\polarcodec.c
+	<stdlib.h>
+	<stdio.h>
+	<math.h>
+	"./include/polarcodec.h"
+
+1672497634 source:c:\users\lenovo\desktop\shared davinci\biawgn polar\genieaidednbpolarbpskcoef\channel.c
+	<math.h>
+	"./include/struct.h"
+	"./include/init.h"
+	"./include/tools.h"
+	"./include/channel.h"
+
+1674405036 c:\users\lenovo\desktop\shared davinci\biawgn polar\genieaidednbpolarbpskcoef\include\struct.h
+
+1674405658 c:\users\lenovo\desktop\shared davinci\biawgn polar\genieaidednbpolarbpskcoef\include\init.h
+	"./struct.h"
+
+1674405810 c:\users\lenovo\desktop\shared davinci\biawgn polar\genieaidednbpolarbpskcoef\include\tools.h
+	"./struct.h"
+	<stdlib.h>
+	<stdio.h>
+
+1672497604 c:\users\lenovo\desktop\shared davinci\biawgn polar\genieaidednbpolarbpskcoef\include\channel.h
+	"./struct.h"
+	"./init.h"
+
+1674405687 source:c:\users\lenovo\desktop\shared davinci\biawgn polar\genieaidednbpolarbpskcoef\simulator.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<math.h>
+	<time.h>
+	"./include/simulator.h"
+
+1664954720 c:\users\lenovo\desktop\shared davinci\biawgn polar\genieaidednbpolarbpskcoef\include\simulator.h
+	"struct.h"
+	"init.h"
+	"tools.h"
+	"channel.h"
+	"polarcodec.h"
+
+1674405725 c:\users\lenovo\desktop\shared davinci\biawgn polar\genieaidednbpolarbpskcoef\include\polarcodec.h
+	"struct.h"
+	"init.h"
+	"tools.h"
+	"channel.h"
+
+1674405771 source:c:\users\lenovo\desktop\shared davinci\biawgn polar\genieaidednbpolarbpskcoef\tools.c
+	<string.h>
+	<math.h>
+	"./include/struct.h"
+	"./include/init.h"
+	"./include/tools.h"
+
+1674405678 source:c:\users\lenovo\desktop\shared davinci\biawgn polar\genieaidednbpolarbpskcoef\init.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<math.h>
+	"./include/struct.h"
+	"./include/init.h"
+	"./include/tools.h"
+
+1672497634 source:/lab/home/labsticc/jabour/Bureau/BIAWGN Polar/GenieAidedNBPolarBPSKcoef/channel.c
+	<math.h>
+	"./include/struct.h"
+	"./include/init.h"
+	"./include/tools.h"
+	"./include/channel.h"
+
+1674405036 /lab/home/labsticc/jabour/Bureau/BIAWGN Polar/GenieAidedNBPolarBPSKcoef/include/struct.h
+
+1674405658 /lab/home/labsticc/jabour/Bureau/BIAWGN Polar/GenieAidedNBPolarBPSKcoef/include/init.h
+	"./struct.h"
+
+1674405810 /lab/home/labsticc/jabour/Bureau/BIAWGN Polar/GenieAidedNBPolarBPSKcoef/include/tools.h
+	"./struct.h"
+	<stdlib.h>
+	<stdio.h>
+
+1672497604 /lab/home/labsticc/jabour/Bureau/BIAWGN Polar/GenieAidedNBPolarBPSKcoef/include/channel.h
+	"./struct.h"
+	"./init.h"
+
+1674405678 source:/lab/home/labsticc/jabour/Bureau/BIAWGN Polar/GenieAidedNBPolarBPSKcoef/init.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<math.h>
+	"./include/struct.h"
+	"./include/init.h"
+	"./include/tools.h"
+
+1674406642 source:/lab/home/labsticc/jabour/Bureau/BIAWGN Polar/GenieAidedNBPolarBPSKcoef/polarcodec.c
+	<stdlib.h>
+	<stdio.h>
+	<math.h>
+	"./include/polarcodec.h"
+
+1674405725 /lab/home/labsticc/jabour/Bureau/BIAWGN Polar/GenieAidedNBPolarBPSKcoef/include/polarcodec.h
+	"struct.h"
+	"init.h"
+	"tools.h"
+	"channel.h"
+
+1674489413 source:/lab/home/labsticc/jabour/Bureau/BIAWGN Polar/GenieAidedNBPolarBPSKcoef/simulator.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<math.h>
+	<time.h>
+	"./include/simulator.h"
+
+1664954720 /lab/home/labsticc/jabour/Bureau/BIAWGN Polar/GenieAidedNBPolarBPSKcoef/include/simulator.h
+	"struct.h"
+	"init.h"
+	"tools.h"
+	"channel.h"
+	"polarcodec.h"
+
+1674487572 source:/lab/home/labsticc/jabour/Bureau/BIAWGN Polar/GenieAidedNBPolarBPSKcoef/tools.c
+	<string.h>
+	<math.h>
+	"./include/struct.h"
+	"./include/init.h"
+	"./include/tools.h"
+

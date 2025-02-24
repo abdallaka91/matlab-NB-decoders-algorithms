@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="NBPolar" />
+		<Option makefile="makefile" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/NBPolar" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option parameters="10 0.8 128 64" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/NBPolar" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="channel.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="include/channel.h" />
+		<Unit filename="include/init.h" />
+		<Unit filename="include/polarcodec.h" />
+		<Unit filename="include/simulator.h" />
+		<Unit filename="include/struct.h" />
+		<Unit filename="include/tools.h" />
+		<Unit filename="init.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="polarcodec.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="simulator.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tools.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

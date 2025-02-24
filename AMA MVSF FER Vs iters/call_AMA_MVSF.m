@@ -7,7 +7,7 @@ nm = 4;% V2C m2ssage size
 p = 6;
 q = 2^p;
 dc1 = [0 1 2];
-save_rslt = 0;
+save_rslt = 1;
 rng(1); % noise reproducity
 Dev_pos_cnt = length(dc1)-1;
 di = cell(length(dc1),1);
@@ -18,12 +18,12 @@ v_weights = [400 100];
 LLRfact = 1024;
 unreliable_sat=-inf;
 parforN =80;
-max_err_cnt1 = 40; % at low Eb_No(<Eb_No_thrshld)
-max_err_cnt2 = 40; %at high Eb_No
+max_err_cnt1 = 100; % at low Eb_No(<Eb_No_thrshld)
+max_err_cnt2 = 100; %at high Eb_No
 Eb_No_thrshld = 3;
 max_gen = 2e6;
-max_iter = 48;
-max_attempt = 6;
+max_iter = 96;
+max_attempt = 1;
 ebn0 = 3.6;%1.4:0.2:4.2; %dB
 
 

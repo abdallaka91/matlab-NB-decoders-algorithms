@@ -1,22 +1,24 @@
 clear
-fl_nm = 'C:\Users\Abdallah Abdallah\Documents\Personals\matlab-NB-decoders-algorithms\AMA MVSF\results\204.102.3.6.16_2024_10_29_15_54_13.mat';
-fl_nm1 = 'C:\Users\Abdallah Abdallah\Documents\Personals\OneDrive\shared PhD\paper drafts\AMA MVSF bib\204_102_12_deviations_v3_etta_3_16iters_1_attmps.txt';
+pth11='C:\Users\Abdallah Abdallah\Documents\Personals\matlab-NB-decoders-algorithms\AMA MVSF\results';
+pth22 = 'C:\Users\Abdallah Abdallah\Documents\Personals\OneDrive\shared PhD\paper drafts\6672d05ce10082c5b1416aa3\BER\';
 
-data = load(fl_nm);  % Replace 'yourfile.mat' with the actual filename
-
+% fl_nm = '204.102.3.6.16_2024_12_05_21_08_43.mat';
+fl_nm = 'BeiDou_44_88_GF64_2024_11_04_18_53_50';
+data = load(fullfile(pth11, fl_nm));  % Replace 'yourfile.mat' with the actual filename
+fl_nm1=[data.H_matrix_mat_fl_nm '_' num2str(length(data.dev_lsts_i)) '_deviations_v_etta_3_' num2str(data.max_iter) 'iters_' num2str(data.max_attempt) '_attmps.txt'];
 NN1 = 1;
-NN2 = 12;
+NN2 = 14;
 Ebn0 = data.ebn0(NN1:NN2)';      % Signal-to-noise ratio (SNR)
 BERstat = data.BERstat(NN1:NN2); % Bit Error Rate (BER)
 FERstat = data.FERstat(NN1:NN2); % Frame Error Rate (FER)
-
+aver_iter = data.aver_iter(NN1:NN2);
 % Create table with headers
-outputTable = table(Ebn0, BERstat, FERstat, 'VariableNames', {'SNR', 'BER', 'FER'});
+outputTable = table(Ebn0, BERstat, FERstat,aver_iter, 'VariableNames', {'SNR', 'BER', 'FER', 'aver_iter'});
 
 % Define output file name
 
 % Write table to file with specified format
-% writetable(outputTable, fl_nm1, 'Delimiter', '\t', 'WriteVariableNames', true);
+writetable(outputTable, fullfile(pth22, fl_nm1), 'Delimiter', '\t', 'WriteVariableNames', true);
 
 % Display message
 disp(['Data written to ', fl_nm1]);

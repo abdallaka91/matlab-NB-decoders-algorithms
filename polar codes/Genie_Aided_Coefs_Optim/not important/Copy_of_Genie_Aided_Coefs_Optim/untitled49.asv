@@ -1,0 +1,47 @@
+q=64;
+s1=7;
+
+ls1=[];
+for i =0:q-1
+    if hamm_dist(i,s1)==1
+        ls1=[ls1;i];
+    end
+end
+
+ls2=[];
+for i =0:q-1
+    if hamm_dist(i,s1)==5
+        ls2=[ls2;i];
+    end
+end
+
+ls3=[];
+for i =0:q-1
+    if hamm_dist(i,s1)==2
+        ls3=[ls3;i];
+    end
+end
+
+ls4=[];
+for i =0:q-1
+    if hamm_dist(i,s1)==4
+        ls4=[ls4;i];
+    end
+end
+
+t1d=[0:q-1];
+t2d=[0:q-1];
+
+t2d(ls1+1)=ls2;
+t2d(ls2+1)=ls1;
+t2d(ls3+1)=ls4;
+t2d(ls4+1)=ls3;
+
+
+hmm1=[];
+for i=1:q
+    hmm1(i)=hamm_dist(7,t1d(i));
+    hmm2(i)=hamm_dist(7,t2d(i));
+end
+
+

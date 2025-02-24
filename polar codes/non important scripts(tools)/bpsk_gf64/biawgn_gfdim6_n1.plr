@@ -1,0 +1,231 @@
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+&     bin_source_mode : ALL_ZERO
+&        channel_type : BI-AWGN
+&-----------------------------------------------------------------------------------------------------
+&           info_size : 1536
+&          coded_size : 1536
+&         coding_rate : 1
+&          rate_match : off
+&-----------------------------------------------------------------------------------------------------
+&         coding_type : polar_make
+&      polar_filename : biawgn_gfdim_6_8_10\biawgn_gfdim6_n1.plr
+&      polar_decoding : sc
+&      polar_dec_rule : bp
+&-----------------------------------------------------------------------------------------------------
+&      max_num_cwords : 100000
+&      stdout_refresh : 0
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+polar_gf_dim     6
+polar_num_steps  1
+read_indx_key   "src_indx_snr_%.2f"
+read_coef_key   "gf_coef_snr_%.2f"
+
+
+src_indx_snr_-2.00
+1 0 
+5.5461e-01 9.7559e-01 
+
+gf_coef_snr_-2.00
+  50  
+
+
+src_indx_snr_-1.80
+1 0 
+5.2972e-01 9.7415e-01 
+
+gf_coef_snr_-1.80
+  50  
+
+
+src_indx_snr_-1.60
+1 0 
+5.0685e-01 9.7260e-01 
+
+gf_coef_snr_-1.60
+  38  
+
+
+src_indx_snr_-1.40
+1 0 
+4.7943e-01 9.7071e-01 
+
+gf_coef_snr_-1.40
+  38  
+
+
+src_indx_snr_-1.20
+1 0 
+4.5364e-01 9.6854e-01 
+
+gf_coef_snr_-1.20
+  50  
+
+
+src_indx_snr_-1.00
+1 0 
+4.2911e-01 9.6610e-01 
+
+gf_coef_snr_-1.00
+  50  
+
+
+src_indx_snr_-0.80
+1 0 
+4.0268e-01 9.6324e-01 
+
+gf_coef_snr_-0.80
+  50  
+
+
+src_indx_snr_-0.60
+1 0 
+3.7815e-01 9.6022e-01 
+
+gf_coef_snr_-0.60
+  38  
+
+
+src_indx_snr_-0.40
+1 0 
+3.4980e-01 9.5655e-01 
+
+gf_coef_snr_-0.40
+  38  
+
+
+src_indx_snr_-0.20
+1 0 
+3.2413e-01 9.5239e-01 
+
+gf_coef_snr_-0.20
+  50  
+
+
+src_indx_snr_0.00
+1 0 
+3.0044e-01 9.4781e-01 
+
+gf_coef_snr_0.00
+  50  
+
+
+src_indx_snr_0.20
+1 0 
+2.7547e-01 9.4243e-01 
+
+gf_coef_snr_0.20
+  50  
+
+
+src_indx_snr_0.40
+1 0 
+2.5233e-01 9.3688e-01 
+
+gf_coef_snr_0.40
+  38  
+
+
+src_indx_snr_0.60
+1 0 
+2.2683e-01 9.3014e-01 
+
+gf_coef_snr_0.60
+  38  
+
+
+src_indx_snr_0.80
+1 0 
+2.0462e-01 9.2265e-01 
+
+gf_coef_snr_0.80
+  50  
+
+
+src_indx_snr_1.00
+1 0 
+1.8461e-01 9.1457e-01 
+
+gf_coef_snr_1.00
+  50  
+
+
+src_indx_snr_1.20
+1 0 
+1.6452e-01 9.0514e-01 
+
+gf_coef_snr_1.20
+  50  
+
+
+src_indx_snr_1.40
+1 0 
+1.4577e-01 8.9554e-01 
+
+gf_coef_snr_1.40
+  38  
+
+
+src_indx_snr_1.60
+1 0 
+1.2666e-01 8.8407e-01 
+
+gf_coef_snr_1.60
+  38  
+
+
+src_indx_snr_1.80
+1 0 
+1.1026e-01 8.7150e-01 
+
+gf_coef_snr_1.80
+  50  
+
+
+src_indx_snr_2.00
+1 0 
+9.5957e-02 8.5833e-01 
+
+gf_coef_snr_2.00
+  50  
+
+
+src_indx_snr_2.20
+1 0 
+8.2865e-02 8.4314e-01 
+
+gf_coef_snr_2.20
+  50  
+
+
+src_indx_snr_2.40
+1 0 
+7.0105e-02 8.2781e-01 
+
+gf_coef_snr_2.40
+  38  
+
+
+src_indx_snr_2.60
+1 0 
+5.8691e-02 8.0997e-01 
+
+gf_coef_snr_2.60
+  50  
+
+
+src_indx_snr_2.80
+1 0 
+4.8701e-02 7.9072e-01 
+
+gf_coef_snr_2.80
+  50  
+
+
+src_indx_snr_3.00
+1 0 
+4.0211e-02 7.7117e-01 
+
+gf_coef_snr_3.00
+  38  
+
+
