@@ -8,9 +8,9 @@ clc
 cnt11=0;
 p=6;
 q=2^p;
-nH = 20;
-nL = 20;
-nc = 20;
+nH = 8;
+nL = 8;
+nc = 8;
 
 EbN0_dB = 0; % SNR per bit in dB
 EbN0 = 10^(EbN0_dB/10); % Linear SNR

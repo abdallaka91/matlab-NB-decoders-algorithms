@@ -1,4 +1,4 @@
-function R_Leaf = VNu(HD_L, Root,coefs, q, add_mat, mul_mat)
+function R_Leaf = VNu(HD_L, Root,coefs, q, add_mat, mul_mat)  %% check if mul_mat or div_mat it should be
 
 N = size(Root,1);
 m=N/2;

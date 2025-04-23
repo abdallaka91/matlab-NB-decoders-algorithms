@@ -1,0 +1,7 @@
+clear
+ss = -14
+for i =1:6
+    ss
+flnm = ["C:\Users\Abdallah Abdallah\Desktop\matrices1\GF128 N512 optimized for R=0.75 - Copy\mat_N512_GF128_SNR-" ss ".txt"];
+uu=load(flnm);
+end

@@ -6,7 +6,7 @@ for n = 1 : N
         temp = (2*y(:,n)/(sigma2^2)).*(etaq(:,j)-HD1(:,n));
         L(j,n)=sum(temp);
     end
-%     L(:,n)=L(:,n)-min(L(:,n));
+     L(:,n)=L(:,n)-min(L(:,n));
 end
 end
 

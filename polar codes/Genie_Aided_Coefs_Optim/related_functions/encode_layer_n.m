@@ -1,4 +1,4 @@
-function m1=encode_layer_n(u, h1,add_mat, mul_mat,l1)
+function m1=encode_layer_n_ccsk(u,add_mat, mul_mat,l1)
 N=length(u);
 n=log2(N);
 
@@ -10,7 +10,6 @@ for l=l1:n
         b=2^(l-1)+2*t-mod(t,2^(l-1))+1;
         tmp1 = [m1(a,l-1+1) m1(b,l-1+1)];
         m1(a,l-1+2)=add_mat(tmp1(1)+1, tmp1(2)+1);
-        tmp2=[m1(b,l-1+1) h1(b,l-1+1)];
-        m1(b,l-1+2)=mul_mat(1+tmp2(1), 1+tmp2(2));
+        m1(b,l-1+2)=m1(b,l-1+1);
     end
 end

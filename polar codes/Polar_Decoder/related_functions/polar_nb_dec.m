@@ -35,7 +35,7 @@ while i>0
             i=i-1;
             j=j/2;
             ii1 = Int{i}(j,:);
-            temp0 = sqz(V(i+1,ii1),1);
+            temp0 = V(i+1,ii1);
 
             V(i,ii1) = f_c_q(add_mat,mul_mat, temp0, gf_coef(i5, i4));
             stat_v{i}(j) = true;

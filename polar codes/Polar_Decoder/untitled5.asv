@@ -1,0 +1,15 @@
+PL = 128;
+ 
+Rs = 53.125e9;
+Fs = Rs/1024;
+Ts = 1/Fs;
+Tb = 1/Rs;
+Sb = Ts/Tb;
+LCM = lcm(PL, Sb);
+
+PL_used = LCM/Sb;
+
+nb  = PL * Sb / LCM
+
+rng_asntec = nb*Tb*1e12
+ 

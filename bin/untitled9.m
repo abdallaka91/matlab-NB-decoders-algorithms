@@ -12,7 +12,7 @@ nH = 20;
 nL = 20;
 nc = 20;
 
-EbN0_dB = 0; % SNR per bit in dB
+EbN0_dB = 3; % SNR per bit in dB
 EbN0 = 10^(EbN0_dB/10); % Linear SNR
 sigm = sqrt(1/(2*EbN0)); % Noise standard deviationq = 64;
 

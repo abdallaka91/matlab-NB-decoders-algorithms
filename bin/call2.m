@@ -7,12 +7,12 @@ clc
 
 cnt11=0;
 cnt111=0;
-nH = 32;
-nL = 32;
-nc = 32;
-nb=32;
+nH = 8;
+nL = 8;
+nc = 8;
+nb=8;
 zC = 3;
-nopM=nc+4;
+nopM=8*2;
 p=6;
 q = 2^p;
 words = (0:q-1);
@@ -21,7 +21,7 @@ alph_bin_mod = (-1).^alph_bin;
 
 sigm = 0.7;
 mm=[];
-kk=0;
+kk=[];
 while cnt11<1000
     cnt11=cnt11+1;
 

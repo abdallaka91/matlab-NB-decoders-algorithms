@@ -1,4 +1,4 @@
-function E = Lbubble2(u,v,u_gf, v_gf, add_mat, nL, nH, nopM, nb, nc, zC, C)
+function [E,K] = Lbubble2(u,v,u_gf, v_gf, add_mat, nL, nH, nopM, nb, nc, zC, C)
 
 
 % if u(zC)>v(zC)

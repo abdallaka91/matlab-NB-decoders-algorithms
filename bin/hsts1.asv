@@ -1,0 +1,25 @@
+clear
+N = 64;
+n = log2(N);
+
+data = load("C:\Users\Abdallah Abdallah\Desktop\hsts\N64_GF64_SNR-7.50_1.txt");
+clstc = cell(n,1);
+clstv = cell(n,1);
+nodlay = cell(n,1);
+sz1 = N;
+s1=1;
+for i = 1 : n
+    nodlay(i) = 
+    sz1 = sz1/2;
+    clstc{i} = cell(2^(i-1),1);
+     clstv{i} = cell(2^(i-1),1);
+    for j = 1 : 2^(i-1)
+        clstc{i}{j,1} = data(s1:s1+sz1-1,:);
+        clstv{i}{j,1} = data(s1+sz1:(j+1)*sz1,:);
+        s1=s1+sz1;
+    end
+end
+
+
+
+%

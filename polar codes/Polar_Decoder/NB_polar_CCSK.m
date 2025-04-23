@@ -1,25 +1,25 @@
 8% q=64=> CCSK 0111011001011101011001110000010000101110000111011100100001101011
 clear
-save_rslt=1;
+save_rslt=0;
 pth1 = (fullfile(pwd, 'related_functions'));
 pth6 = (fullfile(pwd, 'results/'));
 addpath(pth1);
 rng = 0;
-snr_start=-13;
-snr_end=-9;
+snr_start=-6.5;
+snr_end=-6.5;
 mainPath = pwd;
-filename = fullfile(mainPath, '\bpsk_ccsk_gf64\biawgn_ccsk[6]_gfdim6_n7.plr');
+filename = fullfile(mainPath, '\bpsk_ccsk_gf64\biawgn_ccsk[6]_gfdim6_n6.plr');
 % load(filename)
 [p, data] = read_nb_polar_files_parameter(filename);
 
 q=64; CCSK_seq_str = '0111011001011101011001110000010000101110000111011100100001101011';
 p=log2(q);
-K=128;
+K=42;
 UIc = 0;
 parforN = 100;
 max_gen = 2e5;
-max_err_cnt1 = 50; % at low Eb_No(<Eb_No_thrshld)
-max_err_cnt2 = 50; %at high Eb_No
+max_err_cnt1 = 200; % at low Eb_No(<Eb_No_thrshld)
+max_err_cnt2 = 200; %at high Eb_No
 SNR_db_thrshld = 3.2;
 eta0 = CCSK_seq_str' - 48;
 etaq = zeros(q,q);
@@ -83,7 +83,7 @@ for i0 = 1 : snr_cnt
     chan_idx=chan_idx0;%(I1+1);
     I=(chan_idx(1:K)); %% unsort if needed
     Ic = (chan_idx(1+K:end)); %% unsort if needed
-    info_seq = randi([0 q-1],1,K); info_seq = [0:63 0:63];%%%%%%%%%%%%
+    info_seq = randi([0 q-1],1,K); 
     u = nan(1, N);
     u(I+1) = info_seq;
     u(Ic+1) = UIc;
